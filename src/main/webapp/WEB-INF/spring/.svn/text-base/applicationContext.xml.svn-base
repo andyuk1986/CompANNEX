@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-autowire="byType">
+
+    <!-- Defining a bean for replacement of property values. -->
+    <bean id="propertyConfigurer" autowire="no"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/spring/database.properties</value>
+                <value>/WEB-INF/spring/hibernate.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="tilingProperties"
+          class="com.inm.reach.tilingapp.properties.TilingPropertiesBean">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/spring/system.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="pdfListener" class="com.inm.reach.tilingapp.listener.PDFListener">
+        <property name="properties" ref="tilingProperties"/>
+        <property name="documentDao" ref="documentHibernateDao"/>
+    </bean>
+
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+        <property name="initialSize" value="${database.initialSize}"/>
+        <property name="maxActive" value="${database.maxActive}"/>
+        <property name="maxIdle" value="${database.maxIdle}"/>
+    </bean>
+
+    <bean id="baseSessionFactory" abstract="true">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="localSessionFactory"
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+          parent="baseSessionFactory">
+        <property name="mappingResources">
+            <list>
+                <value>
+                    com/inm/reach/tilingapp/model/document.hbm.xml
+                </value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="documentHibernateDao" class="com.inm.reach.tilingapp.dao.impl.DocumentDaoHibernateImpl">
+        <property name="sessionFactory" ref="localSessionFactory"/>
+    </bean>
+
+    <!-- Hibernate Template bean that will be assigned to DAOs. -->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="localSessionFactory"/>
+    </bean>
+
+    <!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="localSessionFactory"/>
+    </bean>
+
+</beans>

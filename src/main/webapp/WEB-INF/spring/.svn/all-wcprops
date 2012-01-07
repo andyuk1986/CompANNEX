@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/services/!svn/ver/25817/PackagedSolutions/trunk/reach/ReachServer/ReachAppService/ReachTilingApp/src/main/webapp/WEB-INF/spring
+END
+database.properties
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/services/!svn/ver/25606/PackagedSolutions/trunk/reach/ReachServer/ReachAppService/ReachTilingApp/src/main/webapp/WEB-INF/spring/database.properties
+END
+system.properties
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/services/!svn/ver/25817/PackagedSolutions/trunk/reach/ReachServer/ReachAppService/ReachTilingApp/src/main/webapp/WEB-INF/spring/system.properties
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/services/!svn/ver/24469/PackagedSolutions/trunk/reach/ReachServer/ReachAppService/ReachTilingApp/src/main/webapp/WEB-INF/spring/applicationContext.xml
+END
+hibernate.properties
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/services/!svn/ver/24253/PackagedSolutions/trunk/reach/ReachServer/ReachAppService/ReachTilingApp/src/main/webapp/WEB-INF/spring/hibernate.properties
+END

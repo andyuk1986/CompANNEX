@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="true">
+    <class name="com.compannex.model.Industry" table="industry" lazy="false" batch-size="250">
+        <id name="ID" column="ID">
+            <generator class="native"/>
+        </id>
+        <property name="description" column="description"/>
+        <join table="industry_tr">
+        	<key column="industry_ID"></key>
+        	<property name="name" column="name"></property>
+        	<many-to-one
+		        name="language"
+		        column="language_ID"
+		        class="com.compannex.model.Language"
+		        fetch="select"
+		        update="false"
+		        insert="false"
+		        property-ref="ID"
+		        unique="false"
+		        not-null="true"
+		        lazy="proxy"
+		        not-found="ignore"
+		        entity-name="language"
+		        formula="arbitrary"
+		        foreign-key="FK_CAT_IND"
+			/>
+        </join>
+    </class>
+    <query name="all.industries">
+     <![CDATA[
+        FROM Industry as i ]]>
+    </query>
+</hibernate-mapping>

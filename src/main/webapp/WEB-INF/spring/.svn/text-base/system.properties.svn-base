@@ -1,0 +1,11 @@
+#Path where PDF files are located
+pdfPath=C:\\ReachServer\\Documents
+
+#Path where Generated Tiles should be put
+tilesPath=C:\\ReachServer\\WebService\\Inetpub\\wwwroot\\images
+
+#The millisecond interval between running PDF fines seeking processes
+seekInterval=10000
+
+#URL of converter where PDF file should be send to be processed
+converterURL=http://localhost:8080/TilesGenerator/processing
