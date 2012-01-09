@@ -8,6 +8,6 @@ public interface CompANNEXConstants {
      * Servlet context property for remembering if initialization was
      * successful.
      */
-    public static final String COMPANNEX_INIT_SUCCESSFUL = COMPANNEX + " initialization successful";
+    public static final String COMPANNEX_INIT_SUCCESSFUL = COMPANNEX + " initialization is successful.";
     
 }
