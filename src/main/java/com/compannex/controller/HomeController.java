@@ -12,6 +12,6 @@ public class HomeController {
 
 	@RequestMapping("/index.jsp")
 	public void home(@RequestParam String defaultParam) {
-		logger.debug("!!!defaultParam" + defaultParam);
+		logger.info("!!!defaultParam" + defaultParam);
 	}
 }
