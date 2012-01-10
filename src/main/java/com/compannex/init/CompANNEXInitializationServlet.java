@@ -38,7 +38,7 @@ public class CompANNEXInitializationServlet extends ContextLoaderServlet impleme
             webApplicationContext = WebApplicationContextUtils
                     .getRequiredWebApplicationContext(getServletContext());
 
-            logger.debug(COMPANNEX_INIT_SUCCESSFUL);
+            logger.info(COMPANNEX_INIT_SUCCESSFUL);
 
             // Remember successful initialization.
             getServletContext().setAttribute(COMPANNEX_INIT_SUCCESSFUL,
@@ -82,7 +82,7 @@ public class CompANNEXInitializationServlet extends ContextLoaderServlet impleme
      * {@inheritDoc}
      */
     public void destroy() {
-        logger.debug("Stopping " + COMPANNEX + " Application.");
+        logger.info("Stopping " + COMPANNEX + " Application.");
         LogManager.shutdown();
         super.destroy();
     }

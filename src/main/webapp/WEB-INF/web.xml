@@ -29,6 +29,10 @@
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+
 	<session-config>
 		<!-- Default to 5 minute session timeouts -->
 		<session-timeout>5</session-timeout>
