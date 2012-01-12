@@ -29,12 +29,6 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>*.css</url-pattern>
-	</servlet-mapping>
-
-
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
