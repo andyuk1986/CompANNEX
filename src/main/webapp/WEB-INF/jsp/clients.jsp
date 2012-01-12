@@ -4,9 +4,9 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">   
+    <link rel="stylesheet" href="../../jsp/css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../jsp/css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../jsp/css/grid.css" type="text/css" media="screen">
     <script src="jsp/js/jquery-1.6.3.min.js" type="text/javascript"></script>
     <script src="jsp/js/cufon-yui.js" type="text/javascript"></script>
     <script src="jsp/js/cufon-replace.js" type="text/javascript"></script>
