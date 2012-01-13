@@ -4,21 +4,7 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="jsp/css/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="jsp/css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="jsp/css/grid.css" type="text/css" media="screen">   
-    <script src="jsp/js/jquery-1.6.3.min.js" type="text/javascript"></script>
-    <script src="jsp/js/cufon-yui.js" type="text/javascript"></script>
-    <script src="jsp/js/cufon-replace.js" type="text/javascript"></script>
-    <script src="jsp/js/Kozuka_Gothic_Pro_OpenType_300.font.js" type="text/javascript"></script>
-    <script src="jsp/js/Kozuka_Gothic_Pro_OpenType_700.font.js" type="text/javascript"></script>
-    <script src="jsp/js/Kozuka_Gothic_Pro_OpenType_900.font.js" type="text/javascript"></script>
-    <script src="jsp/js/FF-cash.js" type="text/javascript"></script>
-    <script type="text/javascript" src="jsp/js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="jsp/js/tms-0.3.js"></script>
-	<script type="text/javascript" src="jsp/js/tms_presets.js"></script>
-    <script type="text/javascript" src="jsp/js/easyTooltip.js"></script>
-    <script type="text/javascript" src="jsp/js/script.js"></script>
+    <%@ include file="/WEB-INF/jsp/includes/jsimports.inc" %>
 	<!--[if lt IE 7]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -34,26 +20,12 @@
 <body id="page1">
 	<!--==============================header=================================-->
     <header>
-    	<div class="main">
-        	<div class="prev-indent-bot2">
-                <h1><a href="index.html">wisesolutions</a></h1>
-                <nav>
-                    <ul class="menu">
-                        <li><a class="active" href="index.html">home</a></li>
-                        <li><a href="company.html">company</a></li>
-                        <li><a href="services.html">services</a></li>
-                        <li><a href="clients.html">clients</a></li>
-                        <li><a href="contacts.html">contacts</a></li>
-                    </ul>
-                </nav>
-                <div class="clear"></div>
-            </div>
-        </div>
+    	<%@ include file="/WEB-INF/jsp/menu.inc" %>
         <div class="slider-wrapper">
         	<div class="slider">
             	<ul class="items">
                 	<li>
-                    	<img src="jsp/images/slider-img1.gif" alt="">
+                    	<img src="images/slider-img1.gif" alt="">
                         <div class="banner">
                         	<strong>need <strong>fresh ideas?</strong></strong>
                             <em>Letâs create your companyâs growth strategy together!</em>
@@ -63,7 +35,7 @@
                         </div>
                     </li>
                     <li>
-                    	<img src="jsp/images/slider-img2.jpg" alt="">
+                    	<img src="images/slider-img2.jpg" alt="">
                         <div class="banner">
                         	<strong>good <strong>solutions!</strong></strong>
                             <em>Make your company a world wide known name with us!</em>
@@ -73,7 +45,7 @@
                         </div>
                     </li>
                     <li>
-                    	<img src="jsp/images/slider-img3.jpg" alt="">
+                    	<img src="images/slider-img3.jpg" alt="">
                         <div class="banner">
                         	<strong>LET US <strong>COOPERATE!</strong></strong>
                             <em>Letâs create your companyâs growth strategy together!</em>

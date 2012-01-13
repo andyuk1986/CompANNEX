@@ -4,18 +4,7 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">   
-    <script src="jsp/js/jquery-1.6.3.min.js" type="text/javascript"></script>
-    <script src="jsp/js/cufon-yui.js" type="text/javascript"></script>
-    <script src="jsp/js/cufon-replace.js" type="text/javascript"></script>
-    <script src="jsp/js/Kozuka_Gothic_Pro_OpenType_300.font.js" type="text/javascript"></script>
-    <script src="jsp/js/Kozuka_Gothic_Pro_OpenType_700.font.js" type="text/javascript"></script>
-    <script src="jsp/js/Kozuka_Gothic_Pro_OpenType_900.font.js" type="text/javascript"></script>
-    <script src="jsp/js/FF-cash.js" type="text/javascript"></script>
-    <script src="jsp/js/easyTooltip.js" type="text/javascript"></script>
-    <script src="jsp/js/script.js" type="text/javascript"></script>
+	<%@ include file="/WEB-INF/jsp/includes/jsimports.inc" %>
 	<!--[if lt IE 7]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -24,31 +13,19 @@
     </div>
 	<![endif]-->
     <!--[if lt IE 9]>
-   		<script type="text/javascript" src="jsp/js/html5.js"></script>
+   		<script type="text/javascript" src="js/html5.js"></script>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
 </head>
 <body id="page2">
 	<!--==============================header=================================-->
     <header>
-    	<div class="main">
-            <h1><a href="index.html">wisesolutions</a></h1>
-            <nav>
-                <ul class="menu">
-                    <li><a href="index.html">home</a></li>
-                    <li><a class="active" href="company.html">company</a></li>
-                    <li><a href="services.html">services</a></li>
-                    <li><a href="clients.html">clients</a></li>
-                    <li><a href="contacts.html">contacts</a></li>
-                </ul>
-            </nav>
-            <div class="clear"></div>
-        </div>
+    	<%@ include file="/WEB-INF/jsp/menu.inc" %>
         <div class="slider-wrapper">
         	<div class="slider">
             	<div class="banner">
                     <strong>need <strong>fresh ideas?</strong></strong>
-                    <em>Letâs create your companyâs growth strategy together!</em>
+                    <em>Let’s create your company’s growth strategy together!</em>
                 </div>
             </div>
         </div>
@@ -102,7 +79,7 @@
                                     </div>
                                 </div>
                                 <span class="button-2">
-                                    <a href="company.jsp#"><strong>All Testimonials</strong></a>
+                                    <a href="#"><strong>All Testimonials</strong></a>
                                 </span>
                             </article>
                             <article class="grid_6 omega">
@@ -134,10 +111,10 @@
             	<div class="wrapper">
                 	<article class="grid_3">
                     	<ul class="list-services">
-                        	<li class="item-1"><a class="tooltips" title="facebook" href="company.jsp#"></a></li>
-                            <li class="item-2"><a class="tooltips" title="twiiter" href="company.jsp#"></a></li>
-                            <li class="item-3"><a class="tooltips" title="delicious" href="company.jsp#"></a></li>
-                            <li class="item-4"><a class="tooltips" title="youtube" href="company.jsp#"></a></li>
+                        	<li class="item-1"><a class="tooltips" title="facebook" href="#"></a></li>
+                            <li class="item-2"><a class="tooltips" title="twiiter" href="#"></a></li>
+                            <li class="item-3"><a class="tooltips" title="delicious" href="#"></a></li>
+                            <li class="item-4"><a class="tooltips" title="youtube" href="#"></a></li>
                         </ul>
                     </article>
                     <article class="grid_3">
