@@ -102,8 +102,8 @@
                                     <h4>We Know <strong>What It Takes</strong><strong class="color-3">to be the <em>Leader!</em></strong></h4>
                                 </div>
                             </div>
-                            <p class="p1">Wise Solutions is one of <a class="link" target="_blank" href="http://blog.templatemonster.com/free-website-templates/">free website templates</a> created by TemplateMonster.com team. This website template is optimized for 1280X1024 screen resolution. It is also XHTML &amp; CSS valid.</p>
-                            <p class="img-indent-bot">This <a class="link" target="_blank" href="http://blog.templatemonster.com/2011/01/03/free-website-template-jquery-slider-business-website/">Wise Solutions Template</a> goes with two packages â with PSD source files and without them. PSD source files are available for free for the registered members of TemplatesMonster.com. The basic package is available for anyone without registration.</p>
+                            <p class="p1">CompANNEX is a consulting, marketing and researching company which is able to offer the most suitable and reliable business partners for your business.</p>
+                            <p class="img-indent-bot">It will make your life easier, and your business more efficient and profitable by handling the communication and negotiations with partners on it’s own.</p>
                             <span class="button-2">
                                 <a href="index.jsp#"><strong>aBOUT cOMPANY</strong></a>
                             </span>
@@ -115,49 +115,7 @@
     </section>
     
 	<!--==============================footer=================================-->
-    <footer>
-        <div class="main">
-        	<div class="container_12">
-            	<div class="wrapper">
-                	<article class="grid_3">
-                    	<ul class="list-services">
-                        	<li class="item-1"><a class="tooltips" title="facebook" href="index.jsp#"></a></li>
-                            <li class="item-2"><a class="tooltips" title="twiiter" href="index.jsp#"></a></li>
-                            <li class="item-3"><a class="tooltips" title="delicious" href="index.jsp#"></a></li>
-                            <li class="item-4"><a class="tooltips" title="youtube" href="index.jsp#"></a></li>
-                        </ul>
-                    </article>
-                    <article class="grid_3">
-                    	<div class="indent-left2">
-                            <h5>Navigation</h5>
-                            <ul class="list-1">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="company.html">Company</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="clients.html">Clients</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                            </ul>
-                        </div>
-                    </article>
-                    <article class="grid_3">
-                    	<h5>Contact</h5>
-                        <dl class="contact">
-                            <dt>2256 S Norfolk Street<br>Seattle, WA<br>98118-5648</dt>
-                            <dd><span>Phone:</span>  217-764-7449</dd>
-                            <dd><span>Fax:</span>  217-763-7912</dd>
-                         </dl>
-                    </article>
-                    <article class="grid_3">
-                    	<h5>Legal</h5>
-                        <p class="prev-indent-bot3 color-1">Wise Solutions &copy; 2011</p>
-                        <p class="prev-indent-bot3"><a class="link" target="_blank" href="http://www.templatemonster.com/">Website Template</a></p>
-                        <p class="color-1 p0">by TemplateMonster.com</p>
-						<p class="color-1 p0">More <a href="http://www.websitetemplatesonline.com" title="WTO - website templates and Flash templates">Free Web Templates</a> at WTO. All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</p>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <%@ include file="/WEB-INF/jsp/footer.inc" %>
 	<script type="text/javascript"> Cufon.now(); </script>
     <script type="text/javascript">
 		$(window).load(function(){
