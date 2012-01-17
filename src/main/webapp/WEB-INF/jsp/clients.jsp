@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/includes/imports.inc" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title></title>

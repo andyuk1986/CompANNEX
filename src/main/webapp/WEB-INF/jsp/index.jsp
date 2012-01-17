@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/includes/imports.inc" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title></title>
@@ -13,7 +14,7 @@
     </div>
 	<![endif]-->
     <!--[if lt IE 9]>
-   		<script type="text/javascript" src="jsp/js/html5.js"></script>
+   		<script type="text/javascript" src="js/html5.js"></script>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
 </head>
@@ -28,7 +29,7 @@
                     	<img src="images/slider-img1.gif" alt="">
                         <div class="banner">
                         	<strong>need <strong>fresh ideas?</strong></strong>
-                            <em>Letâs create your companyâs growth strategy together!</em>
+                            <em>Let’s create your company’s growth strategy together!</em>
                             <span class="button">
                             	<a href="index.jsp#"><strong>Read More</strong></a>
                             </span>
@@ -48,7 +49,7 @@
                     	<img src="images/slider-img3.jpg" alt="">
                         <div class="banner">
                         	<strong>LET US <strong>COOPERATE!</strong></strong>
-                            <em>Letâs create your companyâs growth strategy together!</em>
+                            <em>Let’s create your company’s growth strategy together!</em>
                             <span class="button">
                             	<a href="index.jsp#"><strong>Read More</strong></a>
                             </span>
@@ -97,7 +98,7 @@
                     <article class="grid_6">
                     	<div class="indent-top">
                             <div class="wrapper indent-bot2">
-                                <figure class="img-indent"><img src="jsp/images/page1-img1.jpg" alt=""></figure>
+                                <figure class="img-indent"><img src="images/page1-img1.jpg" alt=""></figure>
                                 <div class="extra-wrap">
                                     <h4>We Know <strong>What It Takes</strong><strong class="color-3">to be the <em>Leader!</em></strong></h4>
                                 </div>
