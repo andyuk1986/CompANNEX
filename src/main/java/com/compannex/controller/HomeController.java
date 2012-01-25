@@ -46,4 +46,11 @@ public class HomeController {
 
 		return result;
 	}
+	
+	@RequestMapping("/news.do")
+	public ModelAndView news() {
+		ModelAndView result = new ModelAndView("news", "activeTab", "home");
+
+		return result;
+	}
 }

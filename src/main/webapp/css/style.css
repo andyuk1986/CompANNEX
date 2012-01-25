@@ -69,7 +69,7 @@ p {margin-bottom:18px;}
 
 /*********************************boxes**********************************/
 .indent-top {padding-top:25px;}
-.indent-top2 {padding-top:50px;}
+.indent-top2 {padding-top:0px;}
 .indent-top3 {padding-top:13px;}
 .indent-left {padding-left:10px;}
 .indent-left2 {padding-left:60px;}
@@ -160,8 +160,10 @@ h1 {
 #page1 .slider {height:494px;}
 #page2 .slider {background:url(../images/slider-img1.jpg) 0 -171px no-repeat;}
 #page3 .slider {background:url(../images/slider-img2.jpg) 0 -154px no-repeat;}
-#page4 .slider,
+#page4 .slider {height:311px; background:url(../images/slider-img3.jpg) 0 -183px no-repeat;}
 #page5 .slider {background:url(../images/slider-img3.jpg) 0 -183px no-repeat;}
+
+#page4 .banner {top:15px;}
 
 .items {
 	display:none;

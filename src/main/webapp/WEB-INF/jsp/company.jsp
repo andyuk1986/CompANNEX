@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <span class="button-2">
-                                    <a href="#"><strong>All Testimonials</strong></a>
+                                    <a href="feedbacks.do"><strong>All Testimonials</strong></a>
                                 </span>
                             </article>
                             <article class="grid_6 omega">

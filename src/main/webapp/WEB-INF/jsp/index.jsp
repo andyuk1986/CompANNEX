@@ -92,7 +92,7 @@
                             <div class="clear"></div>
                         </div>
                         <span class="button-2">
-                            <a href="index.jsp#"><strong>News Archive</strong></a>
+                            <a href="news.do"><strong>News Archive</strong></a>
                         </span>
                     </article>
                     <article class="grid_6">
@@ -106,7 +106,7 @@
                             <p class="p1">CompANNEX is a consulting, marketing and researching company which is able to offer the most suitable and reliable business partners for your business.</p>
                             <p class="img-indent-bot">It will make your life easier, and your business more efficient and profitable by handling the communication and negotiations with partners on it’s own.</p>
                             <span class="button-2">
-                                <a href="index.jsp#"><strong>aBOUT cOMPANY</strong></a>
+                                <a href="company.do"><strong>aBOUT cOMPANY</strong></a>
                             </span>
                         </div>                        
                     </article>

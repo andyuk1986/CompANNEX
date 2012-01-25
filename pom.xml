@@ -135,6 +135,9 @@
 							<goal>copy</goal>
 						</goals>
 						<configuration>
+                            <tasks>
+                                <delete dir="${build.path}/CompANNEX"/>
+                            </tasks>
 							<artifactItems>
 								<artifactItem>
 									<groupId>${project.groupId}</groupId>
