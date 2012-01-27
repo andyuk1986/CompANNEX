@@ -261,6 +261,59 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`parent` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`news`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`news` (
+  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `date` DATE NOT NULL ,
+  PRIMARY KEY (`ID`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`news_tr`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`news_tr` (
+  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `news_ID` INT NOT NULL ,
+  `header` VARCHAR(45) NOT NULL ,
+  `text` VARCHAR(255) NOT NULL ,
+  `language_ID` INT NOT NULL ,
+  PRIMARY KEY (`ID`) ,
+  INDEX `FK_NEWSTR_NEWS` (`news_ID` ASC) ,
+  INDEX `FK_NEWSTR_LANG` (`language_ID` ASC) ,
+  CONSTRAINT `FK_NEWSTR_NEWS`
+    FOREIGN KEY (`news_ID` )
+    REFERENCES `hhovsepy_compannex`.`news` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_NEWSTR_LANG`
+    FOREIGN KEY (`language_ID` )
+    REFERENCES `hhovsepy_compannex`.`language` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`feedback`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`feedback` (
+  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `company_ID` INT NOT NULL ,
+  `text` VARCHAR(255) NOT NULL ,
+  `person` VARCHAR(45) NOT NULL ,
+  `position` VARCHAR(45) NULL ,
+  PRIMARY KEY (`ID`) ,
+  INDEX `FK_FEEDB_COMP` (`company_ID` ASC) ,
+  CONSTRAINT `FK_FEEDB_COMP`
+    FOREIGN KEY (`company_ID` )
+    REFERENCES `hhovsepy_compannex`.`company` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
