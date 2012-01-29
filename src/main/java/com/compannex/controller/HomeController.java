@@ -49,7 +49,7 @@ public class HomeController {
 	
 	@RequestMapping("/news.do")
 	public ModelAndView news() {
-		ModelAndView result = new ModelAndView("news", "activeTab", "home");
+		ModelAndView result = new ModelAndView("allnews", "activeTab", "home");
 
 		return result;
 	}

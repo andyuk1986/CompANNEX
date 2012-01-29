@@ -10,7 +10,7 @@ public class FeedbackController {
 	
 	@RequestMapping("/feedbacks.do")
 	public ModelAndView allFeedbacks() {
-		ModelAndView result = new ModelAndView("feedbacks", "activeTab", "company");
+		ModelAndView result = new ModelAndView("allfeedbacks", "activeTab", "company");
 		
 		return result;
 	}
