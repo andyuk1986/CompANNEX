@@ -116,6 +116,10 @@
                                 </div>
                                 <div class="clear"></div>
                                 Using this service you will receive a list of potential business partner companies, based on area of activities of your company and interests. Our business consultants will find most convenient partners for your business. 
+                                <div class="clear"></div>
+                                <span class="button servicebutton">
+                            		<a href="findingpartner.do"><strong>Read More</strong></a>
+                            	</span>
                             </article>
                             <article class="grid_4">
                             	<div class="indent-left">
@@ -127,6 +131,10 @@
                                     </div>
                                     <div class="clear"></div>
                                     You can use CompANNEX for advertising and finding possible customers for your products.Our consultants will analyze your product, areas of usage and will offer it to those companies registered in system for which it can be profitable or helpful.
+                                    <div class="clear"></div>
+                                    <span class="button servicebutton">
+                            			<a href="offerproduct.do"><strong>Read More</strong></a>
+                            		</span>
                                 </div>
                             </article>
                             <article class="grid_4 omega">
@@ -139,6 +147,10 @@
                                     </div>
                                     <div class="clear"></div>
                                     CompANNEX provides service of organizing communication between two or more companies despite of language and timezone difference. The communication is held by business consultants located in different countries.
+                                    <div class="clear"></div>
+                                    <span class="button servicebutton">
+                            			<a href="communicate.do"><strong>Read More</strong></a>
+                            		</span>
                                 </div>
                             </article>
                         </div>
