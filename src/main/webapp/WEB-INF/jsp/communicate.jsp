@@ -39,7 +39,7 @@
                                 CompANNEX provides service of organizing communication between two or more companies despite of language and timezone difference. The communication is held by business consultants located in different countries.
                                 <div class="clear"></div>
                                 <span class="button servicebutton">
-                            		<a href="findingpartner.do"><strong>Read More</strong></a>
+                            		<a href="findingpartner.do"><strong>Order Service</strong></a>
                             	</span>
                     </article>
                 </div>
