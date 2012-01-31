@@ -30,12 +30,9 @@
             <div class="container_12">
                 <div class="wrapper">
                 	<article class="grid_12">
-                        <div class="wrapper">
-                        	<article class="grid_4 alpha">
-                                <strong class="circle">A</strong>
                                 <div class="extra-wrap">
                                     <div class="indent-top3">
-                                        <strong class="title-1 color-2">Offering<strong>Your Product</strong></strong>
+                                        <strong class="title-1 color-2">Offering Your Product</strong>
                                     </div>
                                 </div>
                                 <div class="clear"></div>
@@ -44,8 +41,6 @@
                                 <span class="button servicebutton">
                             		<a href="findingpartner.do"><strong>Order Service</strong></a>
                             	</span>
-                            </article>
-                        </div>
                     </article>
                 </div>
             </div>
