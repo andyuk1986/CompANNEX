@@ -3,21 +3,20 @@ package com.compannex.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Annushka
- * Date: 1/28/12
- * Time: 8:04 PM
- * To change this template use File | Settings | File Templates.
- */
+
 @Entity
 @Table(name = "feedback")
 public class Feedback implements Serializable {
-    private int ID;
-    private Company companyId;
-    private String text;
-    private String person;
-    private String position;
+
+	private int ID;
+    
+	private Company company;
+    
+	private String text;
+    
+	private String person;
+    
+	private String position;
 
     @Id
 	@GeneratedValue
@@ -32,12 +31,12 @@ public class Feedback implements Serializable {
 
     @OneToMany
     @JoinColumn(name = "company_ID")
-    public Company getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Column(name = "text")
@@ -66,4 +65,53 @@ public class Feedback implements Serializable {
     public void setPosition(String position) {
         this.position = position;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + ((company == null) ? 0 : company.hashCode());
+		result = prime * result + ((person == null) ? 0 : person.hashCode());
+		result = prime * result
+				+ ((position == null) ? 0 : position.hashCode());
+		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Feedback other = (Feedback) obj;
+		if (ID != other.ID)
+			return false;
+		if (company == null) {
+			if (other.company != null)
+				return false;
+		} else if (!company.equals(other.company))
+			return false;
+		if (person == null) {
+			if (other.person != null)
+				return false;
+		} else if (!person.equals(other.person))
+			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		if (text == null) {
+			if (other.text != null)
+				return false;
+		} else if (!text.equals(other.text))
+			return false;
+		return true;
+	}
+    
+    
 }

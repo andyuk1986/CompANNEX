@@ -49,6 +49,14 @@
 		</property>
 	</bean>
 
+	<bean id="newsMethods" class="com.compannex.biz.NewsMethods">
+        <property name="newsDao" ref="newsDao"/>
+    </bean>
+    
+    <bean id="newsDao" class="com.compannex.dao.impl.NewsDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
 	<bean id="industryDao" class="com.compannex.dao.impl.IndustryDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>

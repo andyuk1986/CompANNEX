@@ -1,29 +1,37 @@
 package com.compannex.model;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Annushka
- * Date: 1/28/12
- * Time: 7:36 PM
- * To change this template use File | Settings | File Templates.
- */
 @Entity
 @Table(name = "company")
 public class Company implements Serializable {
-    private int ID;
+    
+	private int ID;
+    
     private String description;
+    
     private String website;
+    
     private Date createDate;
+    
     private String logo;
+    
     private int employmentCount;
+    
     private String status;
+    
     private Date addedDate;
+    
     private Category categoryId;
 
+    private CompanyTranslation translation;
+    
+    private Set<CompanyTranslation> translations;
+    
     @Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -107,4 +115,23 @@ public class Company implements Serializable {
     public void setCategoryId(Category categoryId) {
         this.categoryId = categoryId;
     }
+    
+	@OneToMany
+	@JoinColumn (name = "company_ID")
+	public Set<CompanyTranslation> getTranslations() {
+		return translations;
+	}
+
+	public void setTranslations(Set<CompanyTranslation> translations) {
+		this.translations = translations;
+	}
+	
+	public CompanyTranslation getTranslation() {
+		return translation;
+	}
+
+	public void setTranslation(CompanyTranslation translation) {
+		this.translation = translation;
+	}	
+
 }

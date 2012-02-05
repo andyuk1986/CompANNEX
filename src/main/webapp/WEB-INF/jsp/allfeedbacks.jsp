@@ -27,6 +27,7 @@
 	<!--==============================content================================-->
     <section id="content"><div class="ic"><div class="inner_copy">All <a href="http://www.magentothemesworld.com" title="Best Magento Templates">premium Magento themes</a> at magentothemesworld.com!</div></div>
         <div class="main">
+        	<div class="container_12">
                 <div class="wrapper">
                 	<article class="grid_12">
                 		<%@ include file="/WEB-INF/jsp/feedbacks.inc" %>

@@ -5,6 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.compannex.biz.CompanyMethods;
+import com.compannex.biz.FeedbackMethods;
+import com.compannex.biz.NewsMethods;
+
 @Controller
 public class HomeController {
 
@@ -15,7 +19,9 @@ public class HomeController {
 		logger.info("Home");
 
 		ModelAndView result = new ModelAndView("index", "activeTab", "home");
-
+		
+		result.addObject("news", NewsMethods.getInstance().getLatestNews());
+		
 		return result;
 	}
 
@@ -29,14 +35,14 @@ public class HomeController {
 	@RequestMapping("/company.do")
 	public ModelAndView company() {
 		ModelAndView result = new ModelAndView("company", "activeTab", "company");
-
+		result.addObject("feedbacks", FeedbackMethods.getInstance().getLatestFeedbacks());
 		return result;
 	}
 
 	@RequestMapping("/clients.do")
 	public ModelAndView clients() {
 		ModelAndView result = new ModelAndView("clients", "activeTab", "clients");
-
+		result.addObject("clients", CompanyMethods.getInstance().getLatestClientCompanies());
 		return result;
 	}
 
@@ -51,6 +57,8 @@ public class HomeController {
 	public ModelAndView news() {
 		ModelAndView result = new ModelAndView("allnews", "activeTab", "home");
 
+		result.addObject("news", NewsMethods.getInstance().getLatestNews());
+		
 		return result;
 	}
 }

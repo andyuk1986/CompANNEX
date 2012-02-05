@@ -61,46 +61,38 @@
                     </article>
                     <article class="grid_9">
                     	<h3>Our Clients</h3>
-                        <div class="wrapper indent-bot">
-                        	<article class="grid_3 alpha">
-                            	<figure class="p2"><a href="#"><img class="img-border" src="images/page4-img1.jpg" alt=""></a></figure>
-                                <strong>Company Name</strong>
-                                <p class="p0">Neque porro quisquam dolorem</p>
+                    	
+                    <%
+                   	List<Company> clients = (List<Company>)pageContext.findAttribute("clients");
+                   	int i = 1;
+                   	boolean isFirst = false;
+                   	boolean isLast = false;	
+                   	for (Company company : clients) {
+                   		
+                   		isFirst = (i % 3 == 1);
+                   		isLast = (i % 3 == 0);
+                   		
+                   		String articleclass = "grid_3";
+                   		if (isFirst) articleclass += " alpha";
+                   		if (isLast) articleclass += " omega";
+                   		
+                   		if (isFirst) { %>
+                   		<div class="wrapper indent-bot">
+                   	<%	}
+                   	%>
+                        	<article class="<%=articleclass %>">
+                            	<figure class="p2"><a href="#"><img class="img-border" src="<%=company.getLogo() %>" alt=""></a></figure>
+                                <strong><%=company.getTranslation().getName() %></strong>
+                                <p class="p0"><%=company.getTranslation().getSlogan() %></p>
                                 <a class="link" href="#">Learn More</a>
                             </article>
-                            <article class="grid_3">
-                            	<figure class="p2"><a href="#"><img class="img-border" src="images/page4-img2.jpg" alt=""></a></figure>
-                                <strong>Company Name</strong>
-                                <p class="p0">Neque porro quisquam dolorem</p>
-                                <a class="link" href="#">Learn More</a>
-                            </article>
-                            <article class="grid_3 omega">
-                            	<figure class="p2"><a href="#"><img class="img-border" src="images/page4-img3.jpg" alt=""></a></figure>
-                                <strong>Company Name</strong>
-                                <p class="p0">Neque porro quisquam dolorem</p>
-                                <a class="link" href="#">Learn More</a>
-                            </article>
+                            
+                   <%   if (isLast || i == clients.size()) { %>         
                         </div>
-                        <div class="wrapper">
-                        	<article class="grid_3 alpha">
-                            	<figure class="p2"><a href="#"><img class="img-border" src="images/page4-img4.jpg" alt=""></a></figure>
-                                <strong>Company Name</strong>
-                                <p class="p0">Neque porro quisquam dolorem</p>
-                                <a class="link" href="#">Learn More</a>
-                            </article>
-                            <article class="grid_3">
-                            	<figure class="p2"><a href="#"><img class="img-border" src="images/page4-img5.jpg" alt=""></a></figure>
-                                <strong>Company Name</strong>
-                                <p class="p0">Neque porro quisquam dolorem</p>
-                                <a class="link" href="#">Learn More</a>
-                            </article>
-                            <article class="grid_3 omega">
-                            	<figure class="p2"><a href="#"><img class="img-border" src="images/page4-img6.jpg" alt=""></a></figure>
-                                <strong>Company Name</strong>
-                                <p class="p0">Neque porro quisquam dolorem</p>
-                                <a class="link" href="#">Learn More</a>
-                            </article>
-                        </div>
+                   <%	}
+                   i++;
+                   }
+                   %>
                     </article>
                 </div>
             </div>

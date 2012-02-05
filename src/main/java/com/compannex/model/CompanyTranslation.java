@@ -3,25 +3,27 @@ package com.compannex.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Annushka
- * Date: 1/28/12
- * Time: 7:57 PM
- * To change this template use File | Settings | File Templates.
- */
 @Entity
 @Table(name = "company_tr")
 public class CompanyTranslation implements Serializable {
-    private int ID;
-    private Company companyId;
-    private Language languageId;
-    private String name;
-    private String address;
-    private String contacts;
-    private String description;
-    private String slogan;
-    private String status;
+    
+	private int ID;
+    
+	private Company company;
+    
+	private Language language;
+    
+	private String name;
+    
+	private String address;
+    
+	private String contacts;
+    
+	private String description;
+    
+	private String slogan;
+    
+	private String status;
 
     @Id
 	@GeneratedValue
@@ -36,22 +38,22 @@ public class CompanyTranslation implements Serializable {
 
     @OneToMany
     @JoinColumn(name = "company_ID")
-    public Company getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @OneToMany
     @JoinColumn(name = "language_ID")
-    public Language getLanguageId() {
-        return languageId;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLanguageId(Language languageId) {
-        this.languageId = languageId;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     @Column(name = "name")
