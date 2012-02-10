@@ -1,6 +1,7 @@
 package com.compannex.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.compannex.model.Industry;
 
@@ -33,6 +34,8 @@ public interface IndustryDao extends Serializable{
      * @return Industry entity.
      */
     public Industry getIndustryByName(final String indName);
+    
+    public List<Industry> getAllIndustries();
     
     
 }

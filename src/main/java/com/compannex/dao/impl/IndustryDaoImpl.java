@@ -1,5 +1,6 @@
 package com.compannex.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -43,6 +44,15 @@ public class IndustryDaoImpl extends HibernateDaoSupport implements IndustryDao 
         } else {
             return null;
         }
+    }
+    
+    @Override
+    public List<Industry> getAllIndustries() {
+    	List<Industry> inds = getHibernateTemplate().loadAll(Industry.class);
+    	
+    	if (inds == null) inds = new ArrayList<Industry>();
+    	
+    	return inds;
     }
 
 }

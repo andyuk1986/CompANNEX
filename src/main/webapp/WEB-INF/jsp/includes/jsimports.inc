@@ -13,3 +13,4 @@
 <script type="text/javascript" src="js/tms_presets.js"></script>
 <script type="text/javascript" src="js/easyTooltip.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/mootools-core.js"></script>

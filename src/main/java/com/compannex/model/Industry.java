@@ -1,27 +1,25 @@
 package com.compannex.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "industry")
 public class Industry implements java.io.Serializable {
-	
+
 	private int ID;
 
 	private String description;
-	
-	private Set<IndustryTranslation> translations;
+
+	private transient List<Category> categories;
+
+	private transient IndustryTranslation translation;
 
 	@Id
 	@GeneratedValue
@@ -34,12 +32,6 @@ public class Industry implements java.io.Serializable {
 		ID = iD;
 	}
 
-	@OneToMany
-	@JoinColumn (name = "industry_ID")
-	public Set<IndustryTranslation> getTranslations() {
-		return translations;
-	}
-
 	@Column(name = "description")
 	public String getDescription() {
 		return description;
@@ -49,8 +41,24 @@ public class Industry implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public void setTranslations(Set<IndustryTranslation> translations) {
-		this.translations = translations;
+	@Transient
+	public void setTranslation(IndustryTranslation translation) {
+		this.translation = translation;
+	}
+
+	@Transient
+	public IndustryTranslation getTranslation() {
+		return this.translation;
+	}
+
+	@Transient
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	@Transient
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 	@Override
@@ -60,8 +68,6 @@ public class Industry implements java.io.Serializable {
 		result = prime * result + ID;
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result
-				+ ((translations == null) ? 0 : translations.hashCode());
 		return result;
 	}
 
@@ -81,13 +87,7 @@ public class Industry implements java.io.Serializable {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (translations == null) {
-			if (other.translations != null)
-				return false;
-		} else if (!translations.equals(other.translations))
-			return false;
 		return true;
 	}
-	
-	
+
 }

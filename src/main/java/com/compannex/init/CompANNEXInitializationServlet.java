@@ -105,8 +105,7 @@ public class CompANNEXInitializationServlet extends ContextLoaderServlet impleme
     }
     
     private void doTest() {
-    	IndustryDao indDao = (IndustryDao)getWebApplicationContext().getBean("industryDao");
-    	indDao.getIndustryById(1);
+    	
     }
 
 }

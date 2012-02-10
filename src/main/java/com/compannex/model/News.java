@@ -14,9 +14,9 @@ public class News implements Serializable {
     
     private Date date;
     
-    private NewsTranslation translation;
+    private transient NewsTranslation translation;
     
-    private Set<NewsTranslation> translations;
+    private transient Set<NewsTranslation> translations;
 
     @Id
 	@GeneratedValue
@@ -38,20 +38,22 @@ public class News implements Serializable {
         this.date = date;
     }
     
-	@OneToMany
-	@JoinColumn (name = "industry_ID")
+    @Transient
 	public Set<NewsTranslation> getTranslations() {
 		return translations;
 	}
 
+    @Transient
 	public void setTranslations(Set<NewsTranslation> translations) {
 		this.translations = translations;
 	}
 	
+    @Transient
 	public NewsTranslation getTranslation() {
 		return translation;
 	}
 
+	@Transient
 	public void setTranslation(NewsTranslation translation) {
 		this.translation = translation;
 	}	

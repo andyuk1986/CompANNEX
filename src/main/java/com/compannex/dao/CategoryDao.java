@@ -1,17 +1,10 @@
 package com.compannex.dao;
 
-import com.compannex.model.Category;
-import com.compannex.model.Industry;
-
 import java.io.Serializable;
+import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Annushka
- * Date: 1/28/12
- * Time: 8:19 PM
- * To change this template use File | Settings | File Templates.
- */
+import com.compannex.model.Category;
+
 public interface CategoryDao extends Serializable{
 
     public Category getCategoryById(final int categoryId);
@@ -22,5 +15,5 @@ public interface CategoryDao extends Serializable{
 
     public void deleteCategory(final Category category);
 
-    public Category getCategoryByIndustry(final Industry industry);
+    public List<Category> getCategoriesByIndustryID(final int industryID);
 }

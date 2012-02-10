@@ -456,6 +456,9 @@ blockquote {
 		background:#fff;
 		outline:none;
 	}
+	#contact-form input.integer {
+		width:50px; 
+	}
 	#contact-form textarea {
 		float:left;
 		height:185px; 
@@ -478,6 +481,18 @@ blockquote {
 	line-height:35px;
 	width:110px; 
 	color:#4d4d4d;
+}
+
+.required {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url(../images/required.gif);
+    background-origin: padding-box;
+    background-position: 2px 9px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    padding-left: 15px;
 }
 
 .buttons {padding:20px 60px 0 0; text-align:right;}
@@ -518,4 +533,8 @@ footer {
 	text-transform:none;
 	position:relative;
 	z-index:9;
+}
+
+.hidden {
+	display:none;
 }

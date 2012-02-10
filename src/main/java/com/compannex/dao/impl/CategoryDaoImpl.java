@@ -1,25 +1,22 @@
 package com.compannex.dao.impl;
 
-import com.compannex.dao.CategoryDao;
-import com.compannex.model.Category;
-import com.compannex.model.Industry;
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Annushka
- * Date: 1/28/12
- * Time: 8:22 PM
- * To change this template use File | Settings | File Templates.
- */
+import com.compannex.dao.CategoryDao;
+import com.compannex.model.Category;
+import com.compannex.model.IndustryTranslation;
+
 public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao {
     private static Logger logger = Logger.getLogger(IndustryDaoImpl.class);
 
     @Override
     public Category getCategoryById(final int categoryId) {
         Category doc = null;
-        Object obj = getHibernateTemplate().load(Industry.class, categoryId);
+        Object obj = getHibernateTemplate().load(Category.class, categoryId);
         if (obj != null) {
             doc = (Category) obj;
         }
@@ -42,15 +39,22 @@ public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao 
     }
 
     @Override
-    public Category getCategoryByIndustry(final Industry industry) {
-        Category category = null;
-        Object obj = getSession().createQuery("from Category as categ where categ.industry_ID= ?")
-                .setInteger(0, industry.getID())
-                .uniqueResult();
-        if (obj != null) {
-            category = (Category) obj;
-        }
+    public List<Category> getCategoriesByIndustryID(final int industryId) {
+    	
+    	Session session = null;
+    	try {
+    		session = getSession();
+        	List<Category> categories = null;
+            Object obj = session.createQuery("from Category as categ where categ.industryId= ?")
+                    .setInteger(0, industryId)
+                    .list();
+            if (obj != null) {
+            	categories = (List<Category>) obj;
+            }
 
-        return category;
+            return categories;
+        } finally {
+        	if (session != null) session.close();
+        }
     }
 }

@@ -1,8 +1,11 @@
 package com.compannex.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.compannex.biz.CompanyMethods;
@@ -15,10 +18,12 @@ public class HomeController {
 	private static Logger logger = Logger.getLogger(HomeController.class);
 
 	@RequestMapping("/home.do")
-	public ModelAndView home() {
+	public ModelAndView home(HttpServletRequest request) {
 		logger.info("Home");
 
 		ModelAndView result = new ModelAndView("index", "activeTab", "home");
+		
+		WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
 		
 		result.addObject("news", NewsMethods.getInstance().getLatestNews());
 		

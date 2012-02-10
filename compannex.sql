@@ -314,6 +314,17 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`feedback` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+ALTER TABLE `hhovsepy_compannex`.`company`
+ ADD `email` VARCHAR(45) NOT NULL AFTER `website`,
+ ADD `password` VARCHAR(45) NOT NULL AFTER `email`
+ ADD `telephone` VARCHAR(45) AFTER `website`;
+
+ALTER TABLE `hhovsepy_compannex`.`category_tr`
+ MODIFY `name` VARCHAR(255) NOT NULL;
+
+ALTER TABLE `hhovsepy_compannex`.`feedback`
+ADD `date` DATE NOT NULL AFTER `position`;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

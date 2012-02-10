@@ -9,6 +9,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "industry_tr")
@@ -18,9 +19,13 @@ public class IndustryTranslation implements java.io.Serializable {
 	
 	private String name;
 	
-	private Language language;
+	private int industryId;
 	
-	private Industry industry;
+	private int languageId;
+	
+	private transient Language language;
+	
+	private transient Industry industry;
 
 	@Id
 	@GeneratedValue
@@ -41,23 +46,41 @@ public class IndustryTranslation implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(name = "industry_ID")
+	public int getIndustryId() {
+		return industryId;
+	}
 
-	@OneToOne
-	@JoinColumn(name="language_ID")
+	public void setIndustryId(int industryId) {
+		this.industryId = industryId;
+	}
+
+	@Column(name = "language_ID")
+	public int getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
+	}
+
+	@Transient
 	public Language getLanguage() {
 		return language;
 	}
 
+	@Transient
 	public void setLanguage(Language language) {
 		this.language = language;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="industry_ID")
+	@Transient
 	public Industry getIndustry() {
 		return industry;
 	}
 	
+	@Transient
 	public void setIndustry(Industry industry) {
 		this.industry = industry;
 	}
@@ -67,8 +90,8 @@ public class IndustryTranslation implements java.io.Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-		result = prime * result
-				+ ((language == null) ? 0 : language.hashCode());
+		result = prime * result + industryId;
+		result = prime * result + languageId;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -87,10 +110,9 @@ public class IndustryTranslation implements java.io.Serializable {
 				return false;
 		} else if (!ID.equals(other.ID))
 			return false;
-		if (language == null) {
-			if (other.language != null)
-				return false;
-		} else if (!language.equals(other.language))
+		if (industryId != other.industryId)
+			return false;
+		if (languageId != other.languageId)
 			return false;
 		if (name == null) {
 			if (other.name != null)

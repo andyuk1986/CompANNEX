@@ -1,49 +1,107 @@
 package com.compannex.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Annushka
- * Date: 1/18/12
- * Time: 7:16 PM
- * To change this template use File | Settings | File Templates.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
-    private int id;
-    private Industry industryId;
-    private String description;
 
-    @Id
+	private int ID;
+
+	private int industryId;
+
+	private transient Industry industry;
+
+	private String description;
+
+	private transient CategoryTranslation translation;
+
+	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-    public int getId() {
-        return id;
-    }
+	public int getID() {
+		return ID;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setID(int ID) {
+		this.ID = ID;
+	}
 
-    @OneToMany
-    @JoinColumn(name = "industry_ID")
-    public Industry getIndustryId() {
-        return industryId;
-    }
+	@Column(name = "industry_ID")
+	public int getIndustryId() {
+		return industryId;
+	}
 
-    public void setIndustryId(Industry industryId) {
-        this.industryId = industryId;
-    }
+	public void setIndustryId(int industryId) {
+		this.industryId = industryId;
+	}
 
-    @Column(name = "description")
-    public String getDescription() {
-        return description;
-    }
+	@Transient
+	public Industry getIndustry() {
+		return industry;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	@Transient
+	public void setIndustry(Industry industry) {
+		this.industry = industry;
+	}
+
+	@Column(name = "description")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Transient
+	public CategoryTranslation getTranslation() {
+		return translation;
+	}
+
+	@Transient
+	public void setTranslation(CategoryTranslation translation) {
+		this.translation = translation;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ID;
+		result = prime * result + industryId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (ID != other.ID)
+			return false;
+		if (industryId != other.industryId)
+			return false;
+		return true;
+	}
+
 }

@@ -1,77 +1,106 @@
 package com.compannex.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "feedback")
 public class Feedback implements Serializable {
 
 	private int ID;
-    
-	private Company company;
-    
+
+	private int companyId;
+
+	private transient Company company;
+
 	private String text;
-    
+
 	private String person;
-    
+
 	private String position;
 
-    @Id
+	private Date date;
+
+	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-    public int getID() {
-        return ID;
-    }
+	public int getID() {
+		return ID;
+	}
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+	public void setID(int ID) {
+		this.ID = ID;
+	}
 
-    @OneToMany
-    @JoinColumn(name = "company_ID")
-    public Company getCompany() {
-        return company;
-    }
+	@Column(name = "company_ID")
+	public int getCompanyId() {
+		return companyId;
+	}
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
 
-    @Column(name = "text")
-    public String getText() {
-        return text;
-    }
+	@Transient
+	public Company getCompany() {
+		return company;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
+	@Transient
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
-    @Column(name = "person")
-    public String getPerson() {
-        return person;
-    }
+	@Column(name = "text")
+	public String getText() {
+		return text;
+	}
 
-    public void setPerson(String person) {
-        this.person = person;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    @Column(name = "position")
-    public String getPosition() {
-        return position;
-    }
+	@Column(name = "person")
+	public String getPerson() {
+		return person;
+	}
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
+	public void setPerson(String person) {
+		this.person = person;
+	}
+
+	@Column(name = "position")
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	@Column(name = "date")
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + ((company == null) ? 0 : company.hashCode());
+		result = prime * result + companyId;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((person == null) ? 0 : person.hashCode());
 		result = prime * result
 				+ ((position == null) ? 0 : position.hashCode());
@@ -90,10 +119,12 @@ public class Feedback implements Serializable {
 		Feedback other = (Feedback) obj;
 		if (ID != other.ID)
 			return false;
-		if (company == null) {
-			if (other.company != null)
+		if (companyId != other.companyId)
+			return false;
+		if (date == null) {
+			if (other.date != null)
 				return false;
-		} else if (!company.equals(other.company))
+		} else if (!date.equals(other.date))
 			return false;
 		if (person == null) {
 			if (other.person != null)
@@ -112,6 +143,4 @@ public class Feedback implements Serializable {
 			return false;
 		return true;
 	}
-    
-    
 }

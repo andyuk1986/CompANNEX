@@ -28,7 +28,7 @@
                     <strong>LET US <strong>COOPERATE!</strong></strong>
                     <em>Let’s create your company’s growth strategy together!</em>
                     <span class="button">
-                    	<a href="newpartner.do"><strong>Become a Partner</strong></a>
+                    	<a href="registernew.do"><strong>Become a Partner</strong></a>
                     </span>
                 </div>
             </div>

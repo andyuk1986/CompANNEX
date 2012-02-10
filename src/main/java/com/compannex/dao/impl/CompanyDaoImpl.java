@@ -42,12 +42,6 @@ public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
     @Override
     public Company getCompanyByCategory(Category category) {
         Company company = null;
-        Object obj = getSession().createQuery("from Company as comp where comp.category_ID= ?")
-                .setInteger(0, category.getId())
-                .uniqueResult();
-        if (obj != null) {
-            company = (Company) obj;
-        }
 
         return company;
     }
