@@ -1,7 +1,7 @@
 package com.compannex.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -26,6 +26,8 @@ public class Company implements Serializable {
 	private String password;
 
 	private String telephone;
+
+	private String fax;
 
 	private Date createDate;
 
@@ -99,6 +101,15 @@ public class Company implements Serializable {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	@Column(name = "fax")
+	public String getFax() {
+		return fax;
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
 	}
 
 	@Column(name = "create_date")
@@ -199,6 +210,7 @@ public class Company implements Serializable {
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + employmentCount;
+		result = prime * result + ((fax == null) ? 0 : fax.hashCode());
 		result = prime * result + ((logo == null) ? 0 : logo.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
@@ -243,6 +255,11 @@ public class Company implements Serializable {
 		} else if (!email.equals(other.email))
 			return false;
 		if (employmentCount != other.employmentCount)
+			return false;
+		if (fax == null) {
+			if (other.fax != null)
+				return false;
+		} else if (!fax.equals(other.fax))
 			return false;
 		if (logo == null) {
 			if (other.logo != null)

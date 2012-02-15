@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
 </head>
+<%
+List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
+%>
 <body id="page4">
 	<!--==============================header=================================-->
     <header>
@@ -47,9 +50,18 @@
                                   <label><span class="text-form required">Re Password:</span><input type="text" name="repassword"></label>
                                   <%@ include file="/WEB-INF/jsp/includes/industry.inc" %>
                                   <label><span class="text-form">Web Site URL:</span><input type="text" name="websiteurl"></label>
+                                  <label><span class="text-form">Telephone:</span><input type="text" name="telephone"></label>
+                                  <label><span class="text-form">Fax:</span><input type="text" name="fax"></label>
                                   <label><span class="text-form">Contact Person Name:</span><input type="text" name="contactperson"></label>
                                   <label><span class="text-form required">Address:</span><input type="text" name="address"></label>
-                                  <label><span class="text-form required">Country:</span><input type="text" name="country"></label>
+                                  <label><span class="text-form required">Country:</span>
+    	                            <select name="country">
+								    	<option value="none">-- Select Country --</option>
+        								<c:forEach var="country" items="${countries}">
+        									<option value="${country.ID}">${country.translation.name}</option>
+        								</c:forEach>
+									</select>
+								  </label>
                                   <label><span class="text-form">Slogan:</span><input type="text" name="slogan"></label>
                                   <label><span class="text-form">Employee Count:</span><input type="text" class="integer" name="employeecount"></label>
                                   <div class="wrapper">

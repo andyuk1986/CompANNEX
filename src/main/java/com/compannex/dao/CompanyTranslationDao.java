@@ -10,7 +10,7 @@ public interface CompanyTranslationDao {
 
     public CompanyTranslation getCompanyTranslationByLanguage(final Language language);
 
-    public void saveCompanyTranslation(final CompanyTranslation companyTranslation);
+    public void addCompanyTranslation(final CompanyTranslation companyTranslation);
 
     public void editCompanyTranslation(final CompanyTranslation companyTranslation);
 

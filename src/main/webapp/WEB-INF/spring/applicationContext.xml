@@ -92,6 +92,14 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	
+	<bean id="countryDao" class="com.compannex.dao.impl.CountryDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
+	<bean id="countryTranslationDao" class="com.compannex.dao.impl.CountryTranslationDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
 	<bean id="feedbackDao" class="com.compannex.dao.impl.FeedbackDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
@@ -103,6 +111,17 @@
         <property name="categoryDao" ref="categoryDao"/>
     </bean>
 
+	<bean id="countryMethods" class="com.compannex.biz.CountryMethods">
+        <property name="countryDao" ref="countryDao"/>
+        <property name="countryTranslationDao" ref="countryTranslationDao"/>
+    </bean>
+
+	<bean id="partnerMethods" class="com.compannex.biz.PartnerMethods">
+        <property name="companyCountryDao" ref="companyCountryDao"/>
+        <property name="companyDao" ref="companyDao"/>
+        <property name="companyTranslationDao" ref="companyTranslationDao"/>
+    </bean>
+    
 	<bean id="newsMethods" class="com.compannex.biz.NewsMethods">
         <property name="newsDao" ref="newsDao"/>
     </bean>

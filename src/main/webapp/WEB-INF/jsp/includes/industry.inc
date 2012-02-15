@@ -1,8 +1,5 @@
 <%
 List<Industry> industries = (List<Industry>)pageContext.findAttribute("industries");
-
-
-
 %>
 
 <label><span class="text-form required">Industry:</span>
