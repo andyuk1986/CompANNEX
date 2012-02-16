@@ -25,15 +25,19 @@ public class PartnerController {
 
 	private static Logger logger = Logger.getLogger(PartnerController.class);
 
-	@Autowired
 	private RegistrationValidation registrationValidation;
 
-	public void setRegistrationValidation(
+	/*public void setRegistrationValidation(
 			RegistrationValidation registrationValidation) {
 		this.registrationValidation = registrationValidation;
-	}
+	}*/
 
-	@RequestMapping("/registernew.do")
+    @Autowired
+    public PartnerController(RegistrationValidation registrationValidation) {
+        this.registrationValidation = registrationValidation;
+    }
+
+    @RequestMapping("/registernew.do")
 	public ModelAndView registerNew(HttpServletRequest request) {
 		ModelAndView result = new ModelAndView("register", "activeTab",
 				"clients");

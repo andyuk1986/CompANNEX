@@ -134,6 +134,8 @@
 	<bean id="feedbackMethods" class="com.compannex.biz.FeedbackMethods">
         <property name="feedbackDao" ref="feedbackDao"/>
     </bean>
+
+    <bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation"/>
     
 	<!-- Hibernate Template bean that will be assigned to DAOs. -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
