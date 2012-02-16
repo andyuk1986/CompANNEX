@@ -64,6 +64,10 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	
+	<bean id="newsTranslationDao" class="com.compannex.dao.impl.NewsTranslationDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
 	<bean id="industryDao" class="com.compannex.dao.impl.IndustryDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
@@ -124,6 +128,7 @@
     
 	<bean id="newsMethods" class="com.compannex.biz.NewsMethods">
         <property name="newsDao" ref="newsDao"/>
+        <property name="newsTranslationDao" ref="newsTranslationDao"/>
     </bean>
 
 	<!-- Hibernate Template bean that will be assigned to DAOs. -->

@@ -5,12 +5,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.FeedbackMethods;
 import com.compannex.biz.NewsMethods;
+import com.compannex.biz.PartnerMethods;
+import com.compannex.constants.CompANNEXConstants;
 
 @Controller
 public class HomeController {
@@ -23,9 +26,10 @@ public class HomeController {
 
 		ModelAndView result = new ModelAndView("index", "activeTab", "home");
 		
-		WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+		WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+		NewsMethods newsMethods = (NewsMethods)context.getBean("newsMethods");
 		
-		result.addObject("news", NewsMethods.getInstance().getLatestNews());
+		result.addObject("news", newsMethods.getLatestNews(CompANNEXConstants.DEFAULT_LANGUAGE));
 		
 		return result;
 	}
@@ -59,10 +63,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/news.do")
-	public ModelAndView news() {
+	public ModelAndView news(HttpServletRequest request) {
 		ModelAndView result = new ModelAndView("allnews", "activeTab", "home");
-
-		result.addObject("news", NewsMethods.getInstance().getLatestNews());
+		
+		WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+		NewsMethods newsMethods = (NewsMethods)context.getBean("newsMethods");
+		
+		result.addObject("news", newsMethods.getLatestNews(CompANNEXConstants.DEFAULT_LANGUAGE));
 		
 		return result;
 	}

@@ -42,18 +42,18 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                 <div class="wrapper">
                 	<article class="grid_9">
                     	<h3>Register Form</h3>
-                        <form id="contact-form" action="register.do" method="post" enctype="multipart/form-data">                    
+                    	<form:form method="Post" action="register.do" commandName="registration">
                             <fieldset>
-                                  <label><span class="text-form required">Company Name:</span><input type="text" name="name"></label>
-                                  <label><span class="text-form required">Email Address:</span><input type="text" name="email"></label>                              
-                                  <label><span class="text-form required">Password:</span><input type="text" name="password"></label>
-                                  <label><span class="text-form required">Re Password:</span><input type="text" name="repassword"></label>
+                                  <label><span class="text-form required">Company Name:</span><form:input path="name"/></label>
+                                  <label><span class="text-form required">Email Address:</span><form:input path="email"/></label>                              
+                                  <label><span class="text-form required">Password:</span><form:password path="password"/></label>
+                                  <label><span class="text-form required">Re Password:</span><form:password path="repassword"/></label>
                                   <%@ include file="/WEB-INF/jsp/includes/industry.inc" %>
-                                  <label><span class="text-form">Web Site URL:</span><input type="text" name="websiteurl"></label>
-                                  <label><span class="text-form">Telephone:</span><input type="text" name="telephone"></label>
-                                  <label><span class="text-form">Fax:</span><input type="text" name="fax"></label>
-                                  <label><span class="text-form">Contact Person Name:</span><input type="text" name="contactperson"></label>
-                                  <label><span class="text-form required">Address:</span><input type="text" name="address"></label>
+                                  <label><span class="text-form">Web Site URL:</span><form:input path="websiteurl"/></label>
+                                  <label><span class="text-form">Telephone:</span><form:input path="telephone"/></label>
+                                  <label><span class="text-form">Fax:</span><form:input path="fax"/></label>
+                                  <label><span class="text-form">Contact Person Name:</span><form:input path="contactperson"/></label>
+                                  <label><span class="text-form required">Address:</span><form:input path="address"/></label>
                                   <label><span class="text-form required">Country:</span>
     	                            <select name="country">
 								    	<option value="none">-- Select Country --</option>
@@ -62,8 +62,8 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
         								</c:forEach>
 									</select>
 								  </label>
-                                  <label><span class="text-form">Slogan:</span><input type="text" name="slogan"></label>
-                                  <label><span class="text-form">Employee Count:</span><input type="text" class="integer" name="employeecount"></label>
+                                  <label><span class="text-form">Slogan:</span><form:input path="slogan"/></label>
+                                  <label><span class="text-form">Employee Count:</span><form:input path="employeecount"/></label>
                                   <div class="wrapper">
                                     <div class="text-form">Description:</div>
                                     <div class="extra-wrap">
