@@ -12,6 +12,8 @@ public interface CompANNEXConstants {
     
     public static final int NEWS_LIMIT = 3;
     
+    public static final int FEEDBACKS_LIMIT = 2;
+    
     public static final int DEFAULT_LANGUAGE = 1;
     
 }

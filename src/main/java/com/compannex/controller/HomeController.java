@@ -42,9 +42,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("/company.do")
-	public ModelAndView company() {
+	public ModelAndView company(HttpServletRequest request) {
 		ModelAndView result = new ModelAndView("company", "activeTab", "company");
-		result.addObject("feedbacks", FeedbackMethods.getInstance().getLatestFeedbacks());
+		
+		WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+		FeedbackMethods feedbackMethods = (FeedbackMethods)context.getBean("feedbackMethods");
+		
+		result.addObject("feedbacks", feedbackMethods.getLatestFeedbacks());
 		return result;
 	}
 
