@@ -18,7 +18,7 @@ List<Industry> industries = (List<Industry>)pageContext.findAttribute("industrie
 	</select>    		
     		
 	<c:forEach var="industry" items="${industries}">
-    	<select name="category" class="hidden" ID="cat_${industry.ID}">
+    	<select name="category" class="hidden" disabled="true" ID="cat_${industry.ID}">
     		<option value="">-- Select Category --</option>
         	<c:forEach var="category" items="${industry.categories}">
         		<option value="${category.ID}">${category.translation.name}</option>
@@ -38,9 +38,11 @@ function industryChanged(industry) {
 
 	var selectedCat = document.id('cat_' + industry.value);
 	selectedCat.removeClass("hidden");
+	selectedCat.set('disabled', false);
 	
 	var oldCat = document.id('cat_' + oldInd);
 	oldCat.addClass("hidden");
+	oldCat.set('disabled', true);
 
 	oldInd = industry.value;
 }

@@ -135,6 +135,12 @@
         <property name="feedbackDao" ref="feedbackDao"/>
     </bean>
 
+	<bean id="companyMethods" class="com.compannex.biz.CompanyMethods">
+        <property name="companyCountryDao" ref="companyCountryDao"/>
+        <property name="companyDao" ref="companyDao"/>
+        <property name="companyTranslationDao" ref="companyTranslationDao"/>
+    </bean>
+
     <bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation"/>
     
 	<!-- Hibernate Template bean that will be assigned to DAOs. -->

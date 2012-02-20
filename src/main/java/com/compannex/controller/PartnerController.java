@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.CountryMethods;
 import com.compannex.biz.IndustryMethods;
 import com.compannex.biz.PartnerMethods;
@@ -63,21 +63,6 @@ public class PartnerController {
 	@RequestMapping("/register.do")
 	public ModelAndView register(
 			HttpServletRequest request,
-			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "email", required = false) String email,
-			@RequestParam(value = "password", required = false) String password,
-			@RequestParam(value = "repassword", required = false) String repassword,
-			@RequestParam(value = "industry", required = false) String industry,
-			@RequestParam(value = "category", required = false) String category,
-			@RequestParam(value = "websiteurl", required = false) String websiteurl,
-			@RequestParam(value = "telephone", required = false) String telephone,
-			@RequestParam(value = "fax", required = false) String fax,
-			@RequestParam(value = "contactperson", required = false) String contactperson,
-			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "country", required = false) String country,
-			@RequestParam(value = "slogan", required = false) String slogan,
-			@RequestParam(value = "employeecount", required = false) String employeecount,
-			@RequestParam(value = "description", required = false) String description,
 			@Valid Registration registration, BindingResult result) {
 
 		ModelAndView success = new ModelAndView("clients", "activeTab",
@@ -104,6 +89,9 @@ public class PartnerController {
 				registration.getCountry(), registration.getSlogan(),
 				registration.getEmployeecount(), registration.getDescription());
 
+		CompanyMethods companyMethods = (CompanyMethods) context
+				.getBean("companyMethods");
+		success.addObject("clients", companyMethods.getLatestClientCompanies());
 		return success;
 	}
 }

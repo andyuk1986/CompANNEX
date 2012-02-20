@@ -326,6 +326,9 @@ ALTER TABLE `hhovsepy_compannex`.`category_tr`
 ALTER TABLE `hhovsepy_compannex`.`feedback`
 ADD `date` DATE NOT NULL AFTER `position`;
 
+ALTER TABLE `hhovsepy_compannex`.`company`
+ ADD UNIQUE INDEX `UK_COMP_EMAIL` (`email`);
+
 update category_tr set language_ID = 2 where language_ID = 1 and category_ID = 39;
 
 	SET SQL_MODE=@OLD_SQL_MODE;

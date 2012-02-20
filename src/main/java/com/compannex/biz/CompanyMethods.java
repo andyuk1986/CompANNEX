@@ -3,26 +3,19 @@ package com.compannex.biz;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.compannex.dao.CompanyCountryDao;
 import com.compannex.dao.CompanyDao;
-import com.compannex.dao.FeedbackDao;
+import com.compannex.dao.CompanyTranslationDao;
 import com.compannex.model.Company;
 import com.compannex.model.CompanyTranslation;
-import com.compannex.model.Feedback;
 
 public class CompanyMethods {
 	
-	private static CompanyMethods instance = null;
-	
 	private CompanyDao companyDao;
 	
-	private CompanyMethods() {	
-	}
+	private CompanyTranslationDao companyTranslationDao;
 	
-	public static CompanyMethods getInstance() {
-		if (instance == null) instance = new CompanyMethods();
-		return instance;
-	}
-	
+	private CompanyCountryDao companyCountryDao;
 	
 	public List<Company> getLatestClientCompanies() {
 		
@@ -98,5 +91,19 @@ public class CompanyMethods {
 		this.companyDao = companyDao;
 	}
 	
-	
+	public CompanyTranslationDao getCompanyTranslationDao() {
+		return companyTranslationDao;
+	}
+
+	public void setCompanyTranslationDao(CompanyTranslationDao companyTranslationDao) {
+		this.companyTranslationDao = companyTranslationDao;
+	}
+
+	public CompanyCountryDao getCompanyCountryDao() {
+		return companyCountryDao;
+	}
+
+	public void setCompanyCountryDao(CompanyCountryDao companyCountryDao) {
+		this.companyCountryDao = companyCountryDao;
+	}
 }

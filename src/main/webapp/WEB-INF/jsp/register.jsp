@@ -71,16 +71,16 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                                         <div class="clear"></div>
                                         <div class="buttons">
                                         	<span class="button-2">
-                                                <a onClick="document.getElementById('contact-form').reset()"><strong>clear</strong></a>
+                                                <a onClick="document.getElementById('registration').reset()"><strong>clear</strong></a>
                                             </span>
                                             <span class="button-2">
-                                                <a onClick="document.getElementById('contact-form').submit()"><strong>register</strong></a>
+                                                <a onClick="document.getElementById('registration').submit()"><strong>register</strong></a>
                                             </span>
                                         </div> 
                                     </div>
                                   </div>                            
                             </fieldset>						
-                        </form>
+                        </form:form>
                     </article>
                 </div>
             </div>

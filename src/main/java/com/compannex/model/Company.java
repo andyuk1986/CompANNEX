@@ -33,7 +33,7 @@ public class Company implements Serializable {
 
 	private String logo;
 
-	private int employmentCount;
+	private int employeeCount;
 
 	private String status;
 
@@ -130,13 +130,13 @@ public class Company implements Serializable {
 		this.logo = logo;
 	}
 
-	@Column(name = "employment_count")
-	public int getEmploymentCount() {
-		return employmentCount;
+	@Column(name = "employee_count")
+	public int getEmployeeCount() {
+		return employeeCount;
 	}
 
-	public void setEmploymentCount(int employmentCount) {
-		this.employmentCount = employmentCount;
+	public void setEmployeeCount(int employeeCount) {
+		this.employeeCount = employeeCount;
 	}
 
 	@Column(name = "status")
@@ -209,7 +209,7 @@ public class Company implements Serializable {
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + employmentCount;
+		result = prime * result + employeeCount;
 		result = prime * result + ((fax == null) ? 0 : fax.hashCode());
 		result = prime * result + ((logo == null) ? 0 : logo.hashCode());
 		result = prime * result
@@ -254,7 +254,7 @@ public class Company implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (employmentCount != other.employmentCount)
+		if (employeeCount != other.employeeCount)
 			return false;
 		if (fax == null) {
 			if (other.fax != null)

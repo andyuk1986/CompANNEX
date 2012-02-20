@@ -313,7 +313,7 @@ h6 {color:#ed1e24; margin-bottom:7px;}
 		background:url(../images/button-tail.gif) 0 0 repeat-x #800000;
 		border-radius:22px;
 		cursor:pointer;
-	}
+	}	
 		.button a strong {
 			display:inline-block;
 			padding:0 40px 0 10px;
@@ -434,16 +434,16 @@ blockquote {
 }
 	.quote .padding {padding:25px 20px 5px 30px;}
 /***** contact form *****/
-#contact-form {
+#contact-form, #registration {
 	display:block;
 	width:100%;
 }
-	#contact-form label {
+	#contact-form, #registration label {
 		display:block; 
 		height:40px; 
 		overflow:hidden;
 	}
-	#contact-form input {
+	#contact-form, #registration input {
 		float:left; 
 		width:510px; 
 		font-size:13px; 
@@ -456,10 +456,10 @@ blockquote {
 		background:#fff;
 		outline:none;
 	}
-	#contact-form input.integer {
+	#contact-form, #registration input.integer {
 		width:50px; 
 	}
-	#contact-form textarea {
+	#contact-form, #registration textarea {
 		float:left;
 		height:185px; 
 		width:510px;

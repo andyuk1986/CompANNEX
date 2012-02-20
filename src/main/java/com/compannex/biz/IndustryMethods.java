@@ -36,7 +36,7 @@ public class IndustryMethods {
 			ind.setCategories(categories);
 			for (Category cat : categories) {
 				cat.setTranslation(getCategoryTranslationDao()
-						.getCategoryTranslationById(cat.getID(), 3));
+						.getCategoryTranslationById(cat.getID(), languageID));
 			}
 		}
 
