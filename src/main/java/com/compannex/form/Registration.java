@@ -12,6 +12,8 @@ public class Registration {
 	private String repassword;
 	
 	private String category;
+
+    private String industry;
 	
 	private String websiteurl;
 	
@@ -143,5 +145,11 @@ public class Registration {
 		this.description = description;
 	}
 
-	
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
 }

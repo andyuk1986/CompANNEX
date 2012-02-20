@@ -438,11 +438,13 @@ blockquote {
 	display:block;
 	width:100%;
 }
-	#contact-form, #registration label {
+	#contact-form, #registration label{
 		display:block; 
 		height:40px; 
 		overflow:hidden;
+        width:950px;
 	}
+
 	#contact-form, #registration input {
 		float:left; 
 		width:510px; 
@@ -537,4 +539,10 @@ footer {
 
 .hidden {
 	display:none;
+}
+
+.errors {
+    color: red;
+    float:left;
+    padding-left:10px;
 }

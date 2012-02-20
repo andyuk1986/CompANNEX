@@ -39,7 +39,12 @@ public class PartnerMethods {
 		company.setCreateDate(new Date());
 		company.setEmail(email);
 		company.setPassword(password);
-		company.setEmployeeCount(Integer.parseInt(employeecount));
+        if(employeecount != null && !employeecount.isEmpty()) {
+            try {
+                company.setEmployeeCount(Integer.parseInt(employeecount));
+            } catch(NumberFormatException ex) {
+            }
+        }
 		company.setStatus(CompanyStatusEnum.ACTIVE.getValue());
 		company.setTelephone(telephone);
 		company.setFax(fax);

@@ -42,7 +42,12 @@ public class PartnerController {
 		ModelAndView result = new ModelAndView("register", "activeTab",
 				"clients");
 
-		WebApplicationContext context = WebApplicationContextUtils
+        loadIndustries(request, result);
+		return result;
+	}
+
+    private void loadIndustries(HttpServletRequest request, ModelAndView result) {
+        WebApplicationContext context = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(request.getSession()
 						.getServletContext());
 		IndustryMethods indMeth = (IndustryMethods) context
@@ -56,9 +61,7 @@ public class PartnerController {
 				indMeth.getAllIndustries(CompANNEXConstants.DEFAULT_LANGUAGE));
 		result.addObject("countries",
 				countrMeth.getAllCountries(CompANNEXConstants.DEFAULT_LANGUAGE));
-
-		return result;
-	}
+    }
 
 	@RequestMapping("/register.do")
 	public ModelAndView register(
@@ -72,6 +75,7 @@ public class PartnerController {
 
 		registrationValidation.validate(registration, result);
 		if (result.hasErrors()) {
+            loadIndustries(request, error);
 			return error;
 		}
 

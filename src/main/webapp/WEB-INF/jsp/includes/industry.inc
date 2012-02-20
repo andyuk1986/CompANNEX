@@ -1,51 +1,58 @@
 <%
-List<Industry> industries = (List<Industry>)pageContext.findAttribute("industries");
+List<Industry > industries = (List<Industry>)pageContext . findAttribute("industries");
 %>
 
 <label><span class="text-form required">Industry:</span>
-	<select name="industry" onchange="industryChanged(this);">
-    	<option value="none">-- Select Industry --</option>
-        
-        <c:forEach var="industry" items="${industries}">
-        	<option value="${industry.ID}">${industry.translation.name}</option>
-        </c:forEach>
-        
-	</select>
+    <span class="fleft">
+        <form:select path="industry" onchange="industryChanged(this);">
+            <option value="none">-- Select Industry --</option>
+            <form:options items="${industries}" itemValue="ID" itemLabel="translation.name"/>
+        </form:select>
+    </span>
+    <span class="errors"><form:errors path="industry"/></span>
 </label>
 <label><span class="text-form required">Category:</span>
-	<select name="category" ID="cat_none">
-    	<option value="">-- Select Category --</option>
-	</select>    		
-    		
-	<c:forEach var="industry" items="${industries}">
-    	<select name="category" class="hidden" disabled="true" ID="cat_${industry.ID}">
-    		<option value="">-- Select Category --</option>
-        	<c:forEach var="category" items="${industry.categories}">
-        		<option value="${category.ID}">${category.translation.name}</option>
-        	</c:forEach>
-        </select>
-	</c:forEach>
+    <select name="category" ID="cat_none" class="fleft">
+        <option value="">-- Select Category --</option>
+    </select>
 
+    <c:forEach var="industry" items="${industries}">
+        <select name="category" class="hidden fleft" disabled="true" ID="cat_${industry.ID}">
+            <option value="none">-- Select Category --</option>
+            <c:forEach var="category" items="${industry.categories}">
+                <option value="${category.ID}">${category.translation.name}</option>
+            </c:forEach>
+        </select>
+    </c:forEach>
+
+    <span class="errors"><form:errors path="category"/></span>
 </label>
 
 
 
 <script>
 
-var oldInd = "none";
+    var oldInd = "none";
 
-function industryChanged(industry) {
+    function loadCategories() {
+        var industries = document.getElementById("industry");
+        industryChanged(industries);
+    }
 
-	var selectedCat = document.id('cat_' + industry.value);
-	selectedCat.removeClass("hidden");
-	selectedCat.set('disabled', false);
-	
-	var oldCat = document.id('cat_' + oldInd);
-	oldCat.addClass("hidden");
-	oldCat.set('disabled', true);
+    function industryChanged(industry) {
+        var industryVal = industry.value;
+        if(industryVal != "none") {
+            var selectedCat = document.id('cat_' + industryVal);
+            selectedCat.removeClass("hidden");
+            selectedCat.set('disabled', false);
 
-	oldInd = industry.value;
-}
+            var oldCat = document.id('cat_' + oldInd);
+            oldCat.addClass("hidden");
+            oldCat.set('disabled', true);
+
+            oldInd = industry.value;
+        }
+    }
 
 </script>
 

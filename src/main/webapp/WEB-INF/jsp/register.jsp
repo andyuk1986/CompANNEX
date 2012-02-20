@@ -21,7 +21,7 @@
 <%
 List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
 %>
-<body id="page4">
+<body id="page4" onload="loadCategories()">
 	<!--==============================header=================================-->
     <header>
     	<%@ include file="/WEB-INF/jsp/menu.inc" %>
@@ -44,23 +44,34 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                     	<h3>Register Form</h3>
                     	<form:form method="Post" action="register.do" commandName="registration">
                             <fieldset>
-                                  <label><span class="text-form required">Company Name:</span><form:input path="name"/></label>
-                                  <label><span class="text-form required">Email Address:</span><form:input path="email"/></label>                              
-                                  <label><span class="text-form required">Password:</span><form:password path="password"/></label>
-                                  <label><span class="text-form required">Re Password:</span><form:password path="repassword"/></label>
+                                  <label><span class="text-form required">Company Name:</span><form:input path="name"/>
+                                  <span class="errors"><form:errors path="name"/></span>
+                                  </label>
+                                  <label><span class="text-form required">Email Address:</span><form:input path="email"/>
+                                  <span class="errors"><form:errors path="email"/></span>
+                                  </label>
+                                  <label><span class="text-form required">Password:</span><form:password path="password"/>
+                                  <span class="errors"><form:errors path="password"/></span>
+                                  </label>
+                                  <label><span class="text-form required">Re Password:</span><form:password path="repassword"/>
+                                  <span class="errors"><form:errors path="repassword"/></span>
+                                  </label>
                                   <%@ include file="/WEB-INF/jsp/includes/industry.inc" %>
                                   <label><span class="text-form">Web Site URL:</span><form:input path="websiteurl"/></label>
                                   <label><span class="text-form">Telephone:</span><form:input path="telephone"/></label>
                                   <label><span class="text-form">Fax:</span><form:input path="fax"/></label>
                                   <label><span class="text-form">Contact Person Name:</span><form:input path="contactperson"/></label>
-                                  <label><span class="text-form required">Address:</span><form:input path="address"/></label>
+                                  <label><span class="text-form required">Address:</span><form:input path="address"/>
+                                  <span class="errors"><form:errors path="address"/></span>
+                                  </label>
                                   <label><span class="text-form required">Country:</span>
-    	                            <select name="country">
+    	                            <select name="country" class="fleft">
 								    	<option value="none">-- Select Country --</option>
         								<c:forEach var="country" items="${countries}">
         									<option value="${country.ID}">${country.translation.name}</option>
         								</c:forEach>
 									</select>
+                                      <span class="errors"><form:errors path="country"/></span>
 								  </label>
                                   <label><span class="text-form">Slogan:</span><form:input path="slogan"/></label>
                                   <label><span class="text-form">Employee Count:</span><form:input path="employeecount"/></label>
