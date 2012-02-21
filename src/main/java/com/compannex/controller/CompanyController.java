@@ -19,8 +19,8 @@ public class CompanyController {
 	@RequestMapping("/clients.do")
 	public ModelAndView clients(
 			HttpServletRequest request,
-			@RequestParam(value = "industryID", required = false) String industryID,
-			@RequestParam(value = "categoryID", required = false) String categoryID) {
+			@RequestParam(value = "industryID", required = false) Integer industryID,
+			@RequestParam(value = "categoryID", required = false) Integer categoryID) {
 
 		ModelAndView result = new ModelAndView("clients", "activeTab",
 				"clients");
@@ -33,17 +33,18 @@ public class CompanyController {
 		IndustryMethods industryMethods = (IndustryMethods) context
 				.getBean("industryMethods");
 
-		if (StringUtil.isBlank(industryID) && StringUtil.isBlank(categoryID)) {
+		if (industryID == null && categoryID == null) {
 			result.addObject("industries",
 					industryMethods.getAllIndustries(1, false));
-		} else if (!StringUtil.isBlank(industryID)) {
+		} else if (industryID != null) {
 			result.addObject(
 					"categories",
 					industryMethods.getAllCategories(
-							Integer.parseInt(industryID), 1));
+							industryID, 1));
 		}
+		
+		result.addObject("clients", companyMethods.getAllClientCompanies(industryID, categoryID, 1));
 
-		result.addObject("clients", companyMethods.getLatestClientCompanies());
 		return result;
 	}
 }

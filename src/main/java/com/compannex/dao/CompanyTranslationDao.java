@@ -1,14 +1,10 @@
 package com.compannex.dao;
 
 import com.compannex.model.CompanyTranslation;
-import com.compannex.model.Language;
 
 public interface CompanyTranslationDao {
-    public CompanyTranslation getCompanyTranslationById(final int companyId);
-
-    public CompanyTranslation getCompanyTranslationByName(final String companyName);
-
-    public CompanyTranslation getCompanyTranslationByLanguage(final Language language);
+	
+    public CompanyTranslation getCompanyTranslationById(final int companyId, final int languageId);
 
     public void addCompanyTranslation(final CompanyTranslation companyTranslation);
 

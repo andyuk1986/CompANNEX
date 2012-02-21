@@ -79,8 +79,23 @@ public class CompanyMethods {
 		return companys;
 	}
 	
-	public List<Company> getAllClientCompanies() {
-		return getLatestClientCompanies();
+	public List<Company> getAllClientCompanies(Integer industryID, Integer categoryID, final int languageId) {
+		
+		List<Company> companies = null;
+		
+		if (industryID != null) {
+			companies = getCompanyDao().getCompaniesByIndustryId(industryID);
+		} else if (categoryID!= null) {
+			companies = getCompanyDao().getCompaniesByCategoryId(categoryID);
+		} else {
+			companies = getCompanyDao().getAllCompanies();
+		}
+		
+		for (Company comp : companies) {
+			comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationById(comp.getID(), languageId));
+		}
+		
+		return companies;
 	}
 	
 	public CompanyDao getCompanyDao() {

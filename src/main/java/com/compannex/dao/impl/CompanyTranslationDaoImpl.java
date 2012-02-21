@@ -1,52 +1,34 @@
 package com.compannex.dao.impl;
 
+import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.compannex.dao.CompanyTranslationDao;
+import com.compannex.model.CategoryTranslation;
 import com.compannex.model.CompanyTranslation;
 import com.compannex.model.Language;
 
 public class CompanyTranslationDaoImpl extends HibernateDaoSupport implements
 		CompanyTranslationDao {
+	
 	@Override
-	public CompanyTranslation getCompanyTranslationById(final int categoryId) {
-		CompanyTranslation doc = null;
-		Object obj = getHibernateTemplate().load(CompanyTranslation.class,
-				categoryId);
-		if (obj != null) {
-			doc = (CompanyTranslation) obj;
-		}
-		return doc;
-	}
+	public CompanyTranslation getCompanyTranslationById(final int companyId, final int languageId) {
 
-	@Override
-	public CompanyTranslation getCompanyTranslationByName(
-			final String categoryName) {
-		CompanyTranslation translation = null;
-		Object obj = getSession()
-				.createQuery(
-						"from CompanyTranslation as catTr where catTr.name = ?")
-				.setString(0, categoryName).uniqueResult();
-		if (obj != null) {
-			translation = (CompanyTranslation) obj;
-		}
+    	Session session = null;
+    	try {
+    		session = getSession();
+        	CompanyTranslation translation = null;
+            Object obj = session.createQuery("from CompanyTranslation as compTr where compTr.companyId= ? and compTr.languageId= ?")
+                    .setInteger(0, companyId).setInteger(1, languageId)
+                    .uniqueResult();
+            if (obj != null) {
+                translation = (CompanyTranslation) obj;
+            }
 
-		return translation;
-	}
-
-	@Override
-	public CompanyTranslation getCompanyTranslationByLanguage(
-			final Language language) {
-		CompanyTranslation translation = null;
-		Object obj = getSession()
-				.createQuery(
-						"from CompanyTranslation as catTr where catTr.languageId= ?")
-				.setInteger(0, language.getID()).uniqueResult();
-		if (obj != null) {
-			translation = (CompanyTranslation) obj;
-		}
-
-		return translation;
+            return translation;
+        } finally {
+        	if (session != null) session.close();
+        }
 	}
 
 	@Override

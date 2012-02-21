@@ -57,7 +57,7 @@
                     	<h3 class="p0">Categories</h3>
                         <ul class="list-2">
                         <c:forEach var="category" items="${categories}">
-                        	<li><a href="clients.do?industryID=${category.ID}">${category.translation.name}</a></li>
+                        	<li><a href="clients.do?categoryID=${category.ID}">${category.translation.name}</a></li>
                         </c:forEach> 
                         </ul>
                     </c:if>

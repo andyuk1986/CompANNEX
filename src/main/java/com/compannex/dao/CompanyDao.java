@@ -1,16 +1,23 @@
 package com.compannex.dao;
 
-import com.compannex.model.Category;
+import java.util.List;
+
 import com.compannex.model.Company;
 
 public interface CompanyDao {
-	
-    public Company getCompanyById(final int companyId);
 
-    public void addCompany(final Company company);
+	public Company getCompanyById(final int companyId);
 
-    public void editCompany(final Company company);
+	public List<Company> getCompaniesByIndustryId(final int industryId);
 
-    public void deleteCompany(final Company company);
+	public List<Company> getCompaniesByCategoryId(final int industryId);
+
+	public List<Company> getAllCompanies();
+
+	public void addCompany(final Company company);
+
+	public void editCompany(final Company company);
+
+	public void deleteCompany(final Company company);
 
 }
