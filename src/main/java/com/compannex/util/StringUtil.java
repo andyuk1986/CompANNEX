@@ -10,4 +10,10 @@ public class StringUtil {
 		
 	}
 	
+	public static boolean isBlank(String str1) {
+		
+		if (str1 == null || str1.equals("")) return true;
+		return false;
+	}
+	
 }

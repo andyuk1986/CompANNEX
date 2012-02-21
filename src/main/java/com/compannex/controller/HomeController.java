@@ -59,21 +59,6 @@ public class HomeController {
 		return result;
 	}
 
-	@RequestMapping("/clients.do")
-	public ModelAndView clients(HttpServletRequest request) {
-		ModelAndView result = new ModelAndView("clients", "activeTab",
-				"clients");
-
-		WebApplicationContext context = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(request.getSession()
-						.getServletContext());
-		CompanyMethods companyMethods = (CompanyMethods) context
-				.getBean("companyMethods");
-
-		result.addObject("clients", companyMethods.getLatestClientCompanies());
-		return result;
-	}
-
 	@RequestMapping("/contacts.do")
 	public ModelAndView contacts() {
 		ModelAndView result = new ModelAndView("contacts", "activeTab",

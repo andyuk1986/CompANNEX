@@ -40,24 +40,27 @@
         <div class="main">
             <div class="container_12">
                 <div class="wrapper">
+                	<%
+                	List<Industry> industries = (List<Industry>)pageContext.findAttribute("industries");
+                	List<Category> categories = (List<Category>)pageContext.findAttribute("categories");
+                	%>
                 	<article class="grid_3">
-                    	<h3 class="p0">Conditions</h3>
+                	<c:if test="${industries != null}">	
+                    	<h3 class="p0">Industries</h3>
                         <ul class="list-2">
-                        	<li><a href="#">At vero eos ccusamus</a></li>
-                            <li><a href="#">Odio digsis ducimus</a></li>
-                            <li><a href="#">Blanditiis aesentiutatum</a></li>
-                            <li><a href="#">Deleniti atque corrupti</a></li>
-                            <li><a href="#">Rolores et qs molestias</a></li>
-                            <li><a href="#">Sint occaecatiupiditate</a></li>
-                            <li><a href="#">Provident silique</a></li>
-                            <li><a href="#">Qui eseruntollitia animi</a></li>
-                            <li><a href="#">Laborum etolorum</a></li>
-                            <li><a href="#">Et harum quim</a></li>
-                            <li><a href="#">Est et expeditdistinctio</a></li>
-                            <li><a href="#">Nam libero tpore</a></li>
-                            <li><a href="#">Cum soluta nis est</a></li>
-                            <li><a href="#">Eligendi optio mque nihil</a></li> 
+                        <c:forEach var="industry" items="${industries}">
+                        	<li><a href="clients.do?industryID=${industry.ID}">${industry.translation.name}</a></li>
+                        </c:forEach> 
                         </ul>
+                    </c:if>
+                    <c:if test="${categories != null}">	
+                    	<h3 class="p0">Categories</h3>
+                        <ul class="list-2">
+                        <c:forEach var="category" items="${categories}">
+                        	<li><a href="clients.do?industryID=${category.ID}">${category.translation.name}</a></li>
+                        </c:forEach> 
+                        </ul>
+                    </c:if>
                     </article>
                     <article class="grid_9">
                     	<h3>Our Clients</h3>

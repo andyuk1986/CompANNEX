@@ -25,22 +25,37 @@ public class IndustryMethods {
 
 	}
 
-	public List<Industry> getAllIndustries(int languageID) {
+	public List<Industry> getAllIndustries(int languageID,
+			boolean loadCategories) {
 		List<Industry> industries = getIndustryDao().getAllIndustries();
 
 		for (Industry ind : industries) {
 			ind.setTranslation(getIndustryTranslationDao()
 					.getIndustryTranslation(ind.getID(), languageID));
-			List<Category> categories = getCategoryDao()
-					.getCategoriesByIndustryID(ind.getID());
-			ind.setCategories(categories);
-			for (Category cat : categories) {
-				cat.setTranslation(getCategoryTranslationDao()
-						.getCategoryTranslationById(cat.getID(), languageID));
+
+			if (loadCategories) {
+				List<Category> categories = getCategoryDao()
+						.getCategoriesByIndustryID(ind.getID());
+				ind.setCategories(categories);
+				for (Category cat : categories) {
+					cat.setTranslation(getCategoryTranslationDao()
+							.getCategoryTranslationById(cat.getID(), languageID));
+				}
 			}
 		}
 
 		return industries;
+	}
+
+	public List<Category> getAllCategories(int industryID, int languageID) {
+		List<Category> categories = getCategoryDao().getCategoriesByIndustryID(
+				industryID);
+		for (Category cat : categories) {
+			cat.setTranslation(getCategoryTranslationDao()
+					.getCategoryTranslationById(cat.getID(), languageID));
+		}
+
+		return categories;
 	}
 
 	public CategoryDao getCategoryDao() {

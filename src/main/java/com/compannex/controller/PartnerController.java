@@ -58,7 +58,7 @@ public class PartnerController {
 		Registration registration = new Registration();
 		result.addObject("registration", registration);
 		result.addObject("industries",
-				indMeth.getAllIndustries(CompANNEXConstants.DEFAULT_LANGUAGE));
+				indMeth.getAllIndustries(CompANNEXConstants.DEFAULT_LANGUAGE, true));
 		result.addObject("countries",
 				countrMeth.getAllCountries(CompANNEXConstants.DEFAULT_LANGUAGE));
     }
