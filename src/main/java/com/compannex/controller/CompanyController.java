@@ -41,6 +41,9 @@ public class CompanyController {
 					"categories",
 					industryMethods.getAllCategories(
 							industryID, 1));
+			result.addObject("industry", industryMethods.getIndustry(industryID, 1));
+		} else if (categoryID != null) {
+			result.addObject("category", industryMethods.getCategory(categoryID, 1));
 		}
 		
 		result.addObject("clients", companyMethods.getAllClientCompanies(industryID, categoryID, 1));

@@ -8,53 +8,64 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.compannex.dao.CategoryDao;
 import com.compannex.model.Category;
-import com.compannex.model.IndustryTranslation;
 
 public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao {
-    private static Logger logger = Logger.getLogger(IndustryDaoImpl.class);
+	private static Logger logger = Logger.getLogger(IndustryDaoImpl.class);
 
-    @Override
-    public Category getCategoryById(final int categoryId) {
-        Category doc = null;
-        Object obj = getHibernateTemplate().load(Category.class, categoryId);
-        if (obj != null) {
-            doc = (Category) obj;
-        }
-        return doc;
-    }
+	@Override
+	public Category getCategoryById(final int categoryId) {
+		Session session = null;
+		try {
+			Category category = null;
+			session = getSession();
+			Object obj = session
+					.createQuery("from Category as cat where cat.ID= ?")
+					.setInteger(0, categoryId).uniqueResult();
+			if (obj != null) {
+				category = (Category) obj;
+			}
 
-    @Override
-    public void saveCategory(Category category) {
-        getHibernateTemplate().save(category);
-    }
+			return category;
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
 
-    @Override
-    public void editCategory(Category category) {
-        getHibernateTemplate().update(category);
-    }
+	@Override
+	public void saveCategory(Category category) {
+		getHibernateTemplate().save(category);
+	}
 
-    @Override
-    public void deleteCategory(Category category) {
-        getHibernateTemplate().delete(category);
-    }
+	@Override
+	public void editCategory(Category category) {
+		getHibernateTemplate().update(category);
+	}
 
-    @Override
-    public List<Category> getCategoriesByIndustryID(final int industryId) {
-    	
-    	Session session = null;
-    	try {
-    		session = getSession();
-        	List<Category> categories = null;
-            Object obj = session.createQuery("from Category as categ where categ.industryId= ?")
-                    .setInteger(0, industryId)
-                    .list();
-            if (obj != null) {
-            	categories = (List<Category>) obj;
-            }
+	@Override
+	public void deleteCategory(Category category) {
+		getHibernateTemplate().delete(category);
+	}
 
-            return categories;
-        } finally {
-        	if (session != null) session.close();
-        }
-    }
+	@Override
+	public List<Category> getCategoriesByIndustryID(final int industryId) {
+
+		Session session = null;
+		try {
+			session = getSession();
+			List<Category> categories = null;
+			Object obj = session
+					.createQuery(
+							"from Category as categ where categ.industryId= ?")
+					.setInteger(0, industryId).list();
+			if (obj != null) {
+				categories = (List<Category>) obj;
+			}
+
+			return categories;
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
 }

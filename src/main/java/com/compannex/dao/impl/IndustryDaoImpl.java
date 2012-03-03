@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.compannex.dao.IndustryDao;
 import com.compannex.model.Industry;
+import com.compannex.model.IndustryTranslation;
 
 /**
- * ReachLibrary DAO Hibernate Implementation.
+ * Industry DAO Hibernate Implementation.
  */
 public class IndustryDaoImpl extends HibernateDaoSupport implements IndustryDao {
 
@@ -18,12 +20,21 @@ public class IndustryDaoImpl extends HibernateDaoSupport implements IndustryDao 
 
     @Override
     public Industry getIndustryById(final int id) {
-        Industry doc = null;
-        Object obj = getHibernateTemplate().load(Industry.class, id);
-        if (obj != null) {
-            doc = (Industry) obj;
+    	Session session = null;
+    	try {
+	    	Industry industry = null;
+	        session = getSession();
+	        Object obj = session.createQuery("from Industry as ind where ind.ID= ?")
+	                .setInteger(0, id)
+	                .uniqueResult();
+	        if (obj != null) {
+	        	industry = (Industry) obj;
+	        }
+	
+	        return industry;
+        } finally {
+        	if (session != null) session.close();
         }
-        return doc;
     }
 
     @Override

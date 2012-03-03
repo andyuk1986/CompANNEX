@@ -43,6 +43,8 @@
                 	<%
                 	List<Industry> industries = (List<Industry>)pageContext.findAttribute("industries");
                 	List<Category> categories = (List<Category>)pageContext.findAttribute("categories");
+                	Industry industry = (Industry)pageContext.findAttribute("industry");
+                	Category category = (Category)pageContext.findAttribute("category");
                 	%>
                 	<article class="grid_3">
                 	<c:if test="${industries != null}">	
@@ -67,6 +69,23 @@
                     	
                     <%
                    	List<Company> clients = (List<Company>)pageContext.findAttribute("clients");
+                   	
+                   	%>
+                   	
+                   	<c:if test="${empty clients}">
+                   		<c:if test="${industry != null}">
+                   			<article class="grid_3">
+                                <strong>Clients In Selected Industry <%=industry.getTranslation().getName() %> Are Not Found</strong>
+                            </article>
+                   		</c:if>
+                   		<c:if test="${category != null}">
+                   			<article class="grid_3">
+                                <strong>Clients In Selected Category <%=category.getTranslation().getName() %> Are Not Found</strong>
+                            </article>
+                   		</c:if>
+                   	</c:if>
+                   	
+                   	<%
                    	int i = 1;
                    	boolean isFirst = false;
                    	boolean isLast = false;	

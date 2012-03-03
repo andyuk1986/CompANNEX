@@ -57,7 +57,21 @@ public class IndustryMethods {
 
 		return categories;
 	}
+	
+	public Industry getIndustry(int industryID, int languageID) {
+		Industry ind = getIndustryDao().getIndustryById(industryID);
+		ind.setTranslation(getIndustryTranslationDao().getIndustryTranslation(industryID, languageID));
+		
+		return ind;
+	}
 
+	public Category getCategory(int categoryID, int languageID) {
+		Category categor = getCategoryDao().getCategoryById(categoryID);
+		categor.setTranslation(getCategoryTranslationDao().getCategoryTranslationById(categoryID, languageID));
+		
+		return categor;
+	}
+	
 	public CategoryDao getCategoryDao() {
 		return categoryDao;
 	}
