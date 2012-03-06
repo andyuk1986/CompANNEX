@@ -126,6 +126,10 @@
         <property name="companyTranslationDao" ref="companyTranslationDao"/>
     </bean>
     
+    <bean id="loginMethods" class="com.compannex.biz.LoginMethods">
+        <property name="companyDao" ref="companyDao"/>
+    </bean>
+    
 	<bean id="newsMethods" class="com.compannex.biz.NewsMethods">
         <property name="newsDao" ref="newsDao"/>
         <property name="newsTranslationDao" ref="newsTranslationDao"/>
@@ -142,6 +146,11 @@
     </bean>
 
     <bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation"/>
+    
+    <bean id="loginValidation" class="com.compannex.validator.LoginValidation">
+    	<property name="loginMethods" ref="loginMethods"/>
+    </bean>
+    
     
 	<!-- Hibernate Template bean that will be assigned to DAOs. -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">

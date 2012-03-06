@@ -12,5 +12,13 @@
                     </ul>
                 </nav>
                 <div class="clear"></div>
+                <div class="menu-buttons">
+                	<span class="button">
+                    	<a href="loginnew.do"><strong>Login</strong></a>
+                    </span>
+                	<span class="button">
+                    	<a href="registernew.do"><strong>Register</strong></a>
+                    </span>
+                </div>
             </div>
         </div>

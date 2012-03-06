@@ -7,6 +7,8 @@ import com.compannex.model.Company;
 public interface CompanyDao {
 
 	public Company getCompanyById(final int companyId);
+	
+	public Company getCompanyByEmail(final String email);
 
 	public List<Company> getCompaniesByIndustryId(final int industryId);
 

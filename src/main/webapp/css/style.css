@@ -91,6 +91,13 @@ p {margin-bottom:18px;}
 
 .buttons a:hover {cursor:pointer;}
 
+.menu-buttons {
+	margin-bottom:12px;
+	margin-top:12px;
+	float:right;
+}
+
+
 .menu li a,
 .list-1 li a,
 .list-2 li a,
@@ -434,18 +441,18 @@ blockquote {
 }
 	.quote .padding {padding:25px 20px 5px 30px;}
 /***** contact form *****/
-#contact-form, #registration {
+#contact-form, #registration, #login {
 	display:block;
 	width:100%;
 }
-	#contact-form, #registration label{
+	#contact-form, #registration, #login label{
 		display:block; 
 		height:40px; 
 		overflow:hidden;
         width:950px;
 	}
 
-	#contact-form, #registration input {
+	#contact-form, #registration, #login input {
 		float:left; 
 		width:510px; 
 		font-size:13px; 
@@ -458,10 +465,10 @@ blockquote {
 		background:#fff;
 		outline:none;
 	}
-	#contact-form, #registration input.integer {
+	#contact-form, #registration, #login input.integer {
 		width:50px; 
 	}
-	#contact-form, #registration textarea {
+	#contact-form, #registration, #login textarea {
 		float:left;
 		height:185px; 
 		width:510px;

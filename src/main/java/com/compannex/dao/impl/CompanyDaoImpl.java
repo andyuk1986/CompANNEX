@@ -24,6 +24,26 @@ public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
 
         return company;
     }
+	
+	@Override
+	public Company getCompanyByEmail(final String email) {
+		Session session = null;
+		try {
+			Company company = null;
+			session = getSession();
+			Object obj = session
+					.createQuery("from Company as comp where comp.email= ?")
+					.setString(0, email).uniqueResult();
+			if (obj != null) {
+				company = (Company) obj;
+			}
+
+			return company;
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
     
     @Override
     public List<Company> getCompaniesByIndustryId(final int industryId) {	
