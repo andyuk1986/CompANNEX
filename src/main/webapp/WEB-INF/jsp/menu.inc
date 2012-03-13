@@ -12,13 +12,27 @@
                     </ul>
                 </nav>
                 <div class="clear"></div>
-                <div class="menu-buttons">
+                <% 
+                Company loginCompany = (Company)request.getSession().getAttribute("loginCompany"); 
+                %>
+                <c:choose>
+					<c:when test="${loginCompany != null}">
+					<div>
+	                	<span>
+	                		Welcome ${loginCompany.translation.name}! 
+	                	</span>
+	                </div>
+					</c:when>
+					<c:otherwise>
+					<div class="menu-buttons">
                 	<span class="button">
                     	<a href="loginnew.do"><strong>Login</strong></a>
                     </span>
                 	<span class="button">
                     	<a href="registernew.do"><strong>Register</strong></a>
                     </span>
-                </div>
+                	</div>
+					</c:otherwise>
+				</c:choose>
             </div>
         </div>

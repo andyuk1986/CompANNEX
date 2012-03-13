@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.LoginMethods;
+import com.compannex.biz.NewsMethods;
+import com.compannex.constants.CompANNEXConstants;
 import com.compannex.form.Login;
 import com.compannex.validator.LoginValidation;
 
@@ -45,7 +47,7 @@ public class LoginController {
 			HttpServletRequest request,
 			@Valid Login login, BindingResult result) {
 
-		ModelAndView success = new ModelAndView("home", "activeTab",
+		ModelAndView success = new ModelAndView("index", "activeTab",
 				"home");
 		ModelAndView error = new ModelAndView("login", "activeTab",
 				"clients");
@@ -58,10 +60,16 @@ public class LoginController {
 		WebApplicationContext context = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(request.getSession()
 						.getServletContext());
-
+		
 		CompanyMethods companyMethods = (CompanyMethods) context
 				.getBean("companyMethods");
-		success.addObject("clients", companyMethods.getLatestClientCompanies());
+		NewsMethods newsMethods = (NewsMethods) context.getBean("newsMethods");
+
+		success.addObject("news",
+				newsMethods.getLatestNews(CompANNEXConstants.DEFAULT_LANGUAGE));
+		
+		request.getSession().setAttribute("loginCompany", companyMethods.getCompanyByEmail(login.getEmail(), CompANNEXConstants.DEFAULT_LANGUAGE));
+		
 		return success;
 	}
 }

@@ -98,6 +98,14 @@ public class CompanyMethods {
 		return companies;
 	}
 	
+	public Company getCompanyByEmail(final String email, final int languageId) {
+		
+		Company comp = getCompanyDao().getCompanyByEmail(email);
+		comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationById(comp.getID(), languageId));
+		
+		return comp;
+	}
+	
 	public CompanyDao getCompanyDao() {
 		return companyDao;
 	}
