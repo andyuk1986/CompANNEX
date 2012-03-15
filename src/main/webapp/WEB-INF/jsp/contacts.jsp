@@ -38,28 +38,58 @@
             <div class="container_12">
                 <div class="wrapper">
                 	<article class="grid_9">
-                    	<h3>Contact Form</h3>
-                        <form id="contact-form" method="post" enctype="multipart/form-data">                    
+                    	
+                    	                    	
+                    	<form:form method="Post" action="questionadd.do" commandName="question">
                             <fieldset>
-                                  <label><span class="text-form">Your Name:</span><input type="text"></label>
-                                  <label><span class="text-form">Your Email:</span><input type="text"></label>                              
+                            
+                        <% 
+                        String success = (String)pageContext.findAttribute("success");
+                        %>
+                        <c:choose>
+						<c:when test="${success == null}">    
+						<h3>Contact Form</h3>                            
+							<c:choose>
+								<c:when test="${question.companyID == null}">                            
+                                  <label><span class="text-form required">Your Name:</span><form:input path="person"/>
+                                  <span class="errors"><form:errors path="person"/></span>
+                                  </label>
+                                  <label><span class="text-form required">Email Address:</span><form:input path="email"/>
+                                  <span class="errors"><form:errors path="email"/></span>
+                                  </label>
+                            	</c:when>
+								<c:otherwise>
+								  <form:hidden path="companyID"/>
+								</c:otherwise>
+							</c:choose>
+                                  
+                                  <label><span class="text-form required">Subject:</span><form:input path="subject"/>
+                                  <span class="errors"><form:errors path="subject"/></span>
+                                  </label>
                                   <div class="wrapper">
-                                    <div class="text-form">Your Message:</div>
-                                    <div class="extra-wrap">
-                                        <textarea></textarea>
+                                    <label><span class="text-form required">Text:</span>
+                                        <textarea name="text"></textarea>
+                                        <span class="errors"><form:errors path="text"/></span>
+                                    </label>
                                         <div class="clear"></div>
                                         <div class="buttons">
                                         	<span class="button-2">
-                                                <a onClick="document.getElementById('contact-form').reset()"><strong>clear</strong></a>
+                                                <a onClick="document.getElementById('question').reset()"><strong>clear</strong></a>
                                             </span>
                                             <span class="button-2">
-                                                <a onClick="document.getElementById('contact-form').submit()"><strong>send</strong></a>
+                                                <a onClick="document.getElementById('question').submit()"><strong>send</strong></a>
                                             </span>
                                         </div> 
                                     </div>
-                                  </div>                            
+                                  </div>     
+                                  
+                        </c:when>
+						<c:otherwise>
+							 <div><%=success %></div>
+						</c:otherwise>
+						</c:choose>             
                             </fieldset>						
-                        </form>
+                        </form:form>
                     </article>
                     <article class="grid_3">
                     	<h3>Our Clients</h3>

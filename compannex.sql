@@ -331,6 +331,32 @@ ALTER TABLE `hhovsepy_compannex`.`company`
 
 update category_tr set language_ID = 2 where language_ID = 1 and category_ID = 39;
 
-	SET SQL_MODE=@OLD_SQL_MODE;
+
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`question`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`question` (
+  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `person` VARCHAR(45) NULL ,
+  `email` VARCHAR(45) NULL ,
+  `company_ID` INT NULL ,
+  `text` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`ID`) ,
+  INDEX `FK_QUEST_COMP` (`company_ID` ASC) ,
+  CONSTRAINT `FK_QUEST_COMP`
+    FOREIGN KEY (`company_ID` )
+    REFERENCES `hhovsepy_compannex`.`company` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `hhovsepy_compannex`.`question`
+ADD `date` DATE NOT NULL AFTER `text`;
+
+ALTER TABLE `hhovsepy_compannex`.`question`
+ADD `subject` VARCHAR(45) NOT NULL AFTER `ID`;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

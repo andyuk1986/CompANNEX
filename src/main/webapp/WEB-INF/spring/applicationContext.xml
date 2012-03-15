@@ -55,7 +55,7 @@
 				<value>com.compannex.model.Language</value>
 				<value>com.compannex.model.News</value>
 				<value>com.compannex.model.NewsTranslation</value>		
-				
+				<value>com.compannex.model.Question</value>
 			</list>
 		</property>
 	</bean>
@@ -108,6 +108,10 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 	
+	<bean id="questionDao" class="com.compannex.dao.impl.QuestionDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
 	<bean id="industryMethods" class="com.compannex.biz.IndustryMethods">
         <property name="industryDao" ref="industryDao"/>
         <property name="industryTranslationDao" ref="industryTranslationDao"/>
@@ -145,7 +149,13 @@
         <property name="companyTranslationDao" ref="companyTranslationDao"/>
     </bean>
 
+	<bean id="questionMethods" class="com.compannex.biz.QuestionMethods">
+        <property name="questionDao" ref="questionDao"/>
+    </bean>
+    
     <bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation"/>
+    
+    <bean id="questionValidation" class="com.compannex.validator.QuestionValidation"/>
     
     <bean id="loginValidation" class="com.compannex.validator.LoginValidation">
     	<property name="loginMethods" ref="loginMethods"/>

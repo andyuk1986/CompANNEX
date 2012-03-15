@@ -27,11 +27,6 @@ public class PartnerController {
 
 	private RegistrationValidation registrationValidation;
 
-	/*public void setRegistrationValidation(
-			RegistrationValidation registrationValidation) {
-		this.registrationValidation = registrationValidation;
-	}*/
-
     @Autowired
     public PartnerController(RegistrationValidation registrationValidation) {
         this.registrationValidation = registrationValidation;

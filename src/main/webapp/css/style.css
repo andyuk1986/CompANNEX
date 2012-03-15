@@ -445,14 +445,14 @@ blockquote {
 	display:block;
 	width:100%;
 }
-	#contact-form, #registration, #login label{
+	#contact-form, #registration, #login, #question label{
 		display:block; 
 		height:40px; 
 		overflow:hidden;
         width:950px;
 	}
 
-	#contact-form, #registration, #login input {
+	#contact-form, #registration, #login, #question input {
 		float:left; 
 		width:510px; 
 		font-size:13px; 
@@ -465,10 +465,10 @@ blockquote {
 		background:#fff;
 		outline:none;
 	}
-	#contact-form, #registration, #login input.integer {
+	#contact-form, #registration, #login, #question input.integer {
 		width:50px; 
 	}
-	#contact-form, #registration, #login textarea {
+	#contact-form, #registration, #login, #question textarea {
 		float:left;
 		height:185px; 
 		width:510px;
