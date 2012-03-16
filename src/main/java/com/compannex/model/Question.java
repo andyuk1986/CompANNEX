@@ -53,11 +53,11 @@ public class Question implements Serializable {
 	}
 	
 	@Column(name = "company_ID")
-	public int getCompanyId() {
+	public Integer getCompanyId() {
 		return companyId;
 	}
 
-	public void setCompanyId(int companyId) {
+	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
 
