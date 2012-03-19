@@ -30,7 +30,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>home.do</welcome-file>
 	</welcome-file-list>
 
 	<session-config>
