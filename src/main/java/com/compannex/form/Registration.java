@@ -1,5 +1,7 @@
 package com.compannex.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 
 public class Registration {
 
@@ -30,6 +32,8 @@ public class Registration {
 	private String slogan;
 	
 	private String employeecount;
+	
+	private MultipartFile logo; 
 	
 	private String description;
 
@@ -152,4 +156,12 @@ public class Registration {
     public void setIndustry(String industry) {
         this.industry = industry;
     }
+
+	public MultipartFile getLogo() {
+		return logo;
+	}
+
+	public void setLogo(MultipartFile logo) {
+		this.logo = logo;
+	}
 }

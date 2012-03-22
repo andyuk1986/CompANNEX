@@ -54,114 +54,114 @@
 				<value>com.compannex.model.IndustryTranslation</value>
 				<value>com.compannex.model.Language</value>
 				<value>com.compannex.model.News</value>
-				<value>com.compannex.model.NewsTranslation</value>		
+				<value>com.compannex.model.NewsTranslation</value>
 				<value>com.compannex.model.Question</value>
 			</list>
 		</property>
 	</bean>
-   
-    <bean id="newsDao" class="com.compannex.dao.impl.NewsDaoImpl">
+
+	<bean id="newsDao" class="com.compannex.dao.impl.NewsDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="newsTranslationDao" class="com.compannex.dao.impl.NewsTranslationDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="industryDao" class="com.compannex.dao.impl.IndustryDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="industryTranslationDao" class="com.compannex.dao.impl.IndustryTranslationDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="categoryDao" class="com.compannex.dao.impl.CategoryDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="categoryTranslationDao" class="com.compannex.dao.impl.CategoryTranslationDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="companyCountryDao" class="com.compannex.dao.impl.CompanyCountryDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="companyDao" class="com.compannex.dao.impl.CompanyDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="companyTranslationDao" class="com.compannex.dao.impl.CompanyTranslationDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="countryDao" class="com.compannex.dao.impl.CountryDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="countryTranslationDao" class="com.compannex.dao.impl.CountryTranslationDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="feedbackDao" class="com.compannex.dao.impl.FeedbackDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="questionDao" class="com.compannex.dao.impl.QuestionDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
-	
+
 	<bean id="industryMethods" class="com.compannex.biz.IndustryMethods">
-        <property name="industryDao" ref="industryDao"/>
-        <property name="industryTranslationDao" ref="industryTranslationDao"/>
-        <property name="categoryTranslationDao" ref="categoryTranslationDao"/>
-        <property name="categoryDao" ref="categoryDao"/>
-    </bean>
+		<property name="industryDao" ref="industryDao" />
+		<property name="industryTranslationDao" ref="industryTranslationDao" />
+		<property name="categoryTranslationDao" ref="categoryTranslationDao" />
+		<property name="categoryDao" ref="categoryDao" />
+	</bean>
 
 	<bean id="countryMethods" class="com.compannex.biz.CountryMethods">
-        <property name="countryDao" ref="countryDao"/>
-        <property name="countryTranslationDao" ref="countryTranslationDao"/>
-    </bean>
+		<property name="countryDao" ref="countryDao" />
+		<property name="countryTranslationDao" ref="countryTranslationDao" />
+	</bean>
 
 	<bean id="partnerMethods" class="com.compannex.biz.PartnerMethods">
-        <property name="companyCountryDao" ref="companyCountryDao"/>
-        <property name="companyDao" ref="companyDao"/>
-        <property name="companyTranslationDao" ref="companyTranslationDao"/>
-    </bean>
-    
-    <bean id="loginMethods" class="com.compannex.biz.LoginMethods">
-        <property name="companyDao" ref="companyDao"/>
-    </bean>
-    
+		<property name="companyCountryDao" ref="companyCountryDao" />
+		<property name="companyDao" ref="companyDao" />
+		<property name="companyTranslationDao" ref="companyTranslationDao" />
+	</bean>
+
+	<bean id="loginMethods" class="com.compannex.biz.LoginMethods">
+		<property name="companyDao" ref="companyDao" />
+	</bean>
+
 	<bean id="newsMethods" class="com.compannex.biz.NewsMethods">
-        <property name="newsDao" ref="newsDao"/>
-        <property name="newsTranslationDao" ref="newsTranslationDao"/>
-    </bean>
+		<property name="newsDao" ref="newsDao" />
+		<property name="newsTranslationDao" ref="newsTranslationDao" />
+	</bean>
 
 	<bean id="feedbackMethods" class="com.compannex.biz.FeedbackMethods">
-        <property name="feedbackDao" ref="feedbackDao"/>
-    </bean>
+		<property name="feedbackDao" ref="feedbackDao" />
+	</bean>
 
 	<bean id="companyMethods" class="com.compannex.biz.CompanyMethods">
-        <property name="companyCountryDao" ref="companyCountryDao"/>
-        <property name="companyDao" ref="companyDao"/>
-        <property name="companyTranslationDao" ref="companyTranslationDao"/>
-    </bean>
+		<property name="companyCountryDao" ref="companyCountryDao" />
+		<property name="companyDao" ref="companyDao" />
+		<property name="companyTranslationDao" ref="companyTranslationDao" />
+	</bean>
 
 	<bean id="questionMethods" class="com.compannex.biz.QuestionMethods">
-        <property name="questionDao" ref="questionDao"/>
-    </bean>
-    
-    <bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation"/>
-    
-    <bean id="questionValidation" class="com.compannex.validator.QuestionValidation"/>
-    
-    <bean id="loginValidation" class="com.compannex.validator.LoginValidation">
-    	<property name="loginMethods" ref="loginMethods"/>
-    </bean>
-    
-    
+		<property name="questionDao" ref="questionDao" />
+	</bean>
+
+	<bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation" />
+
+	<bean id="questionValidation" class="com.compannex.validator.QuestionValidation" />
+
+	<bean id="loginValidation" class="com.compannex.validator.LoginValidation">
+		<property name="loginMethods" ref="loginMethods" />
+	</bean>
+
+
 	<!-- Hibernate Template bean that will be assigned to DAOs. -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="localSessionFactory" />
@@ -174,4 +174,7 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
 </beans>

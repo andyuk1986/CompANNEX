@@ -16,13 +16,22 @@ public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
     
 	@Override
     public Company getCompanyById(int companyId) {
-        Company company = null;
-        Object obj = getHibernateTemplate().load(Company.class, companyId);
-        if (obj != null) {
-            company = (Company) obj;
-        }
+		Session session = null;
+		try {
+			Company company = null;
+			session = getSession();
+			Object obj = session
+					.createQuery("from Company as comp where comp.ID= ?")
+					.setInteger(0, companyId).uniqueResult();
+			if (obj != null) {
+				company = (Company) obj;
+			}
 
-        return company;
+			return company;
+		} finally {
+			if (session != null)
+				session.close();
+		}
     }
 	
 	@Override

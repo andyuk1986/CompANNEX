@@ -2,6 +2,8 @@ package com.compannex.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+
+import com.compannex.constants.CompANNEXConstants;
 import com.compannex.form.Registration;
 
 import java.util.regex.Pattern;
@@ -58,6 +60,10 @@ public class RegistrationValidation {
                 registration.getIndustry().equals("none")) {
             errors.rejectValue("industry", "registration.industry.empty", "* Please choose the industry to which your company belongs.");
         }
+        
+		if(registration.getLogo() != null && registration.getLogo().getSize() > CompANNEXConstants.MAX_FILE_SIZE){
+			errors.rejectValue("logo", "registration.logo.big", "* Please choose the logo file which is less than 20KB.");
+		}
 
         /*if(registration.getCategory() == null || registration.getCategory().isEmpty() ||
                 registration.getCategory().equals("none")) {

@@ -40,7 +40,7 @@
                 	<article class="grid_9">
                     	
                     	                    	
-                    	<form:form method="Post" action="questionadd.do" commandName="question">
+                    	<form:form method="Post" cssClass="forma" action="questionadd.do" commandName="question">
                             <fieldset>
                             
                         <% 

@@ -40,7 +40,7 @@
                 <div class="wrapper">
                 	<article class="grid_9">
                     	<h3>Login</h3>
-                    	<form:form method="Post" action="login.do" commandName="login">
+                    	<form:form method="Post" cssClass="forma" action="login.do" commandName="login">
                             <fieldset>
                                   <label><span class="text-form required">Email Address:</span><form:input path="email"/>
                                   <span class="errors"><form:errors path="email"/></span>

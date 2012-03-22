@@ -16,4 +16,6 @@ public interface CompANNEXConstants {
     
     public static final int DEFAULT_LANGUAGE = 1;
     
+    public static final int MAX_FILE_SIZE = 20 * 1024;
+    
 }

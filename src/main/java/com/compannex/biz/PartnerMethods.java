@@ -19,7 +19,7 @@ public class PartnerMethods {
 	private CompanyCountryDao companyCountryDao;
 	
 	
-	public void addNewPartner(String name,
+	public int addNewPartner(String name,
 			String email,
 			String password,
 			String category,
@@ -70,6 +70,13 @@ public class PartnerMethods {
 		
 		getCompanyCountryDao().addCompanyCountry(compCountr);
 		
+		return company.getID(); 
+	}
+	
+	public void editPartnerLogo(int partnerID, String logoPath) {
+		Company comp = getCompanyDao().getCompanyById(partnerID);
+		comp.setLogo(logoPath);
+		getCompanyDao().editCompany(comp);
 	}
 		
 	public CompanyDao getCompanyDao() {

@@ -441,18 +441,18 @@ blockquote {
 }
 	.quote .padding {padding:25px 20px 5px 30px;}
 /***** contact form *****/
-#contact-form, #registration, #login {
+.forma {
 	display:block;
 	width:100%;
 }
-	#contact-form, #registration, #login, #question label{
+	.forma label {
 		display:block; 
 		height:40px; 
 		overflow:hidden;
         width:950px;
 	}
 
-	#contact-form, #registration, #login, #question input {
+	.forma input {
 		float:left; 
 		width:510px; 
 		font-size:13px; 
@@ -465,10 +465,10 @@ blockquote {
 		background:#fff;
 		outline:none;
 	}
-	#contact-form, #registration, #login, #question input.integer {
+	.forma input.integer {
 		width:50px; 
 	}
-	#contact-form, #registration, #login, #question textarea {
+	.forma textarea {
 		float:left;
 		height:185px; 
 		width:510px;
@@ -490,6 +490,7 @@ blockquote {
 	line-height:35px;
 	width:110px; 
 	color:#4d4d4d;
+	padding-left: 15px;
 }
 
 .required {

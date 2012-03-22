@@ -42,7 +42,7 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                 <div class="wrapper">
                 	<article class="grid_9">
                     	<h3>Register Form</h3>
-                    	<form:form method="Post" action="register.do" commandName="registration">
+                    	<form:form method="Post" cssClass="forma" action="register.do" commandName="registration" enctype="multipart/form-data">
                             <fieldset>
                                   <label><span class="text-form required">Company Name:</span><form:input path="name"/>
                                   <span class="errors"><form:errors path="name"/></span>
@@ -75,6 +75,9 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
 								  </label>
                                   <label><span class="text-form">Slogan:</span><form:input path="slogan"/></label>
                                   <label><span class="text-form">Employee Count:</span><form:input path="employeecount"/></label>
+                                  <label><span class="text-form">Logo:</span><input type="file" name="logo"/>
+                                  <span class="errors"><form:errors path="logo"/><%=StringUtil.getString(pageContext.findAttribute("logo")) %></span>
+                                  </label>
                                   <div class="wrapper">
                                     <div class="text-form">Description:</div>
                                     <div class="extra-wrap">

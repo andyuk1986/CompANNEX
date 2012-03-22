@@ -16,5 +16,11 @@ public class StringUtil {
 		return false;
 	}
 	
+	public static String getString(Object obj) {
+		if (obj == null) return "";
+		
+		return obj.toString();
+	}
+	
 	
 }
