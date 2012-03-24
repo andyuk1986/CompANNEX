@@ -14,7 +14,15 @@
 			</list>
 		</property>
 	</bean>
-
+	
+    <bean id="compANNEXProperties"
+          class="com.compannex.properties.CompANNEXPropertiesBean">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/spring/system.properties</value>
+            </list>
+        </property>
+    </bean>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -153,7 +161,14 @@
 		<property name="questionDao" ref="questionDao" />
 	</bean>
 
-	<bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation" />
+	<bean id="logoMethods" class="com.compannex.biz.LogoMethods">
+		<property name="partnerMethods" ref="partnerMethods" />
+		<property name="compANNEXProperties" ref="compANNEXProperties" />
+	</bean>
+	
+	<bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation">
+		<property name="companyDao" ref="companyDao" />
+	</bean>
 
 	<bean id="questionValidation" class="com.compannex.validator.QuestionValidation" />
 

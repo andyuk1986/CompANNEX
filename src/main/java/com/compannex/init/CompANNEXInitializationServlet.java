@@ -8,6 +8,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.compannex.constants.CompANNEXConstants;
 import com.compannex.dao.IndustryDao;
+import com.compannex.properties.CompANNEXProperties;
 
 /**
  * Bootstrap servlet to start up Spring's root WebApplicationContext, initalize
@@ -26,6 +27,11 @@ public class CompANNEXInitializationServlet extends ContextLoaderServlet impleme
     private WebApplicationContext webApplicationContext = null;
 
     /**
+     * Object with application configuration properties.
+     */
+    private CompANNEXProperties compANNEXProperties = null;
+    
+    /**
      * Initialize the root web application context, monitoring, log4j and tiling processing thread.
      */
     public final void init() {
@@ -37,7 +43,11 @@ public class CompANNEXInitializationServlet extends ContextLoaderServlet impleme
             // Remember spring web application context
             webApplicationContext = WebApplicationContextUtils
                     .getRequiredWebApplicationContext(getServletContext());
-
+            
+            compANNEXProperties = (CompANNEXProperties) webApplicationContext
+                    .getBean("compANNEXProperties");
+            compANNEXProperties.checkProperties();
+            
             logger.info(COMPANNEX_INIT_SUCCESSFUL);
 
             // Remember successful initialization.
@@ -96,6 +106,15 @@ public class CompANNEXInitializationServlet extends ContextLoaderServlet impleme
         return webApplicationContext;
     }
 
+    /**
+     * Returns application configuration properties.
+     *
+     * @return application configuration properties.
+     */
+    protected CompANNEXProperties getCompANNEXProperties() {
+        return compANNEXProperties;
+    }
+    
     /**
      * Initialize log4j.
      */

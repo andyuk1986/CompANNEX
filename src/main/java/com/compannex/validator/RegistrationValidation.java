@@ -4,12 +4,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 import com.compannex.constants.CompANNEXConstants;
+import com.compannex.dao.CompanyDao;
 import com.compannex.form.Registration;
 
 import java.util.regex.Pattern;
 
 @Component("registrationValidator")
 public class RegistrationValidation {
+	
+	private CompanyDao companyDao;
+	
 	public boolean supports(Class<?> klass) {
 		return Registration.class.isAssignableFrom(klass);
 	}
@@ -30,6 +34,10 @@ public class RegistrationValidation {
             }
         }
 
+        if (registration.getEmail() != null && getCompanyDao().getCompanyByEmail(registration.getEmail()) != null) {
+        	errors.rejectValue("email", "registration.email.existing", "* The email address you have entered already exists.");
+        }
+        
         if(registration.getPassword() == null || registration.getPassword().isEmpty()) {
             errors.rejectValue("password", "registration.password.empty", "* The password should not be empty.");
         }
@@ -60,14 +68,23 @@ public class RegistrationValidation {
                 registration.getIndustry().equals("none")) {
             errors.rejectValue("industry", "registration.industry.empty", "* Please choose the industry to which your company belongs.");
         }
+
+		if (registration.getCategory() == null || registration.getCategory().isEmpty()
+				|| registration.getCategory().equals("none")) {
+			errors.rejectValue("category", "registration.category.empty", "* Please choose the category to which your company belongs.");
+		}
         
 		if(registration.getLogo() != null && registration.getLogo().getSize() > CompANNEXConstants.MAX_FILE_SIZE){
 			errors.rejectValue("logo", "registration.logo.big", "* Please choose the logo file which is less than 20KB.");
 		}
 
-        /*if(registration.getCategory() == null || registration.getCategory().isEmpty() ||
-                registration.getCategory().equals("none")) {
-            errors.rejectValue("category", "registration.category.empty", "* Please choose the category to which your company belongs.");
-        }*/
+	}
+
+	public CompanyDao getCompanyDao() {
+		return companyDao;
+	}
+
+	public void setCompanyDao(CompanyDao companyDao) {
+		this.companyDao = companyDao;
 	}
 }

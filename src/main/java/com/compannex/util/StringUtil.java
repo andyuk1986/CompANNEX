@@ -1,5 +1,7 @@
 package com.compannex.util;
 
+import java.io.File;
+
 public class StringUtil {
 
 	public static boolean equals(String str1, String str2) {
@@ -22,5 +24,17 @@ public class StringUtil {
 		return obj.toString();
 	}
 	
+	public static String getExtension(String path) {
+		if (path == null) return "";
+			
+		return path.substring(path.lastIndexOf("."));
+	}
 	
+	public static String getFolderPath(String path) {
+		if (path == null) path = "";
+		
+		if (!path.endsWith(File.separator)) path += File.separator;
+		
+		return path;
+	}
 }

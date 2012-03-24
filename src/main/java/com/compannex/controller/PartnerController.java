@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
@@ -24,9 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.CountryMethods;
 import com.compannex.biz.IndustryMethods;
+import com.compannex.biz.LogoMethods;
 import com.compannex.biz.PartnerMethods;
 import com.compannex.constants.CompANNEXConstants;
+import com.compannex.exceptions.CompANNEXException;
 import com.compannex.form.Registration;
+import com.compannex.properties.CompANNEXProperties;
 import com.compannex.validator.RegistrationValidation;
 
 @Controller
@@ -68,8 +72,9 @@ public class PartnerController implements HandlerExceptionResolver {
 	}
 
 	@RequestMapping("/register.do")
+	@Transactional(rollbackFor=CompANNEXException.class)
 	public ModelAndView register(HttpServletRequest request,
-			@Valid Registration registration, BindingResult result) {
+			@Valid Registration registration, BindingResult result) throws CompANNEXException {
 
 		ModelAndView success = new ModelAndView("clients", "activeTab",
 				"clients");
@@ -87,6 +92,8 @@ public class PartnerController implements HandlerExceptionResolver {
 						.getServletContext());
 		PartnerMethods partnerMeth = (PartnerMethods) context
 				.getBean("partnerMethods");
+		LogoMethods logoMethods = (LogoMethods) context
+				.getBean("logoMethods");
 
 		int companyID = partnerMeth.addNewPartner(registration.getName(),
 				registration.getEmail(), registration.getPassword(),
@@ -97,23 +104,7 @@ public class PartnerController implements HandlerExceptionResolver {
 				registration.getEmployeecount(), registration.getDescription());
 
 		if (registration.getLogo() != null) {
-			try {
-				String logoPath = "../images/logos/" + companyID + "_logo_" + registration.getLogo().getOriginalFilename();
-				InputStream in = registration.getLogo().getInputStream();
-				File file = new File(logoPath);
-				file.createNewFile();
-				FileOutputStream f = new FileOutputStream(file);
-				int ch = 0;
-				while ((ch = in.read()) != -1) {
-					f.write(ch);
-				}
-				f.flush();
-				f.close();
-				partnerMeth.editPartnerLogo(companyID, logoPath);
-			} catch (IOException e) {
-				logger.error(e.getMessage());
-				return error;
-			}
+			logoMethods.addCompanyLogo(registration.getLogo(), companyID);
 		}
 
 		CompanyMethods companyMethods = (CompanyMethods) context
