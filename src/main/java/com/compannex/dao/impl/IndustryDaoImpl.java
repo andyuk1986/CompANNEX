@@ -24,7 +24,7 @@ public class IndustryDaoImpl extends HibernateDaoSupport implements IndustryDao 
     	try {
 	    	Industry industry = null;
 	        session = getSession();
-	        Object obj = session.createQuery("from Industry as ind where ind.ID= ?")
+	        Object obj = session.createQuery("from Industry as ind where ind.ID= ?").setCacheable(true)
 	                .setInteger(0, id)
 	                .uniqueResult();
 	        if (obj != null) {
@@ -45,16 +45,6 @@ public class IndustryDaoImpl extends HibernateDaoSupport implements IndustryDao 
     @Override
     public void editIndustry(final Industry ind) {
         getHibernateTemplate().update(ind);
-    }
-
-    @Override
-    public Industry getIndustryByName(final String indName) {
-        final List<Industry> inds = getHibernateTemplate().findByNamedQuery("industry.by.name", indName);
-        if (inds != null && inds.size() > 0) {
-            return inds.get(0);
-        } else {
-            return null;
-        }
     }
     
     @Override

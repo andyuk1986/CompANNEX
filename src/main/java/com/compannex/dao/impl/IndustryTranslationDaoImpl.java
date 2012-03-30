@@ -14,7 +14,7 @@ public class IndustryTranslationDaoImpl extends HibernateDaoSupport implements I
     	try {
 	    	IndustryTranslation translation = null;
 	        session = getSession();
-	        Object obj = session.createQuery("from IndustryTranslation as indTr where indTr.industryId= ? and indTr.languageId= ?")
+	        Object obj = session.createQuery("from IndustryTranslation as indTr where indTr.industryId= ? and indTr.languageId= ?").setCacheable(true)
 	                .setInteger(0, industryID).setInteger(1, languageID)
 	                .uniqueResult();
 	        if (obj != null) {

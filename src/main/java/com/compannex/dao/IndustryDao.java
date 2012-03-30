@@ -28,14 +28,6 @@ public interface IndustryDao extends Serializable{
      */
     public void editIndustry(final Industry inds);
     
-    /**
-     * Returns Industry by name.
-     * @param indName the name of searched Industry.
-     * @return Industry entity.
-     */
-    public Industry getIndustryByName(final String indName);
-    
     public List<Industry> getAllIndustries();
-    
     
 }

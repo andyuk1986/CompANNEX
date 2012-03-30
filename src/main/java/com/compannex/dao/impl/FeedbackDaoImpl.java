@@ -10,7 +10,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.compannex.constants.CompANNEXConstants;
 import com.compannex.dao.FeedbackDao;
 import com.compannex.model.Feedback;
-import com.compannex.model.News;
 
 public class FeedbackDaoImpl extends HibernateDaoSupport implements FeedbackDao {
 

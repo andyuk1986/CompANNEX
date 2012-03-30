@@ -27,9 +27,11 @@
             	<div class="banner">
                     <strong>LET US <strong>COOPERATE!</strong></strong>
                     <em>Let’s create your company’s growth strategy together!</em>
+                    <c:if test="${loginCompany == null}">
                     <span class="button">
                     	<a href="registernew.do"><strong>Become a Partner</strong></a>
                     </span>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -103,10 +105,10 @@
                    	<%	}
                    	%>
                         	<article class="<%=articleclass %>">
-                            	<figure class="p2"><a href="#"><img class="img-border" src="<%=company.getLogo() %>" alt=""></a></figure>
+                            	<figure class="p2"><% if (!StringUtil.isBlank(company.getLogo())) { %><a href="client.do?companyID=<%= company.getID() %>"><img class="img-border" src="<%=company.getLogo() %>" alt=""></a><% } %></figure>
                                 <strong><%=company.getTranslation().getName() %></strong>
                                 <p class="p0"><%=company.getTranslation().getSlogan() %></p>
-                                <a class="link" href="#">Learn More</a>
+                                <a class="link" href="client.do?companyID=<%= company.getID() %>">Learn More</a>
                             </article>
                             
                    <%   if (isLast || i == clients.size()) { %>         

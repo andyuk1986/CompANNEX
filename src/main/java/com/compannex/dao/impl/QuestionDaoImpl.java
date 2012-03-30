@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.compannex.dao.QuestionDao;
-import com.compannex.model.Company;
 import com.compannex.model.Question;
 
 public class QuestionDaoImpl extends HibernateDaoSupport implements QuestionDao {

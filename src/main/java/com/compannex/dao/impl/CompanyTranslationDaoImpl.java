@@ -4,9 +4,7 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.compannex.dao.CompanyTranslationDao;
-import com.compannex.model.CategoryTranslation;
 import com.compannex.model.CompanyTranslation;
-import com.compannex.model.Language;
 
 public class CompanyTranslationDaoImpl extends HibernateDaoSupport implements
 		CompanyTranslationDao {
@@ -18,7 +16,7 @@ public class CompanyTranslationDaoImpl extends HibernateDaoSupport implements
     	try {
     		session = getSession();
         	CompanyTranslation translation = null;
-            Object obj = session.createQuery("from CompanyTranslation as compTr where compTr.companyId= ? and compTr.languageId= ?")
+            Object obj = session.createQuery("from CompanyTranslation as compTr where compTr.companyId= ? and compTr.languageId= ?").setCacheable(true)
                     .setInteger(0, companyId).setInteger(1, languageId)
                     .uniqueResult();
             if (obj != null) {

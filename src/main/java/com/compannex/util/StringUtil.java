@@ -37,4 +37,14 @@ public class StringUtil {
 		
 		return path;
 	}
+	
+	public static boolean endsWith(String file, String[] extensions) {
+		if (file == null || extensions == null || extensions.length == 0) return false;
+		
+		for (String ext : extensions) {
+			if (file.toLowerCase().endsWith(ext.toLowerCase())) return true;
+		}
+		
+		return false;
+	}
 }

@@ -19,7 +19,7 @@ public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao 
 			Category category = null;
 			session = getSession();
 			Object obj = session
-					.createQuery("from Category as cat where cat.ID= ?")
+					.createQuery("from Category as cat where cat.ID= ?").setCacheable(true)
 					.setInteger(0, categoryId).uniqueResult();
 			if (obj != null) {
 				category = (Category) obj;
@@ -56,7 +56,7 @@ public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao 
 			List<Category> categories = null;
 			Object obj = session
 					.createQuery(
-							"from Category as categ where categ.industryId= ?")
+							"from Category as categ where categ.industryId= ?").setCacheable(true)
 					.setInteger(0, industryId).list();
 			if (obj != null) {
 				categories = (List<Category>) obj;

@@ -3,13 +3,11 @@ package com.compannex.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.compannex.dao.CompanyDao;
-import com.compannex.model.Category;
-import com.compannex.model.Company;
-import com.compannex.model.Country;
-
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import com.compannex.dao.CompanyDao;
+import com.compannex.model.Company;
 
 
 public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
@@ -21,7 +19,7 @@ public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
 			Company company = null;
 			session = getSession();
 			Object obj = session
-					.createQuery("from Company as comp where comp.ID= ?")
+					.createQuery("from Company as comp where comp.ID= ?").setCacheable(true)
 					.setInteger(0, companyId).uniqueResult();
 			if (obj != null) {
 				company = (Company) obj;
@@ -41,7 +39,7 @@ public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
 			Company company = null;
 			session = getSession();
 			Object obj = session
-					.createQuery("from Company as comp where comp.email= ?")
+					.createQuery("from Company as comp where comp.email= ?").setCacheable(true)
 					.setString(0, email).uniqueResult();
 			if (obj != null) {
 				company = (Company) obj;

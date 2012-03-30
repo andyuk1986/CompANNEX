@@ -18,4 +18,6 @@ public interface CompANNEXConstants {
     
     public static final int MAX_FILE_SIZE = 20 * 1024;
     
+    public static final String[] EXTENSIONS = {".jpeg", ".jpg", ".png", ".gif"};
+    
 }

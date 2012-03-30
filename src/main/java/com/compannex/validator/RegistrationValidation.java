@@ -6,6 +6,7 @@ import org.springframework.validation.Errors;
 import com.compannex.constants.CompANNEXConstants;
 import com.compannex.dao.CompanyDao;
 import com.compannex.form.Registration;
+import com.compannex.util.StringUtil;
 
 import java.util.regex.Pattern;
 
@@ -76,6 +77,8 @@ public class RegistrationValidation {
         
 		if(registration.getLogo() != null && registration.getLogo().getSize() > CompANNEXConstants.MAX_FILE_SIZE){
 			errors.rejectValue("logo", "registration.logo.big", "* Please choose the logo file which is less than 20KB.");
+		} else if (registration.getLogo() != null && !StringUtil.endsWith(registration.getLogo().getOriginalFilename(), CompANNEXConstants.EXTENSIONS)) {
+			errors.rejectValue("logo", "registration.logo.wrong", "* Please choose only JPEG, PNG or GIF files.");
 		}
 
 	}

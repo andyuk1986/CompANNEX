@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.IndustryMethods;
+import com.compannex.constants.CompANNEXConstants;
 import com.compannex.util.StringUtil;
 
 @Controller
@@ -35,19 +36,41 @@ public class CompanyController {
 
 		if (industryID == null && categoryID == null) {
 			result.addObject("industries",
-					industryMethods.getAllIndustries(1, false));
+					industryMethods.getAllIndustries(CompANNEXConstants.DEFAULT_LANGUAGE, false));
 		} else if (industryID != null) {
 			result.addObject(
 					"categories",
 					industryMethods.getAllCategories(
-							industryID, 1));
-			result.addObject("industry", industryMethods.getIndustry(industryID, 1));
+							industryID, CompANNEXConstants.DEFAULT_LANGUAGE));
+			result.addObject("industry", industryMethods.getIndustry(industryID, CompANNEXConstants.DEFAULT_LANGUAGE));
 		} else if (categoryID != null) {
-			result.addObject("category", industryMethods.getCategory(categoryID, 1));
+			result.addObject("category", industryMethods.getCategory(categoryID, CompANNEXConstants.DEFAULT_LANGUAGE));
 		}
 		
-		result.addObject("clients", companyMethods.getAllClientCompanies(industryID, categoryID, 1));
+		result.addObject("clients", companyMethods.getAllClientCompanies(industryID, categoryID, CompANNEXConstants.DEFAULT_LANGUAGE));
 
 		return result;
 	}
+
+	@RequestMapping("/client.do")
+	public ModelAndView client(
+			HttpServletRequest request,
+			@RequestParam(value = "companyID", required = false) Integer companyID) {
+
+		ModelAndView result = new ModelAndView("client", "activeTab",
+				"clients");
+
+		WebApplicationContext context = WebApplicationContextUtils
+				.getRequiredWebApplicationContext(request.getSession()
+						.getServletContext());
+		CompanyMethods companyMethods = (CompanyMethods) context
+				.getBean("companyMethods");
+
+		if (companyID != null) {
+			result.addObject("client", companyMethods.getCompanyByID(companyID, CompANNEXConstants.DEFAULT_LANGUAGE));
+		}
+
+		return result;
+	}
+	
 }

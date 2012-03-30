@@ -15,7 +15,7 @@ public class CategoryTranslationDaoImpl extends HibernateDaoSupport implements C
     	try {
     		session = getSession();
         	CategoryTranslation translation = null;
-            Object obj = session.createQuery("from CategoryTranslation as catTr where catTr.categoryId= ? and catTr.languageId= ?")
+            Object obj = session.createQuery("from CategoryTranslation as catTr where catTr.categoryId= ? and catTr.languageId= ?").setCacheable(true)
                     .setInteger(0, categoryId).setInteger(1, languageId)
                     .uniqueResult();
             if (obj != null) {

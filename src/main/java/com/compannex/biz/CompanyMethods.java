@@ -106,6 +106,14 @@ public class CompanyMethods {
 		return comp;
 	}
 	
+	public Company getCompanyByID(final int companyID, final int languageId) {
+		
+		Company comp = getCompanyDao().getCompanyById(companyID);
+		comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationById(comp.getID(), languageId));
+		
+		return comp;
+	}
+
 	public CompanyDao getCompanyDao() {
 		return companyDao;
 	}
