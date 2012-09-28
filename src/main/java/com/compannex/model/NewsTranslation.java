@@ -17,9 +17,9 @@ public class NewsTranslation implements Serializable {
 
 	private int ID;
 
-	private int newsId;
+	private int newsID;
 
-	private int languageId;
+	private int languageID;
 
 	private transient News news;
 
@@ -41,21 +41,21 @@ public class NewsTranslation implements Serializable {
 	}
 
 	@Column(name = "news_ID")
-	public int getNewsId() {
-		return newsId;
+	public int getNewsID() {
+		return newsID;
 	}
 
-	public void setNewsId(int newsId) {
-		this.newsId = newsId;
+	public void setNewsID(int newsID) {
+		this.newsID = newsID;
 	}
 
 	@Column(name = "language_ID")
-	public int getLanguageId() {
-		return languageId;
+	public int getLanguageID() {
+		return languageID;
 	}
 
-	public void setLanguageId(int languageId) {
-		this.languageId = languageId;
+	public void setLanguageID(int languageID) {
+		this.languageID = languageID;
 	}
 
 	@Transient
@@ -102,8 +102,8 @@ public class NewsTranslation implements Serializable {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + ((header == null) ? 0 : header.hashCode());
-		result = prime * result + languageId;
-		result = prime * result + newsId;
+		result = prime * result + languageID;
+		result = prime * result + newsID;
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
@@ -124,9 +124,9 @@ public class NewsTranslation implements Serializable {
 				return false;
 		} else if (!header.equals(other.header))
 			return false;
-		if (languageId != other.languageId)
+		if (languageID != other.languageID)
 			return false;
-		if (newsId != other.newsId)
+		if (newsID != other.newsID)
 			return false;
 		if (text == null) {
 			if (other.text != null)

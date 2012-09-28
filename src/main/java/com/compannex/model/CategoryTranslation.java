@@ -8,11 +8,11 @@ import java.io.Serializable;
 @Table(name = "category_tr")
 public class CategoryTranslation implements Serializable {
     
-	private int id;
+	private int ID;
     
-	private int categoryId;
+	private int categoryID;
 	
-	private int languageId;
+	private int languageID;
 	
     private transient Category category;
     
@@ -23,30 +23,30 @@ public class CategoryTranslation implements Serializable {
     @Id
 	@GeneratedValue
 	@Column(name = "ID")
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int ID) {
+        this.ID = ID;
     }
     
     @Column(name = "category_ID")
-    public int getCategoryId() {
-		return categoryId;
+    public int getCategoryID() {
+		return categoryID;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
 	}
 
 	@Column(name = "language_ID")
-	public int getLanguageId() {
-		return languageId;
+	public int getLanguageID() {
+		return languageID;
 	}
 
-	public void setLanguageId(int languageId) {
-		this.languageId = languageId;
+	public void setLanguageID(int languageID) {
+		this.languageID = languageID;
 	}
 
 	@Transient
@@ -82,9 +82,9 @@ public class CategoryTranslation implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + categoryId;
-		result = prime * result + id;
-		result = prime * result + languageId;
+		result = prime * result + categoryID;
+		result = prime * result + ID;
+		result = prime * result + languageID;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -98,11 +98,11 @@ public class CategoryTranslation implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		CategoryTranslation other = (CategoryTranslation) obj;
-		if (categoryId != other.categoryId)
+		if (categoryID != other.categoryID)
 			return false;
-		if (id != other.id)
+		if (ID != other.ID)
 			return false;
-		if (languageId != other.languageId)
+		if (languageID != other.languageID)
 			return false;
 		if (name == null) {
 			if (other.name != null)

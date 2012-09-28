@@ -12,12 +12,12 @@ public class CountryMethods {
 
 	private CountryTranslationDao countryTranslationDao;
 
-	public List<Country> getAllCountries(int languageId) {
+	public List<Country> getAllCountries(int languageID) {
 		List<Country> countries = getCountryDao().getAllCountries();
 
 		for (Country country : countries) {
 			country.setTranslation(getCountryTranslationDao()
-					.getCountryTranslation(country.getID(), languageId));
+					.getCountryTranslation(country.getID(), languageID));
 		}
 		return countries;
 	}

@@ -4,7 +4,7 @@ import com.compannex.model.CompanyTranslation;
 
 public interface CompanyTranslationDao {
 	
-    public CompanyTranslation getCompanyTranslationById(final int companyId, final int languageId);
+    public CompanyTranslation getCompanyTranslationByCompanyID(final int companyId, final int languageId);
 
     public void addCompanyTranslation(final CompanyTranslation companyTranslation);
 

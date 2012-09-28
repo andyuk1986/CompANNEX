@@ -15,7 +15,7 @@ public class Category implements Serializable {
 
 	private int ID;
 
-	private int industryId;
+	private int industryID;
 
 	private transient Industry industry;
 
@@ -35,12 +35,12 @@ public class Category implements Serializable {
 	}
 
 	@Column(name = "industry_ID")
-	public int getIndustryId() {
-		return industryId;
+	public int getIndustryID() {
+		return industryID;
 	}
 
-	public void setIndustryId(int industryId) {
-		this.industryId = industryId;
+	public void setIndustryID(int industryID) {
+		this.industryID = industryID;
 	}
 
 	@Transient
@@ -79,7 +79,7 @@ public class Category implements Serializable {
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ID;
-		result = prime * result + industryId;
+		result = prime * result + industryID;
 		return result;
 	}
 
@@ -99,7 +99,7 @@ public class Category implements Serializable {
 			return false;
 		if (ID != other.ID)
 			return false;
-		if (industryId != other.industryId)
+		if (industryID != other.industryID)
 			return false;
 		return true;
 	}

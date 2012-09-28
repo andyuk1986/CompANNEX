@@ -1,21 +1,19 @@
 package com.compannex.dao;
 
-import com.compannex.model.Company;
-import com.compannex.model.CompanyCountry;
-import com.compannex.model.Country;
+import java.util.List;
 
+import com.compannex.model.CompanyCountry;
 
 public interface CompanyCountryDao {
 
-    public CompanyCountry getCompanyCountryById(final int id);
+	public CompanyCountry getCompanyCountryByID(final int ID);
 
-    public void addCompanyCountry(final CompanyCountry companyCountry);
+	public void addCompanyCountry(final CompanyCountry companyCountry);
 
-    public void editCompanyCountry(final CompanyCountry companyCountry);
+	public void editCompanyCountry(final CompanyCountry companyCountry);
 
-    public void deleteCompanyCountry(final CompanyCountry companyCountry);
+	public void deleteCompanyCountry(final CompanyCountry companyCountry);
 
-    public CompanyCountry getCompanyCountryByCompany(final Company company);
+	public List<CompanyCountry> getCompanyCountriesByCompany(final int companyID);
 
-    public CompanyCountry getCompanyCountryByCountry(final Country country);
 }

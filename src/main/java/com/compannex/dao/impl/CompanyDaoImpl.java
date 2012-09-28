@@ -78,7 +78,7 @@ public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
     	try {
     		session = getSession();
         	List<Company> companies = null;
-            Object obj = session.createQuery("from Company as comp where comp.categoryId= ?")
+            Object obj = session.createQuery("from Company as comp where comp.categoryID= ?")
                     .setInteger(0, categoryId)
                     .list();
             if (obj != null) {

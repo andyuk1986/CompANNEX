@@ -15,9 +15,9 @@ public class CountryTranslation implements Serializable {
 
 	private int ID;
 
-	private int countryId;
+	private int countryID;
 
-	private int languageId;
+	private int languageID;
 
 	private transient Country country;
 
@@ -37,21 +37,21 @@ public class CountryTranslation implements Serializable {
 	}
 
 	@Column(name = "country_ID")
-	public int getCountryId() {
-		return countryId;
+	public int getCountryID() {
+		return countryID;
 	}
 
-	public void setCountryId(int countryId) {
-		this.countryId = countryId;
+	public void setCountryID(int countryID) {
+		this.countryID = countryID;
 	}
 
 	@Column(name = "language_ID")
-	public int getLanguageId() {
-		return languageId;
+	public int getLanguageID() {
+		return languageID;
 	}
 
-	public void setLanguageId(int languageId) {
-		this.languageId = languageId;
+	public void setLanguageID(int languageID) {
+		this.languageID = languageID;
 	}
 
 	@Transient
@@ -88,8 +88,8 @@ public class CountryTranslation implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + countryId;
-		result = prime * result + languageId;
+		result = prime * result + countryID;
+		result = prime * result + languageID;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -105,9 +105,9 @@ public class CountryTranslation implements Serializable {
 		CountryTranslation other = (CountryTranslation) obj;
 		if (ID != other.ID)
 			return false;
-		if (countryId != other.countryId)
+		if (countryID != other.countryID)
 			return false;
-		if (languageId != other.languageId)
+		if (languageID != other.languageID)
 			return false;
 		if (name == null) {
 			if (other.name != null)

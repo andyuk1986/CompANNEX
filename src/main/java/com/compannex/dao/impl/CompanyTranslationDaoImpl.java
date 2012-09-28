@@ -10,13 +10,13 @@ public class CompanyTranslationDaoImpl extends HibernateDaoSupport implements
 		CompanyTranslationDao {
 	
 	@Override
-	public CompanyTranslation getCompanyTranslationById(final int companyId, final int languageId) {
+	public CompanyTranslation getCompanyTranslationByCompanyID(final int companyId, final int languageId) {
 
     	Session session = null;
     	try {
     		session = getSession();
         	CompanyTranslation translation = null;
-            Object obj = session.createQuery("from CompanyTranslation as compTr where compTr.companyId= ? and compTr.languageId= ?").setCacheable(true)
+            Object obj = session.createQuery("from CompanyTranslation as compTr where compTr.companyID= ? and compTr.languageID= ?").setCacheable(true)
                     .setInteger(0, companyId).setInteger(1, languageId)
                     .uniqueResult();
             if (obj != null) {

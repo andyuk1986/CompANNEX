@@ -47,4 +47,11 @@ public class StringUtil {
 		
 		return false;
 	}
+	
+	public static boolean areEquals(Integer arg1, String arg2) {
+		
+		if (isBlank(arg2) || arg1 == null) return false;
+		
+		return arg2.equals(String.valueOf(arg1));
+	}
 }

@@ -1,17 +1,19 @@
 package com.compannex.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.compannex.dao.CompanyCountryDao;
-import com.compannex.model.Company;
+import com.compannex.model.Category;
 import com.compannex.model.CompanyCountry;
-import com.compannex.model.Country;
 
 public class CompanyCountryDaoImpl extends HibernateDaoSupport implements
 		CompanyCountryDao {
 
 	@Override
-	public CompanyCountry getCompanyCountryById(int id) {
+	public CompanyCountry getCompanyCountryByID(int ID) {
 		return null;
 	}
 
@@ -33,14 +35,25 @@ public class CompanyCountryDaoImpl extends HibernateDaoSupport implements
 	}
 
 	@Override
-	public CompanyCountry getCompanyCountryByCompany(Company company) {
-		return null; // To change body of implemented methods use File |
-						// Settings | File Templates.
+	public List<CompanyCountry> getCompanyCountriesByCompany(final int companyID) {
+
+		Session session = null;
+		try {
+			session = getSession();
+			List<CompanyCountry> countries = null;
+			Object obj = session
+					.createQuery(
+							"from CompanyCountry as cc where cc.companyID= ?")
+					.setInteger(0, companyID).list();
+			if (obj != null) {
+				countries = (List<CompanyCountry>) obj;
+			}
+
+			return countries;
+		} finally {
+			if (session != null)
+				session.close();
+		}
 	}
 
-	@Override
-	public CompanyCountry getCompanyCountryByCountry(Country country) {
-		return null; // To change body of implemented methods use File |
-						// Settings | File Templates.
-	}
 }

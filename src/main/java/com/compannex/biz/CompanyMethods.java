@@ -79,7 +79,7 @@ public class CompanyMethods {
 		return companys;
 	}
 	
-	public List<Company> getAllClientCompanies(Integer industryID, Integer categoryID, final int languageId) {
+	public List<Company> getAllClientCompanies(Integer industryID, Integer categoryID, final int languageID) {
 		
 		List<Company> companies = null;
 		
@@ -92,24 +92,24 @@ public class CompanyMethods {
 		}
 		
 		for (Company comp : companies) {
-			comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationById(comp.getID(), languageId));
+			comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationByCompanyID(comp.getID(), languageID));
 		}
 		
 		return companies;
 	}
 	
-	public Company getCompanyByEmail(final String email, final int languageId) {
+	public Company getCompanyByEmail(final String email, final int languageID) {
 		
 		Company comp = getCompanyDao().getCompanyByEmail(email);
-		comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationById(comp.getID(), languageId));
+		comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationByCompanyID(comp.getID(), languageID));
 		
 		return comp;
 	}
 	
-	public Company getCompanyByID(final int companyID, final int languageId) {
+	public Company getCompanyByID(final int companyID, final int languageID) {
 		
 		Company comp = getCompanyDao().getCompanyById(companyID);
-		comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationById(comp.getID(), languageId));
+		comp.setTranslation(getCompanyTranslationDao().getCompanyTranslationByCompanyID(comp.getID(), languageID));
 		
 		return comp;
 	}

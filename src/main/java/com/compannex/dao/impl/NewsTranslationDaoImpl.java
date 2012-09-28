@@ -22,7 +22,7 @@ public class NewsTranslationDaoImpl extends HibernateDaoSupport implements
 			session = getSession();
 			Object obj = session
 					.createQuery(
-							"from NewsTranslation as newsTr where newsTr.newsId= ? and newsTr.languageId= ?").setCacheable(true)
+							"from NewsTranslation as newsTr where newsTr.newsID= ? and newsTr.languageID= ?").setCacheable(true)
 					.setInteger(0, newsID).setInteger(1, languageID)
 					.uniqueResult();
 			if (obj != null) {

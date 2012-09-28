@@ -14,7 +14,7 @@ public class CountryTranslationDaoImpl extends HibernateDaoSupport implements Co
     	try {
 	    	CountryTranslation translation = null;
 	        session = getSession();
-	        Object obj = session.createQuery("from CountryTranslation as countrTr where countrTr.countryId= ? and countrTr.languageId= ?").setCacheable(true)
+	        Object obj = session.createQuery("from CountryTranslation as countrTr where countrTr.countryID= ? and countrTr.languageID= ?").setCacheable(true)
 	                .setInteger(0, countryID).setInteger(1, languageID)
 	                .uniqueResult();
 	        if (obj != null) {

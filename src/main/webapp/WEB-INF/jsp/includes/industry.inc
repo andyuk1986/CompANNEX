@@ -6,7 +6,9 @@ List<Industry > industries = (List<Industry>)pageContext . findAttribute("indust
     <span class="fleft">
         <form:select path="industry" onchange="industryChanged(this);">
             <option value="none">-- Select Industry --</option>
-            <form:options items="${industries}" itemValue="ID" itemLabel="translation.name"/>
+             <c:forEach var="industry" items="${industries}">
+             	<option value="${industry.ID}" selected="${f:areEquals(industry.ID, registration.industry)}">${industry.translation.name}</option>
+             </c:forEach>
         </form:select>
     </span>
     <span class="errors"><form:errors path="industry"/></span>
@@ -20,7 +22,7 @@ List<Industry > industries = (List<Industry>)pageContext . findAttribute("indust
         <select name="category" class="hidden fleft" disabled="true" ID="cat_${industry.ID}">
             <option value="none">-- Select Category --</option>
             <c:forEach var="category" items="${industry.categories}">
-                <option value="${category.ID}">${category.translation.name}</option>
+                <option value="${category.ID}" selected="${f:areEquals(category.ID, registration.category)}">${category.translation.name}</option>
             </c:forEach>
         </select>
     </c:forEach>

@@ -18,7 +18,7 @@ public class Question implements Serializable {
 
 	private String subject;
 	
-	private Integer companyId;
+	private Integer companyID;
 
 	private transient Company company;
 
@@ -53,12 +53,12 @@ public class Question implements Serializable {
 	}
 	
 	@Column(name = "company_ID")
-	public Integer getCompanyId() {
-		return companyId;
+	public Integer getCompanyID() {
+		return companyID;
 	}
 
-	public void setCompanyId(Integer companyId) {
-		this.companyId = companyId;
+	public void setCompanyID(Integer companyID) {
+		this.companyID = companyID;
 	}
 
 	@Transient

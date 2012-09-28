@@ -16,7 +16,7 @@ public class Feedback implements Serializable {
 
 	private int ID;
 
-	private int companyId;
+	private int companyID;
 
 	private transient Company company;
 
@@ -40,12 +40,12 @@ public class Feedback implements Serializable {
 	}
 
 	@Column(name = "company_ID")
-	public int getCompanyId() {
-		return companyId;
+	public int getCompanyID() {
+		return companyID;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setCompanyID(int companyID) {
+		this.companyID = companyID;
 	}
 
 	@Transient
@@ -99,7 +99,7 @@ public class Feedback implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + companyId;
+		result = prime * result + companyID;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((person == null) ? 0 : person.hashCode());
 		result = prime * result
@@ -119,7 +119,7 @@ public class Feedback implements Serializable {
 		Feedback other = (Feedback) obj;
 		if (ID != other.ID)
 			return false;
-		if (companyId != other.companyId)
+		if (companyID != other.companyID)
 			return false;
 		if (date == null) {
 			if (other.date != null)

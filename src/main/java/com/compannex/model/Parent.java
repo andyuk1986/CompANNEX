@@ -15,9 +15,9 @@ public class Parent implements Serializable {
 
 	private int ID;
 
-	private int parentId;
+	private int parentID;
 
-	private int childId;
+	private int childID;
 
 	private Date addedDate;
 
@@ -37,21 +37,21 @@ public class Parent implements Serializable {
 	}
 
 	@Column(name = "parent_ID")
-	public int getParentId() {
-		return parentId;
+	public int getParentID() {
+		return parentID;
 	}
 
-	public void setParentId(int parentId) {
-		this.parentId = parentId;
+	public void setParentID(int parentID) {
+		this.parentID = parentID;
 	}
 
 	@Column(name = "child_ID")
-	public int getChildId() {
-		return childId;
+	public int getChildID() {
+		return childID;
 	}
 
-	public void setChildId(int childId) {
-		this.childId = childId;
+	public void setChildID(int childID) {
+		this.childID = childID;
 	}
 
 	@Column(name = "added_date")
@@ -88,12 +88,12 @@ public class Parent implements Serializable {
 		result = prime * result + ID;
 		result = prime * result
 				+ ((addedDate == null) ? 0 : addedDate.hashCode());
-		result = prime * result + childId;
+		result = prime * result + childID;
 		result = prime * result
 				+ ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result + parentId;
+		result = prime * result + parentID;
 		return result;
 	}
 
@@ -113,7 +113,7 @@ public class Parent implements Serializable {
 				return false;
 		} else if (!addedDate.equals(other.addedDate))
 			return false;
-		if (childId != other.childId)
+		if (childID != other.childID)
 			return false;
 		if (createDate == null) {
 			if (other.createDate != null)
@@ -125,7 +125,7 @@ public class Parent implements Serializable {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (parentId != other.parentId)
+		if (parentID != other.parentID)
 			return false;
 		return true;
 	}

@@ -17,10 +17,13 @@
                 %>
                 <c:choose>
 					<c:when test="${loginCompany != null}">
-					<div>
+					<div class="menu-buttons">
 	                	<span>
 	                		Welcome ${loginCompany.translation.name}! 
 	                	</span>
+	                	<span class="button">
+                    		<a href="editcompanynew.do"><strong>Change Settings</strong></a>
+                    	</span>
 	                </div>
 					</c:when>
 					<c:otherwise>

@@ -16,7 +16,7 @@ public class QuestionMethods {
 		
 		Question question = new Question();
 		if (companyID != null) {
-			question.setCompanyId(companyID);
+			question.setCompanyID(companyID);
 		} else {
 			question.setPerson(person);
 			question.setEmail(email);

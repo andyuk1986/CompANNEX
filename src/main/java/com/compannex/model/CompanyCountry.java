@@ -16,9 +16,9 @@ public class CompanyCountry implements Serializable {
 
 	private int ID;
 
-	private int companyId;
+	private int companyID;
 
-	private int countryId;
+	private int countryID;
 
 	private transient Company company;
 
@@ -40,21 +40,21 @@ public class CompanyCountry implements Serializable {
 	}
 
 	@Column(name = "company_ID")
-	public int getCompanyId() {
-		return companyId;
+	public int getCompanyID() {
+		return companyID;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setCompanyID(int companyID) {
+		this.companyID = companyID;
 	}
 
 	@Column(name = "country_ID")
-	public int getCountryId() {
-		return countryId;
+	public int getCountryID() {
+		return countryID;
 	}
 
-	public void setCountryId(int countryId) {
-		this.countryId = countryId;
+	public void setCountryID(int countryID) {
+		this.countryID = countryID;
 	}
 
 	@Transient
@@ -100,8 +100,8 @@ public class CompanyCountry implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + companyId;
-		result = prime * result + countryId;
+		result = prime * result + companyID;
+		result = prime * result + countryID;
 		result = prime * result
 				+ ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result
@@ -120,9 +120,9 @@ public class CompanyCountry implements Serializable {
 		CompanyCountry other = (CompanyCountry) obj;
 		if (ID != other.ID)
 			return false;
-		if (companyId != other.companyId)
+		if (companyID != other.companyID)
 			return false;
-		if (countryId != other.countryId)
+		if (countryID != other.countryID)
 			return false;
 		if (createDate == null) {
 			if (other.createDate != null)

@@ -19,9 +19,9 @@ public class IndustryTranslation implements java.io.Serializable {
 	
 	private String name;
 	
-	private int industryId;
+	private int industryID;
 	
-	private int languageId;
+	private int languageID;
 	
 	private transient Language language;
 	
@@ -48,21 +48,21 @@ public class IndustryTranslation implements java.io.Serializable {
 	}
 	
 	@Column(name = "industry_ID")
-	public int getIndustryId() {
-		return industryId;
+	public int getIndustryID() {
+		return industryID;
 	}
 
-	public void setIndustryId(int industryId) {
-		this.industryId = industryId;
+	public void setIndustryID(int industryID) {
+		this.industryID = industryID;
 	}
 
 	@Column(name = "language_ID")
-	public int getLanguageId() {
-		return languageId;
+	public int getLanguageID() {
+		return languageID;
 	}
 
-	public void setLanguageId(int languageId) {
-		this.languageId = languageId;
+	public void setLanguageID(int languageID) {
+		this.languageID = languageID;
 	}
 
 	@Transient
@@ -90,8 +90,8 @@ public class IndustryTranslation implements java.io.Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-		result = prime * result + industryId;
-		result = prime * result + languageId;
+		result = prime * result + industryID;
+		result = prime * result + languageID;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -110,9 +110,9 @@ public class IndustryTranslation implements java.io.Serializable {
 				return false;
 		} else if (!ID.equals(other.ID))
 			return false;
-		if (industryId != other.industryId)
+		if (industryID != other.industryID)
 			return false;
-		if (languageId != other.languageId)
+		if (languageID != other.languageID)
 			return false;
 		if (name == null) {
 			if (other.name != null)

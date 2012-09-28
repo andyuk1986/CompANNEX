@@ -11,9 +11,9 @@ public class Partner implements Serializable {
 
 	private int ID;
 
-	private int company1Id;
+	private int company1ID;
 
-	private int company2Id;
+	private int company2ID;
 
 	private Date addedDate;
 
@@ -39,21 +39,21 @@ public class Partner implements Serializable {
 	}
 
 	@Column(name = "company_ID1")
-	public int getCompany1Id() {
-		return company1Id;
+	public int getCompany1ID() {
+		return company1ID;
 	}
 
-	public void setCompany1Id(int company1Id) {
-		this.company1Id = company1Id;
+	public void setCompany1ID(int company1ID) {
+		this.company1ID = company1ID;
 	}
 
 	@Column(name = "company_ID2")
-	public int getCompany2Id() {
-		return company2Id;
+	public int getCompany2ID() {
+		return company2ID;
 	}
 
-	public void setCompany2Id(int company2Id) {
-		this.company2Id = company2Id;
+	public void setCompany2ID(int company2ID) {
+		this.company2ID = company2ID;
 	}
 
 	@Column(name = "added_date")
@@ -117,8 +117,8 @@ public class Partner implements Serializable {
 		result = prime * result + ID;
 		result = prime * result
 				+ ((addedDate == null) ? 0 : addedDate.hashCode());
-		result = prime * result + company1Id;
-		result = prime * result + company2Id;
+		result = prime * result + company1ID;
+		result = prime * result + company2ID;
 		result = prime * result
 				+ ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result
@@ -146,9 +146,9 @@ public class Partner implements Serializable {
 				return false;
 		} else if (!addedDate.equals(other.addedDate))
 			return false;
-		if (company1Id != other.company1Id)
+		if (company1ID != other.company1ID)
 			return false;
-		if (company2Id != other.company2Id)
+		if (company2ID != other.company2ID)
 			return false;
 		if (createDate == null) {
 			if (other.createDate != null)

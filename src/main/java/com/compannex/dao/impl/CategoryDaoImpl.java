@@ -56,7 +56,7 @@ public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao 
 			List<Category> categories = null;
 			Object obj = session
 					.createQuery(
-							"from Category as categ where categ.industryId= ?").setCacheable(true)
+							"from Category as categ where categ.industryID= ?").setCacheable(true)
 					.setInteger(0, industryId).list();
 			if (obj != null) {
 				categories = (List<Category>) obj;

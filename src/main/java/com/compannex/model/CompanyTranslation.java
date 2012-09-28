@@ -15,9 +15,9 @@ public class CompanyTranslation implements Serializable {
 
 	private int ID;
 
-	private int companyId;
+	private int companyID;
 
-	private int languageId;
+	private int languageID;
 
 	private transient Company company;
 
@@ -47,21 +47,21 @@ public class CompanyTranslation implements Serializable {
 	}
 
 	@Column(name = "company_ID")
-	public int getCompanyId() {
-		return companyId;
+	public int getCompanyID() {
+		return companyID;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setCompanyID(int companyID) {
+		this.companyID = companyID;
 	}
 
 	@Column(name = "language_ID")
-	public int getLanguageId() {
-		return languageId;
+	public int getLanguageID() {
+		return languageID;
 	}
 
-	public void setLanguageId(int languageId) {
-		this.languageId = languageId;
+	public void setLanguageID(int languageID) {
+		this.languageID = languageID;
 	}
 
 	@Transient
@@ -144,12 +144,12 @@ public class CompanyTranslation implements Serializable {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + companyId;
+		result = prime * result + companyID;
 		result = prime * result
 				+ ((contacts == null) ? 0 : contacts.hashCode());
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result + languageId;
+		result = prime * result + languageID;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((slogan == null) ? 0 : slogan.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -172,7 +172,7 @@ public class CompanyTranslation implements Serializable {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (companyId != other.companyId)
+		if (companyID != other.companyID)
 			return false;
 		if (contacts == null) {
 			if (other.contacts != null)
@@ -184,7 +184,7 @@ public class CompanyTranslation implements Serializable {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (languageId != other.languageId)
+		if (languageID != other.languageID)
 			return false;
 		if (name == null) {
 			if (other.name != null)
