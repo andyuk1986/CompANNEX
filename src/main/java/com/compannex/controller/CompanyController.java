@@ -16,7 +16,7 @@ import com.compannex.biz.IndustryMethods;
 import com.compannex.constants.CompANNEXConstants;
 
 @Controller
-public class CompanyController extends BaseController {
+public class CompanyController {
 
 	@RequestMapping("/clients.do")
 	public ModelAndView clients(
