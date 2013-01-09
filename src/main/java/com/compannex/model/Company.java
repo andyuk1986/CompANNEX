@@ -40,7 +40,11 @@ public class Company implements Serializable {
 	private Date addedDate;
 
 	private int categoryId;
+	
+	private String zipCode;
 
+	private String token;
+	
 	private transient Category category;
 
 	private transient CompanyTranslation translation;
@@ -165,6 +169,24 @@ public class Company implements Serializable {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+	
+	@Column(name = "zipcode")
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	
+	@Column(name = "token")
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	@Transient
 	public Category getCategory() {
@@ -218,6 +240,7 @@ public class Company implements Serializable {
 		result = prime * result
 				+ ((telephone == null) ? 0 : telephone.hashCode());
 		result = prime * result + ((website == null) ? 0 : website.hashCode());
+		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		return result;
 	}
 
@@ -286,7 +309,12 @@ public class Company implements Serializable {
 				return false;
 		} else if (!website.equals(other.website))
 			return false;
+		if (zipCode == null) {
+			if (other.zipCode != null)
+				return false;
+		} else if (!zipCode.equals(other.zipCode))
+			return false;
 		return true;
 	}
-
+	
 }

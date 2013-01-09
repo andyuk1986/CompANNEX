@@ -15,7 +15,7 @@ public class NewsMethods {
 	public List<News> getLatestNews(int languageID) {
 
 		List<News> newsList = getNewsDao().getLastNews();
-
+		
 		for (News news : newsList) {
 			news.setTranslation(getNewsTranslationDao().getNewsTranslation(
 					news.getID(), languageID));

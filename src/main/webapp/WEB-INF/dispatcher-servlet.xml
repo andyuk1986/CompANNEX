@@ -19,4 +19,85 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<!-- bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/client.do">companyController</prop>
+				<prop key="/clients.do">companyController</prop>
+				<prop key="/feedbacks.do">feedbackController</prop>
+				<prop key="/home.do">homeController</prop>
+				<prop key="/services.do">homeController</prop>
+				<prop key="/company.do">homeController</prop>
+				<prop key="/news.do">homeController</prop>
+				<prop key=/findingpartner.do>serviceController</prop>
+				<prop key="/offerproduct.do">serviceController</prop>
+				<prop key="/communicate.do">serviceController</prop>
+			</props>
+		</property>
+		<property name="interceptors">
+			<list>
+				<ref bean="requestInitializeInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/loginnew.do">loginController</prop>
+				<prop key="/login.do">loginController</prop>
+			</props>
+		</property>
+		<property name="interceptors">
+			<list>
+				<ref bean="requestInitializeInterceptor" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="companyController" class="com.compannex.controller.CompanyController" />
+	
+	<bean id="feedbackController" class="com.compannex.controller.FeedbackController" />
+	
+	<bean id="homeController" class="com.compannex.controller.HomeController" />
+	
+	<bean id="loginController" class="com.compannex.controller.LoginController" />
+	
+	<bean id="partnerController" class="com.compannex.controller.PartnerController" />
+	
+	<bean id="passwordController" class="com.compannex.controller.PasswordController" />
+	
+	<bean id="serviceController" class="com.compannex.controller.ServiceController" />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="requestInitializeInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="requestInitializeInterceptor" class="com.compannex.interceptor.RequestInitializeInterceptor" /-->
+	
+	<context:component-scan base-package="com.compannex.controller"/>
+	
+	<bean name="handlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<bean class="com.compannex.interceptor.RequestInitializeInterceptor">
+					<property name="loginMethods" ref="loginMethods"/>
+					<property name="companyMethods" ref="companyMethods"/>
+				</bean>				
+				<bean class="com.compannex.interceptor.CSRFProtectionInterceptor"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.compannex.util.SpringUtil">
+		<property name="handlerAdapter" ref="handlerAdapter"/>
+	</bean>
 </beans>

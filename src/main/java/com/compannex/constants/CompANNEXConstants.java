@@ -18,6 +18,12 @@ public interface CompANNEXConstants {
     
     public static final int MAX_FILE_SIZE = 20 * 1024;
     
+    public static final String COMPANNEX_COOKIE_NAME = "COMPANNEX";
+    
+    public static final String COOKIE_DELIM = "#";
+    
+    public static final int COOKIE_EXPIRE = 7*24*60*60;
+    
     public static final String[] EXTENSIONS = {".jpeg", ".jpg", ".png", ".gif"};
     
 }

@@ -356,6 +356,15 @@ ADD `date` DATE NOT NULL AFTER `text`;
 ALTER TABLE `hhovsepy_compannex`.`question`
 ADD `subject` VARCHAR(45) NOT NULL AFTER `ID`;
 
+ALTER TABLE `hhovsepy_compannex`.`company`
+ADD `zipcode` VARCHAR(10) NULL;
+
+ALTER TABLE `hhovsepy_compannex`.`company_tr`
+ADD `city` VARCHAR(255) NULL,
+ADD `region` VARCHAR(255) NULL;
+
+ALTER TABLE `hhovsepy_compannex`.`company`
+ADD `token` VARCHAR(255) NULL;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

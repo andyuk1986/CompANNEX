@@ -42,7 +42,7 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                 <div class="wrapper">
                 	<article class="grid_9">
                     	<h3>Edit Company</h3>
-                    	<form:form method="Post" cssClass="forma" action="editcompany.do" commandName="registration" enctype="multipart/form-data">
+                    	<form:form method="Post" cssClass="forma" action="editcompany.do" commandName="editcompany" enctype="multipart/form-data">
                             <fieldset>
                                   <label><span class="text-form required">Company Name:</span><form:input path="name"/>
                                   <span class="errors"><form:errors path="name"/></span>
@@ -55,11 +55,20 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                                   <label><span class="text-form required">Address:</span><form:input path="address"/>
                                   <span class="errors"><form:errors path="address"/></span>
                                   </label>
+                                  <label><span class="text-form required">Zip Code:</span><form:input path="zipcode"/>
+                                  <span class="errors"><form:errors path="zipcode"/></span>
+                                  </label>
+                                  <label><span class="text-form required">City:</span><form:input path="city"/>
+                                  <span class="errors"><form:errors path="city"/></span>
+                                  </label>
+                                  <label><span class="text-form required">Region:</span><form:input path="region"/>
+                                  <span class="errors"><form:errors path="region"/></span>
+                                  </label>
                                   <label><span class="text-form required">Country:</span>
     	                            <select name="country" class="fleft">
 								    	<option value="none">-- Select Country --</option>
         								<c:forEach var="country" items="${countries}">
-        									<option value="${country.ID}" selected="${f:areEquals(country.ID, registration.country)}">${country.translation.name}</option>
+        									<option value="${country.ID}" selected="${f:areEquals(country.ID, editcompany.country)}">${country.translation.name}</option>
         								</c:forEach>
 									</select>
                                       <span class="errors"><form:errors path="country"/></span>
@@ -76,10 +85,10 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                                         <div class="clear"></div>
                                         <div class="buttons">
                                         	<span class="button-2">
-                                                <a onClick="document.getElementById('registration').reset()"><strong>clear</strong></a>
+                                                <a onClick="document.getElementById('editcompany').reset()"><strong>clear</strong></a>
                                             </span>
                                             <span class="button-2">
-                                                <a onClick="document.getElementById('registration').submit()"><strong>register</strong></a>
+                                                <a onClick="document.getElementById('editcompany').submit()"><strong>save</strong></a>
                                             </span>
                                         </div> 
                                     </div>

@@ -9,7 +9,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.compannex.biz.FeedbackMethods;
-import com.compannex.biz.NewsMethods;
 
 @Controller
 public class FeedbackController {

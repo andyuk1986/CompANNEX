@@ -64,11 +64,20 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                                   <label><span class="text-form required">Address:</span><form:input path="address"/>
                                   <span class="errors"><form:errors path="address"/></span>
                                   </label>
+                                  <label><span class="text-form required">Zip Code:</span><form:input path="zipcode"/>
+                                  <span class="errors"><form:errors path="zipcode"/></span>
+                                  </label>
+                                  <label><span class="text-form required">City:</span><form:input path="city"/>
+                                  <span class="errors"><form:errors path="city"/></span>
+                                  </label>
+                                  <label><span class="text-form required">Region:</span><form:input path="region"/>
+                                  <span class="errors"><form:errors path="region"/></span>
+                                  </label>                                                                                                      
                                   <label><span class="text-form required">Country:</span>
     	                            <select name="country" class="fleft">
 								    	<option value="none">-- Select Country --</option>
         								<c:forEach var="country" items="${countries}">
-        									<option value="${country.ID}">${country.translation.name}</option>
+        									<option value="${country.ID}" selected="${f:areEquals(country.ID, registration.country)}">${country.translation.name}</option>
         								</c:forEach>
 									</select>
                                       <span class="errors"><form:errors path="country"/></span>

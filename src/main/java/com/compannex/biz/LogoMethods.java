@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.compannex.exceptions.CompANNEXException;
@@ -16,10 +18,10 @@ public class LogoMethods {
 	
 	private CompANNEXProperties compANNEXProperties;
 	
-	public void addCompanyLogo(MultipartFile logo, int companyID) throws CompANNEXException {
+	public void addCompanyLogo(ServletContext context, MultipartFile logo, int companyID) throws CompANNEXException {
 
 		try {
-			String logoPath = StringUtil.getFolderPath(getCompANNEXProperties().getLogosPath()) + companyID + "_logo" + StringUtil.getExtension(logo.getOriginalFilename());
+			String logoPath = context.getRealPath(StringUtil.getFolderPath(getCompANNEXProperties().getLogosPath()) + companyID + "_logo" + StringUtil.getExtension(logo.getOriginalFilename()));
 			InputStream in = logo.getInputStream();
 			File file = new File(logoPath);
 			file.createNewFile();file.getAbsolutePath();

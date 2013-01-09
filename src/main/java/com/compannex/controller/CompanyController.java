@@ -1,7 +1,9 @@
 package com.compannex.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,10 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.IndustryMethods;
 import com.compannex.constants.CompANNEXConstants;
-import com.compannex.util.StringUtil;
 
 @Controller
-public class CompanyController {
+public class CompanyController extends BaseController {
 
 	@RequestMapping("/clients.do")
 	public ModelAndView clients(
@@ -53,8 +54,9 @@ public class CompanyController {
 	}
 
 	@RequestMapping("/client.do")
+	@Before("com.compannex.interceptor.RequestInitializeInterceptor.preHandle(request, response)")
 	public ModelAndView client(
-			HttpServletRequest request,
+			HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "companyID", required = false) Integer companyID) {
 
 		ModelAndView result = new ModelAndView("client", "activeTab",

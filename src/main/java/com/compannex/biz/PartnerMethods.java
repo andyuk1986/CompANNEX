@@ -20,6 +20,7 @@ public class PartnerMethods {
 	
 	private CompanyCountryDao companyCountryDao;
 	
+	private PasswordMethods passwordMethods;
 	
 	public int addNewPartner(String name,
 			String email,
@@ -30,6 +31,9 @@ public class PartnerMethods {
 			String fax,
 			String contactperson,
 			String address,
+			String city,
+			String region,
+			String zipCode,
 			String country,
 			String slogan,
 			String employeecount,
@@ -40,7 +44,7 @@ public class PartnerMethods {
 		company.setCategoryId(Integer.parseInt(category));
 		company.setCreateDate(new Date());
 		company.setEmail(email);
-		company.setPassword(password);
+		company.setPassword(getPasswordMethods().encrypt(password));
         if(employeecount != null && !employeecount.isEmpty()) {
             try {
                 company.setEmployeeCount(Integer.parseInt(employeecount));
@@ -50,6 +54,7 @@ public class PartnerMethods {
 		company.setStatus(CompanyStatusEnum.ACTIVE.getValue());
 		company.setTelephone(telephone);
 		company.setFax(fax);
+		company.setZipCode(zipCode);
 		company.setWebsite(websiteurl);
 		
 		getCompanyDao().addCompany(company);
@@ -61,6 +66,8 @@ public class PartnerMethods {
 		companyTr.setLanguageID(languageID);
 		companyTr.setName(name);
 		companyTr.setSlogan(slogan);
+		companyTr.setCity(city);
+		companyTr.setRegion(region);
 		companyTr.setCompanyID(company.getID());
 		
 		getCompanyTranslationDao().addCompanyTranslation(companyTr);
@@ -82,6 +89,9 @@ public class PartnerMethods {
 			String fax,
 			String contactperson,
 			String address,
+			String zipcode,
+			String city,
+			String region,
 			String country,
 			String slogan,
 			String employeecount,
@@ -99,12 +109,15 @@ public class PartnerMethods {
 		company.setStatus(CompanyStatusEnum.ACTIVE.getValue());
 		company.setTelephone(telephone);
 		company.setFax(fax);
+		company.setZipCode(zipcode);
 		company.setWebsite(websiteurl);
 		
 		getCompanyDao().editCompany(company);
 		
 		CompanyTranslation companyTr = getCompanyTranslationDao().getCompanyTranslationByCompanyID(ID, languageID);
 		companyTr.setAddress(address);
+		companyTr.setCity(city);
+		companyTr.setRegion(region);
 		companyTr.setContacts(contactperson);
 		companyTr.setDescription(description);
 		companyTr.setLanguageID(languageID);
@@ -156,5 +169,13 @@ public class PartnerMethods {
 
 	public void setCompanyCountryDao(CompanyCountryDao companyCountryDao) {
 		this.companyCountryDao = companyCountryDao;
+	}
+
+	public PasswordMethods getPasswordMethods() {
+		return passwordMethods;
+	}
+
+	public void setPasswordMethods(PasswordMethods passwordMethods) {
+		this.passwordMethods = passwordMethods;
 	}
 }

@@ -26,6 +26,10 @@ public class CompanyTranslation implements Serializable {
 	private String name;
 
 	private String address;
+	
+	private String city;
+	
+	private String region;
 
 	private String contacts;
 
@@ -102,6 +106,24 @@ public class CompanyTranslation implements Serializable {
 		this.address = address;
 	}
 
+	@Column(name = "city")
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Column(name = "region")
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
 	@Column(name = "contacts")
 	public String getContacts() {
 		return contacts;
@@ -144,6 +166,7 @@ public class CompanyTranslation implements Serializable {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + companyID;
 		result = prime * result
 				+ ((contacts == null) ? 0 : contacts.hashCode());
@@ -151,6 +174,7 @@ public class CompanyTranslation implements Serializable {
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + languageID;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((region == null) ? 0 : region.hashCode());
 		result = prime * result + ((slogan == null) ? 0 : slogan.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
@@ -172,6 +196,11 @@ public class CompanyTranslation implements Serializable {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
 		if (companyID != other.companyID)
 			return false;
 		if (contacts == null) {
@@ -190,6 +219,11 @@ public class CompanyTranslation implements Serializable {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (region == null) {
+			if (other.region != null)
+				return false;
+		} else if (!region.equals(other.region))
 			return false;
 		if (slogan == null) {
 			if (other.slogan != null)

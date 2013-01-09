@@ -38,7 +38,16 @@
                         <strong><%=company.getTranslation().getName() %></strong>
                         <p class="p0"><%=company.getTranslation().getSlogan() %></p>
                         <p class="p0"><%=company.getTranslation().getContacts() %></p>
-                        <p class="p0"><%=company.getTranslation().getAddress() %></p>
+                        <label><span class="text-form">Address: </span><span class="text-form"><%=company.getTranslation().getAddress() %></span></label>
+						<% if (!StringUtil.isBlank(company.getZipCode())) { %>
+                        	<label><span class="text-form">Zip Code: </span><span class="text-form"><%=company.getZipCode() %></span></label>
+						<% } %>
+						<% if (!StringUtil.isBlank(company.getTranslation().getCity())) { %>
+                        	<p class="p0"><%=company.getTranslation().getCity() %></p>
+						<% } %>
+						<% if (!StringUtil.isBlank(company.getTranslation().getRegion())) { %>
+                        	<p class="p0"><%=company.getTranslation().getRegion() %></p>
+						<% } %>
                         <p class="p0"><%=company.getEmail() %></p>
                         <p class="p0"><%=company.getWebsite() %></p>
                         <p class="p0"><%=company.getTelephone() %></p>

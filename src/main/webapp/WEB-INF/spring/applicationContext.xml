@@ -166,16 +166,26 @@
 		<property name="compANNEXProperties" ref="compANNEXProperties" />
 	</bean>
 	
+	<bean id="passwordMethods" class="com.compannex.biz.PasswordMethods" singleton="true" />
+		
 	<bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation">
 		<property name="companyDao" ref="companyDao" />
 	</bean>
 
+	<bean id="editcompanyValidation" class="com.compannex.validator.EditCompanyValidation">
+		<property name="companyDao" ref="companyDao" />
+	</bean>
+	
+	<bean id="changePasswordValidation" class="com.compannex.validator.ChangePasswordValidation">
+		<property name="loginMethods" ref="loginMethods" />
+		<property name="passwordMethods" ref="passwordMethods" />
+	</bean>
+	
 	<bean id="questionValidation" class="com.compannex.validator.QuestionValidation" />
 
 	<bean id="loginValidation" class="com.compannex.validator.LoginValidation">
 		<property name="loginMethods" ref="loginMethods" />
 	</bean>
-
 
 	<!-- Hibernate Template bean that will be assigned to DAOs. -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
@@ -192,4 +202,6 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
+	
+	<bean id="requestInitializeInterceptor" class="com.compannex.interceptor.RequestInitializeInterceptor" />
 </beans>

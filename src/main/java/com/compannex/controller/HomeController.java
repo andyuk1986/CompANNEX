@@ -12,17 +12,13 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.FeedbackMethods;
 import com.compannex.biz.NewsMethods;
-import com.compannex.biz.PartnerMethods;
 import com.compannex.biz.QuestionMethods;
 import com.compannex.constants.CompANNEXConstants;
 import com.compannex.form.Question;
-import com.compannex.form.Registration;
 import com.compannex.model.Company;
 import com.compannex.validator.QuestionValidation;
-import com.compannex.validator.RegistrationValidation;
 
 @Controller
 public class HomeController {

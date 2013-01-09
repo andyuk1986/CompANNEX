@@ -5,6 +5,8 @@ public class Login {
 	private String email;
 
 	private String password;
+	
+	private boolean rememberme;
 
 	public String getEmail() {
 		return email;
@@ -20,5 +22,13 @@ public class Login {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isRememberme() {
+		return rememberme;
+	}
+
+	public void setRememberme(boolean rememberme) {
+		this.rememberme = rememberme;
 	}
 }
