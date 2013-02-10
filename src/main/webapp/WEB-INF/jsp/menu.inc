@@ -12,6 +12,9 @@
 	                		Welcome ${loginCompany.translation.name}! 
 	                	</span>
 	                	<span class="button">
+                    		<a href="logout.do"><strong>Logout</strong></a>
+                    	</span>
+	                	<span class="button">
                     		<a href="editcompanynew.do"><strong>Change Settings</strong></a>
                     	</span>
                     	<span class="button">

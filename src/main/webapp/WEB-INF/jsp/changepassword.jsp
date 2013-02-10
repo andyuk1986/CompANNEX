@@ -42,7 +42,7 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                 <div class="wrapper">
                 	<article class="grid_9">
                     	<h3>Edit Company</h3>
-                    	<form:form method="Post" cssClass="forma" action="changepassword.do" commandName="changepassword">
+                    	<form:form method="Post" cssClass="forma" action="changepassword.do" commandName="changePassword">
                             <fieldset>
                             	<label><span class="text-form required">Ord Password:</span><form:password path="oldpassword"/>
                                 	<span class="errors"><form:errors path="oldpassword"/></span>
@@ -53,14 +53,15 @@ List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
                                 <label><span class="text-form required">Confirm New Password:</span><form:password path="renewpassword"/>
                                 	<span class="errors"><form:errors path="renewpassword"/></span>
                                 </label>
+                                <form:hidden path="sessionID"/>
                                 <div class="wrapper">                                    
                                         <div class="clear"></div>
                                         <div class="buttons">
                                         	<span class="button-2">
-                                                <a onClick="document.getElementById('changepassword').reset()"><strong>clear</strong></a>
+                                                <a onClick="document.getElementById('changePassword').reset()"><strong>clear</strong></a>
                                             </span>
                                             <span class="button-2">
-                                                <a onClick="document.getElementById('changepassword').submit()"><strong>change</strong></a>
+                                                <a onClick="document.getElementById('changePassword').submit()"><strong>change</strong></a>
                                             </span>
                                         </div> 
                                     </div>

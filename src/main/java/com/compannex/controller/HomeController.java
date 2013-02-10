@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.compannex.biz.FeedbackMethods;
@@ -26,10 +24,17 @@ public class HomeController {
 	private static Logger logger = Logger.getLogger(HomeController.class);
 
 	private QuestionValidation questionValidation;
+	private QuestionMethods questionMethods;
+	private FeedbackMethods feedbackMethods;
+	private NewsMethods newsMethods;
 
     @Autowired
-    public HomeController(QuestionValidation questionValidation) {
+    public HomeController(QuestionValidation questionValidation, QuestionMethods questionMethods,
+    		FeedbackMethods feedbackMethods, NewsMethods newsMethods) {
         this.questionValidation = questionValidation;
+        this.questionMethods = questionMethods;
+        this.feedbackMethods = feedbackMethods;
+        this.newsMethods = newsMethods;
     }
     
 	@RequestMapping("/home.do")
@@ -37,11 +42,6 @@ public class HomeController {
 		logger.info("Home");
 
 		ModelAndView result = new ModelAndView("index", "activeTab", "home");
-
-		WebApplicationContext context = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(request.getSession()
-						.getServletContext());
-		NewsMethods newsMethods = (NewsMethods) context.getBean("newsMethods");
 
 		result.addObject("news",
 				newsMethods.getLatestNews(CompANNEXConstants.DEFAULT_LANGUAGE));
@@ -62,12 +62,6 @@ public class HomeController {
 		ModelAndView result = new ModelAndView("company", "activeTab",
 				"company");
 
-		WebApplicationContext context = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(request.getSession()
-						.getServletContext());
-		FeedbackMethods feedbackMethods = (FeedbackMethods) context
-				.getBean("feedbackMethods");
-
 		result.addObject("feedbacks", feedbackMethods.getLatestFeedbacks());
 		return result;
 	}
@@ -83,11 +77,6 @@ public class HomeController {
 	@RequestMapping("/news.do")
 	public ModelAndView news(HttpServletRequest request) {
 		ModelAndView result = new ModelAndView("allnews", "activeTab", "home");
-
-		WebApplicationContext context = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(request.getSession()
-						.getServletContext());
-		NewsMethods newsMethods = (NewsMethods) context.getBean("newsMethods");
 
 		result.addObject("news",
 				newsMethods.getLatestNews(CompANNEXConstants.DEFAULT_LANGUAGE));
@@ -109,13 +98,7 @@ public class HomeController {
 			return success;
 		}
 
-		WebApplicationContext context = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(request.getSession()
-						.getServletContext());
-		QuestionMethods questionMeth = (QuestionMethods) context
-				.getBean("questionMethods");
-
-		questionMeth.addQuestion(question.getCompanyID(), question.getPerson(), question.getEmail(), question.getSubject(), question.getText());
+		questionMethods.addQuestion(question.getCompanyID(), question.getPerson(), question.getEmail(), question.getSubject(), question.getText());
 		
 		success.addObject("success", "Thank You for Your question.");
 		return success;

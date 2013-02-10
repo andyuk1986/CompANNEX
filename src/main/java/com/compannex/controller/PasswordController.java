@@ -41,15 +41,16 @@ public class PasswordController {
 				"clients");
 
 		ChangePassword changePassword = new ChangePassword();
+		changePassword.setSessionID(request.getSession().getId());
 		
-		result.addObject("changepassword", changePassword);
+		result.addObject("changePassword", changePassword);
 		return result;
 	}
 
 	@RequestMapping("/changepassword.do")
 	@Authenticate
 	public ModelAndView changePassword(HttpServletRequest request,
-			@Valid ChangePassword changepassword, BindingResult result) throws CompANNEXException {
+			@Valid ChangePassword changePassword, BindingResult result) throws CompANNEXException {
 
 		ModelAndView success = new ModelAndView("client", "activeTab",
 				"clients");
@@ -61,13 +62,13 @@ public class PasswordController {
 		
 		int companyID = loginCompany.getID();
 		
-		changePasswordValidation.validate(changepassword, result, loginCompany.getEmail());
+		changePasswordValidation.validate(changePassword, result, loginCompany.getEmail());
 		if (result.hasErrors()) {
-			error.addObject("changepassword", changepassword);
+			//error.addObject("changePassword", changePassword);
 			return error;
 		}
 
-		passwordMethods.changePassword(companyID, changepassword.getNewpassword());
+		passwordMethods.changePassword(companyID, changePassword.getNewpassword());
 			
 		loginCompany = companyMethods.getCompanyByID(companyID, CompANNEXConstants.DEFAULT_LANGUAGE);
 		success.addObject("client", loginCompany);

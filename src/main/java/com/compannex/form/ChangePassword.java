@@ -1,12 +1,16 @@
 package com.compannex.form;
 
-public class ChangePassword {
+import com.compannex.iface.SecureEditable;
+
+public class ChangePassword implements SecureEditable {
 
 	private String oldpassword;
 	
 	private String newpassword;
 	
 	private String renewpassword;
+	
+	private String sessionID;
 
 	public String getOldpassword() {
 		return oldpassword;
@@ -31,4 +35,15 @@ public class ChangePassword {
 	public void setRenewpassword(String renewpassword) {
 		this.renewpassword = renewpassword;
 	}
+
+	@Override
+	public void setSessionID(String sessionID) {
+		this.sessionID = sessionID;
+	}
+
+	@Override
+	public String getSessionID() {
+		return sessionID;
+	}
+	
 }

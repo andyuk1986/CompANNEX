@@ -46,8 +46,8 @@ public class ServletCookieManager implements CookieManager, CompANNEXConstants {
 
 		Cookie cookie = new Cookie(COMPANNEX_COOKIE_NAME, value);
 		cookie.setMaxAge(maxAge);
-		cookie.setPath("/");
-		cookie.setSecure(true);
+		//cookie.setPath("/");
+		//cookie.setSecure(true);
 
 		response.addCookie(cookie);
 		cookies.put(COMPANNEX_COOKIE_NAME, value);
