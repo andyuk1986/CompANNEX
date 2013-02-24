@@ -18,8 +18,10 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
 </head>
-
-<body id="page4">
+<%
+List<Country> countries = (List<Country>)pageContext.findAttribute("countries");
+%>
+<body id="page4" onload="loadCategories()">
 	<!--==============================header=================================-->
     <header>
     	<%@ include file="/WEB-INF/jsp/menu.inc" %>
@@ -39,32 +41,25 @@
             <div class="container_12">
                 <div class="wrapper">
                 	<article class="grid_9">
-                    	<h3>Login</h3>
-                    	<form:form method="Post" cssClass="forma" action="login.do" commandName="login">
+                    	<h3>Reset Password</h3>
+                    	<form:form method="Post" cssClass="forma" action="forgotpassword.do" commandName="forgotPassword">
                             <fieldset>
-                                  <label><span class="text-form required">Email Address:</span><form:input path="email"/>
-                                  <span class="errors"><form:errors path="email"/></span>
-                                  </label>
-                                  <label><span class="text-form required">Password:</span><form:password path="password"/>
-                                  <span class="errors"><form:errors path="password"/></span>
-                                  </label>
-                                  <label><span class="text-form required">Remember Me</span><form:checkbox path="rememberme"/>
-                                  <span class="errors"><form:errors path="rememberme"/></span>
-                                  </label>
-                                  <a href="forgotpasswordnew.do">Forgot Password?</a>
-                                  <div class="wrapper">
-                                    <div class="extra-wrap">
+                            	<label><span class="text-form required">Email Address:</span><form:input path="email"/>
+                                	<span class="errors"><form:errors path="email"/></span>
+                                </label>
+                                <form:hidden path="sessionID"/>
+                                <div class="wrapper">                                    
                                         <div class="clear"></div>
                                         <div class="buttons">
                                         	<span class="button-2">
-                                                <a onClick="document.getElementById('login').reset()"><strong>clear</strong></a>
+                                                <a onClick="document.getElementById('forgotPassword').reset()"><strong>clear</strong></a>
                                             </span>
                                             <span class="button-2">
-                                                <a onClick="document.getElementById('login').submit()"><strong>login</strong></a>
+                                                <a onClick="document.getElementById('forgotPassword').submit()"><strong>reset</strong></a>
                                             </span>
                                         </div> 
                                     </div>
-                                  </div>                            
+                                  </div>            
                             </fieldset>						
                         </form:form>
                     </article>

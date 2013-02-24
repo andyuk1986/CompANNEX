@@ -68,6 +68,21 @@
 		</property>
 	</bean>
 
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  <property name="host" value="mail.compannex.com"/>
+	</bean>
+	
+	<!-- this is a template message that we can pre-load with default state -->
+	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+	  <property name="from" value="noreplay@compannex.com"/>
+	  <property name="subject" value="Your New Password"/>
+	</bean>
+	
+	<bean id="mailService" class="com.compannex.mail.MailService">
+	  <property name="mailSender" ref="mailSender"/>
+	  <property name="templateMessage" ref="templateMessage"/>
+	</bean>
+	
 	<bean id="newsDao" class="com.compannex.dao.impl.NewsDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
@@ -166,7 +181,10 @@
 		<property name="compANNEXProperties" ref="compANNEXProperties" />
 	</bean>
 	
-	<bean id="passwordMethods" class="com.compannex.biz.PasswordMethods" singleton="true" />
+	<bean id="passwordMethods" class="com.compannex.biz.PasswordMethods" singleton="true">
+		<property name="companyDao" ref="companyDao" />
+		<property name="mailService" ref="mailService" />
+	</bean>
 		
 	<bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation">
 		<property name="companyDao" ref="companyDao" />
@@ -187,6 +205,14 @@
 		<property name="loginMethods" ref="loginMethods" />
 	</bean>
 
+	<bean id="resetPasswordValidation" class="com.compannex.validator.ResetPasswordValidation">
+		<property name="loginMethods" ref="loginMethods" />
+	</bean>
+	
+	<bean id="forgotPasswordValidation" class="com.compannex.validator.ForgotPasswordValidation">
+		<property name="loginMethods" ref="loginMethods" />
+	</bean>
+		
 	<!-- Hibernate Template bean that will be assigned to DAOs. -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="localSessionFactory" />
@@ -203,5 +229,6 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
 	
-	<bean id="requestInitializeInterceptor" class="com.compannex.interceptor.RequestInitializeInterceptor" />
+	<bean id="requestInitializeInterceptor" class="com.compannex.interceptor.RequestInitializeInterceptor" />	
+
 </beans>

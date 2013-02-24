@@ -11,6 +11,8 @@ public interface CompanyDao {
 	public Company getCompanyByEmail(final String email);
 	
 	public Company getCompanyByEmailAndToken(final String email, final String token);
+	
+	public Company getCompanyByPasswordToken(String email, int id, String passwordToken);
 
 	public List<Company> getCompaniesByIndustryId(final int industryId);
 

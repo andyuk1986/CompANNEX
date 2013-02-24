@@ -18,6 +18,16 @@ public class LoginMethods {
 		
 		return false;
 	}
+
+	public boolean checkLogin(String email) {
+		
+		Company comp = getCompanyDao().getCompanyByEmail(email);
+		
+		if (comp != null) return true;
+		
+		return false;
+	}
+
 	
 	public String regenerateToken(String email) {
 		Company comp = getCompanyDao().getCompanyByEmail(email);

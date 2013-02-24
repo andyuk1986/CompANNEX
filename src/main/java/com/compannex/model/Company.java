@@ -45,6 +45,10 @@ public class Company implements Serializable {
 
 	private String token;
 	
+	private String passwordToken;
+	
+	private Date passwordTokenDate;
+	
 	private transient Category category;
 
 	private transient CompanyTranslation translation;
@@ -188,6 +192,24 @@ public class Company implements Serializable {
 		this.token = token;
 	}
 
+	@Column(name = "password_token")
+	public String getPasswordToken() {
+		return passwordToken;
+	}
+
+	public void setPasswordToken(String passwordToken) {
+		this.passwordToken = passwordToken;
+	}
+	
+	@Column(name = "password_token_date")
+	public Date getPasswordTokenDate() {
+		return passwordTokenDate;
+	}
+
+	public void setPasswordTokenDate(Date passwordTokenDate) {
+		this.passwordTokenDate = passwordTokenDate;
+	}
+	
 	@Transient
 	public Category getCategory() {
 		return category;
@@ -236,9 +258,16 @@ public class Company implements Serializable {
 		result = prime * result + ((logo == null) ? 0 : logo.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result
+				+ ((passwordToken == null) ? 0 : passwordToken.hashCode());
+		result = prime
+				* result
+				+ ((passwordTokenDate == null) ? 0 : passwordTokenDate
+						.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result
 				+ ((telephone == null) ? 0 : telephone.hashCode());
+		result = prime * result + ((token == null) ? 0 : token.hashCode());
 		result = prime * result + ((website == null) ? 0 : website.hashCode());
 		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		return result;
@@ -294,6 +323,16 @@ public class Company implements Serializable {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (passwordToken == null) {
+			if (other.passwordToken != null)
+				return false;
+		} else if (!passwordToken.equals(other.passwordToken))
+			return false;
+		if (passwordTokenDate == null) {
+			if (other.passwordTokenDate != null)
+				return false;
+		} else if (!passwordTokenDate.equals(other.passwordTokenDate))
+			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
@@ -303,6 +342,11 @@ public class Company implements Serializable {
 			if (other.telephone != null)
 				return false;
 		} else if (!telephone.equals(other.telephone))
+			return false;
+		if (token == null) {
+			if (other.token != null)
+				return false;
+		} else if (!token.equals(other.token))
 			return false;
 		if (website == null) {
 			if (other.website != null)

@@ -36,4 +36,5 @@ public class DateUtil {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		return formatter.format(date);
 	}
+		
 }

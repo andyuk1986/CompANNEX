@@ -366,6 +366,12 @@ ADD `region` VARCHAR(255) NULL;
 ALTER TABLE `hhovsepy_compannex`.`company`
 ADD `token` VARCHAR(255) NULL;
 
+ALTER TABLE `hhovsepy_compannex`.`company`
+ADD `password_token` VARCHAR(255) NULL;
+
+ALTER TABLE `hhovsepy_compannex`.`company`
+ADD `password_token_date` DATE NULL AFTER `password_token`;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
