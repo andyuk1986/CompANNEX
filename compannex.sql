@@ -372,6 +372,34 @@ ADD `password_token` VARCHAR(255) NULL;
 ALTER TABLE `hhovsepy_compannex`.`company`
 ADD `password_token_date` DATE NULL AFTER `password_token`;
 
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`answer`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`answer` (
+  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `question_ID` INT NULL ,
+  `text` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`ID`) ,
+  INDEX `FK_ANSWER_QUEST` (`question_ID` ASC) ,
+  CONSTRAINT `FK_ANSWER_QUEST`
+    FOREIGN KEY (`question_ID` )
+    REFERENCES `hhovsepy_compannex`.`question` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `hhovsepy_compannex`.`question`
+ADD `question_ID` INT NULL AFTER `company_ID`,
+ADD  INDEX `FK_RE_QUEST` (`question_ID` ASC),
+ADD  CONSTRAINT `FK_RE_QUEST`
+    FOREIGN KEY (`question_ID` )
+    REFERENCES `hhovsepy_compannex`.`question` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `hhovsepy_compannex`.`answer`
+ADD `date` DATE NOT NULL AFTER `text`;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

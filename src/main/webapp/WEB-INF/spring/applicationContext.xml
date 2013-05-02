@@ -64,12 +64,16 @@
 				<value>com.compannex.model.News</value>
 				<value>com.compannex.model.NewsTranslation</value>
 				<value>com.compannex.model.Question</value>
+				<value>com.compannex.model.Answer</value>
 			</list>
 		</property>
 	</bean>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	  <property name="host" value="mail.compannex.com"/>
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="sebastian.blumberg123" />
+	    <property name="password" value="" />
 	</bean>
 	
 	<!-- this is a template message that we can pre-load with default state -->
@@ -135,6 +139,10 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 
+	<bean id="answerDao" class="com.compannex.dao.impl.AnswerDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+
 	<bean id="industryMethods" class="com.compannex.biz.IndustryMethods">
 		<property name="industryDao" ref="industryDao" />
 		<property name="industryTranslationDao" ref="industryTranslationDao" />
@@ -174,6 +182,7 @@
 
 	<bean id="questionMethods" class="com.compannex.biz.QuestionMethods">
 		<property name="questionDao" ref="questionDao" />
+		<property name="answerDao" ref="answerDao" />
 	</bean>
 
 	<bean id="logoMethods" class="com.compannex.biz.LogoMethods">
@@ -200,6 +209,8 @@
 	</bean>
 	
 	<bean id="questionValidation" class="com.compannex.validator.QuestionValidation" />
+	
+	<bean id="answerValidation" class="com.compannex.validator.AnswerValidation" />
 
 	<bean id="loginValidation" class="com.compannex.validator.LoginValidation">
 		<property name="loginMethods" ref="loginMethods" />

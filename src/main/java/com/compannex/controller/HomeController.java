@@ -1,6 +1,7 @@
 package com.compannex.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.compannex.biz.FeedbackMethods;
@@ -61,16 +63,22 @@ public class HomeController {
 	public ModelAndView company(HttpServletRequest request) {
 		ModelAndView result = new ModelAndView("company", "activeTab",
 				"company");
-
 		result.addObject("feedbacks", feedbackMethods.getLatestFeedbacks());
 		return result;
 	}
 
 	@RequestMapping("/contacts.do")
-	public ModelAndView contacts(HttpServletRequest request) {
+	public ModelAndView contacts(HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestParam(value = "parentID", required = false) Integer parentID) {
 		ModelAndView result = new ModelAndView("contacts", "activeTab",
 				"contacts");
-		createQuestion(request, result);
+		createQuestion(request, result, parentID);
+		
+		if (parentID != null) {
+			result.addObject("thread", questionMethods.getQuestionThread(parentID));
+		}
+		
 		return result;
 	}
 
@@ -87,30 +95,32 @@ public class HomeController {
 	@RequestMapping("/questionadd.do")
 	public ModelAndView addQuestion(
 			HttpServletRequest request,
-			@Valid Question question, BindingResult result) {
+			@Valid Question question, BindingResult result,
+			@RequestParam(value = "parentID", required = false) Integer parentID) {
 
 		ModelAndView success = new ModelAndView("contacts", "activeTab",
 				"contacts");
 
 		questionValidation.validate(question, result);
 		if (result.hasErrors()) {
-			createQuestion(request, success);
+			createQuestion(request, success, parentID);
 			return success;
 		}
 
-		questionMethods.addQuestion(question.getCompanyID(), question.getPerson(), question.getEmail(), question.getSubject(), question.getText());
+		questionMethods.addQuestion(question.getCompanyID(), question.getPerson(), question.getEmail(), question.getSubject(), question.getText(), parentID);
 		
 		success.addObject("success", "Thank You for Your question.");
 		return success;
 	}
 	
-	private void createQuestion(HttpServletRequest request, ModelAndView result) {
+	private void createQuestion(HttpServletRequest request, ModelAndView result, Integer parentID) {
 		
 		Question question = new Question();
 		Company loginCompany = (Company)request.getSession().getAttribute("loginCompany");
 		if (loginCompany != null) {
 			question.setCompanyID(loginCompany.getID());
 		}
+		question.setParentID(parentID);
 		
 		result.addObject("question", question);
 	}

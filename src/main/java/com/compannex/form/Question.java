@@ -12,6 +12,8 @@ public class Question {
 	private String text;
 
 	private Integer companyID;
+	
+	private Integer parentID;
 
 	public String getSubject() {
 		return subject;
@@ -52,4 +54,13 @@ public class Question {
 	public void setCompanyID(Integer companyID) {
 		this.companyID = companyID;
 	}
+
+	public Integer getParentID() {
+		return parentID;
+	}
+
+	public void setParentID(Integer parentID) {
+		this.parentID = parentID;
+	}
+		
 }

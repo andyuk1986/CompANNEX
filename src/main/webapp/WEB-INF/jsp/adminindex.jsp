@@ -21,41 +21,9 @@
 <body id="page1">
 	<!--==============================header=================================-->
     <header>
-    	<%@ include file="/WEB-INF/jsp/menu.inc" %>
+    	<%@ include file="/WEB-INF/jsp/adminmenu.inc" %>
         <div class="slider-wrapper">
         	<div class="slider">
-            	<ul class="items">
-                	<li>
-                    	<img src="images/slider-img1.gif" alt="">
-                        <div class="banner">
-                        	<strong>need <strong>fresh ideas?</strong></strong>
-                            <em>Let’s create your company’s growth strategy together!</em>
-                            <span class="button">
-                            	<a href="contacts.do"><strong>Ask a Question</strong></a>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                    	<img src="images/slider-img2.jpg" alt="">
-                        <div class="banner">
-                        	<strong>good <strong>solutions!</strong></strong>
-                            <em>Make your company a world wide known name with us!</em>
-                            <span class="button">
-                            	<a href="index.jsp#"><strong>Read More</strong></a>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                    	<img src="images/slider-img3.jpg" alt="">
-                        <div class="banner">
-                        	<strong>LET US <strong>COOPERATE!</strong></strong>
-                            <em>Let’s create your company’s growth strategy together!</em>
-                            <span class="button">
-                            	<a href="index.jsp#"><strong>Read More</strong></a>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
             </div>
         </div>
     </header>

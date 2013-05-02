@@ -21,7 +21,7 @@
 <body id="page5">
 	<!--==============================header=================================-->
     <header>
-    	<%@ include file="/WEB-INF/jsp/menu.inc" %>
+    	<%@ include file="/WEB-INF/jsp/adminmenu.inc" %>
         <div class="slider-wrapper">
         	<div class="slider">
             	<div class="banner">
@@ -40,37 +40,11 @@
                 	<article class="grid_9">
                     	
                     	                    	
-                    	<form:form method="Post" cssClass="forma" action="questionadd.do" commandName="question">
-                            <fieldset>
-                            
-                        <% 
-                        String success = (String)pageContext.findAttribute("success");
-                        %>
-                        <c:choose>
-						<c:when test="${success == null}">    
-						<h3>Question Form</h3>                            
-							<c:choose>
-								<c:when test="${question.companyID == null && question.parentID == null}">                            
-                                  <label><span class="text-form required">Your Name:</span><form:input path="person"/>
-                                  <span class="errors"><form:errors path="person"/></span>
-                                  </label>
-                                  <label><span class="text-form required">Email Address:</span><form:input path="email"/>
-                                  <span class="errors"><form:errors path="email"/></span>
-                                  </label>
-                            	</c:when>
-								<c:otherwise>
-								  <form:hidden path="companyID"/>
-								</c:otherwise>
-							</c:choose>
-							<c:choose>
-							    <c:when test="${question.parentID == null}">                                  
-                                  <label><span class="text-form required">Subject:</span><form:input path="subject"/>
-                                  <span class="errors"><form:errors path="subject"/></span>
-                                  </label>
-                                </c:when>
-                             </c:choose>
+                    	<form:form method="Post" cssClass="forma" action="answeradd.do" commandName="answer">
+                            <fieldset>    
+						<h3>Answer Form</h3>                            
                                   <div class="wrapper">
-                                  	<form:hidden path="parentID"/>
+                                  	<form:hidden path="questionID"/>
                                   	<%@ include file="/WEB-INF/jsp/thread.inc" %>
                                     <div class="text-form required">Text:</div>
                                     <div class="extra-wrap">
@@ -79,19 +53,14 @@
                                         <div class="clear"></div>
                                         <div class="buttons">
                                         	<span class="button-2">
-                                                <a onClick="document.getElementById('question').reset()"><strong>clear</strong></a>
+                                                <a onClick="document.getElementById('answer').reset()"><strong>clear</strong></a>
                                             </span>
                                             <span class="button-2">
-                                                <a onClick="document.getElementById('question').submit()"><strong>send</strong></a>
+                                                <a onClick="document.getElementById('answer').submit()"><strong>send</strong></a>
                                             </span>
                                         </div> 
                                     </div>
-                                  </div>                                                              
-                        </c:when>
-						<c:otherwise>
-							 <div><%=success %></div>
-						</c:otherwise>
-						</c:choose>             
+                                  </div>                                                                        
                             </fieldset>						
                         </form:form>
                     </article>
