@@ -18,6 +18,13 @@ public interface CompANNEXProperties {
 	 */
 	String getLogoURI();
 	
+
+	/**
+	 * @return host name of server 
+	 * 
+	 */
+	String getHostName();
+	
 	/**
 	 * Check the properties for valid data types.
 	 * 

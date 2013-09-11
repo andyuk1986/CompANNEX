@@ -20,6 +20,12 @@ public final class CompANNEXPropertiesBean extends PropertyHandler implements
     private static final String LOGO_URI = "logoURI";
     
     /**
+     * key for the property of server host name
+     */
+    private static final String HOST_NAME = "hostName";
+    
+    
+    /**
      * {@inheritDoc}
      */
     public void checkProperties() throws CompANNEXRuntimeException {
@@ -27,6 +33,7 @@ public final class CompANNEXPropertiesBean extends PropertyHandler implements
             // Check properties
             getLogosPath();
             getLogoURI();
+            getHostName();
             
             // CHECKSTYLE_OFF
         } catch (final RuntimeException ex) {
@@ -47,5 +54,13 @@ public final class CompANNEXPropertiesBean extends PropertyHandler implements
      */
     public String getLogoURI() {
         return getProperty(LOGO_URI);
+    }
+    
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getHostName() {
+        return getProperty(HOST_NAME);
     }
 }

@@ -100,4 +100,5 @@
 	<bean class="com.compannex.util.SpringUtil">
 		<property name="handlerAdapter" ref="handlerAdapter"/>
 	</bean>
+
 </beans>

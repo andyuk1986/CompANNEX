@@ -81,12 +81,16 @@
 	  <property name="from" value="noreplay@compannex.com"/>
 	  <property name="subject" value="Your New Password"/>
 	</bean>
-	
+		
+	<bean id="messageService" class="com.compannex.message.MessageService" singleton="true" />
+		
 	<bean id="mailService" class="com.compannex.mail.MailService">
 	  <property name="mailSender" ref="mailSender"/>
 	  <property name="templateMessage" ref="templateMessage"/>
+	  <property name="messageService" ref="messageService"/>
+	  <property name="compANNEXProperties" ref="compANNEXProperties"/>
 	</bean>
-	
+		
 	<bean id="newsDao" class="com.compannex.dao.impl.NewsDaoImpl">
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>

@@ -58,7 +58,7 @@ public class PasswordMethods {
 		
 		getCompanyDao().editCompany(comp);
 		
-		getMailService().resetPassword(email);
+		getMailService().resetPassword(email, comp.getID(), passtoken);
 	}
 	
 	public void resetPasswordToken(String email) {
