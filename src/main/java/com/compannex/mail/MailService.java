@@ -44,4 +44,19 @@ public class MailService {
             System.err.println(ex.getMessage());            
         }
     }
+    
+    public void sendAnswer(String email, Integer id) {
+
+        SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
+        msg.setTo(email);
+        msg.setText(messageService.getString("add.answer", compANNEXProperties.getHostName() + "/CompANNEX/contacts.do?parentID=" + id));
+        
+        try{
+            this.mailSender.send(msg);
+        }
+        catch(MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());            
+        }    	
+    }
 }

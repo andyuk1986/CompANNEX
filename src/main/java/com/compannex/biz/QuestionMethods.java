@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.compannex.dao.AnswerDao;
+import com.compannex.dao.CompanyDao;
 import com.compannex.dao.QuestionDao;
+import com.compannex.mail.MailService;
 import com.compannex.model.Answer;
 import com.compannex.model.Answerable;
 import com.compannex.model.Question;
@@ -17,6 +19,10 @@ public class QuestionMethods {
 	private QuestionDao questionDao;
 	
 	private AnswerDao answerDao;
+	
+	private CompanyDao companyDao;
+	
+	private MailService mailService;
 
 	public void addQuestion(final Integer companyID, final String person, final String email, final String subject, final String text, final Integer parentQuestionID) {
 		
@@ -60,6 +66,13 @@ public class QuestionMethods {
 		Question question = getQuestionDao().getQuestion(questionID);
 		question.setIsNew(false);
 		getQuestionDao().editQuestion(question);
+		
+		String email = question.getEmail();
+		if (email == null) {
+			email = getCompanyDao().getCompanyById(question.getCompanyID()).getEmail();
+		}
+		
+		getMailService().sendAnswer(email, questionID);
 	}
 
 	public List<Question> getAllOpenQuestions() {
@@ -94,6 +107,22 @@ public class QuestionMethods {
 
 	public void setAnswerDao(AnswerDao answerDao) {
 		this.answerDao = answerDao;
+	}
+
+	public CompanyDao getCompanyDao() {
+		return companyDao;
+	}
+
+	public void setCompanyDao(CompanyDao companyDao) {
+		this.companyDao = companyDao;
+	}
+
+	public MailService getMailService() {
+		return mailService;
+	}
+
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
 	}
 	
 }

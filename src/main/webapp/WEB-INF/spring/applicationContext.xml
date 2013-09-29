@@ -187,6 +187,8 @@
 	<bean id="questionMethods" class="com.compannex.biz.QuestionMethods">
 		<property name="questionDao" ref="questionDao" />
 		<property name="answerDao" ref="answerDao" />
+		<property name="companyDao" ref="companyDao" />
+		<property name="mailService" ref="mailService" />
 	</bean>
 
 	<bean id="logoMethods" class="com.compannex.biz.LogoMethods">
