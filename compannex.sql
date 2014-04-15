@@ -400,6 +400,49 @@ ADD  CONSTRAINT `FK_RE_QUEST`
 ALTER TABLE `hhovsepy_compannex`.`answer`
 ADD `date` DATE NOT NULL AFTER `text`;
 
+
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`user`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `telephone` VARCHAR(45),
+  `address` VARCHAR(255) NULL,
+  `fax` VARCHAR(45);
+  PRIMARY KEY (`ID`)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`User_Category`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user_category` (
+  `ID` INT NOT NULL AUTO_INCREMENT ,
+  `user_ID` INT NOT NULL ,
+  `category_ID` INT NOT NULL ,
+  `description` VARCHAR(255) NULL ,
+  `create_date` DATE NULL ,
+  PRIMARY KEY (`ID`) ,
+  UNIQUE INDEX `UK_USER_CAT` (`user_ID` ASC, `category_ID` ASC) ,
+  INDEX `FK_USERCAT_USER` (`user_ID` ASC) ,
+  CONSTRAINT `FK_USERCAT_USER`
+    FOREIGN KEY (`user_ID` )
+    REFERENCES `hhovsepy_compannex`.`user` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_USERCAT_CAT`
+    FOREIGN KEY (`category_ID` )
+    REFERENCES `hhovsepy_compannex`.`category` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `hhovsepy_compannex`.`answer`
+ADD `user_ID` INT NULL AFTER `text`,
+ADD `is_private` BOOLEAN NOT NULL DEFAULT false;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
