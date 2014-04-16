@@ -406,12 +406,17 @@ ADD `date` DATE NOT NULL AFTER `text`;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `telephone` VARCHAR(45),
   `address` VARCHAR(255) NULL,
-  `fax` VARCHAR(45);
+  `fax` VARCHAR(45),
+  `create_date` DATE NULL,
+  `token` VARCHAR(255) NULL,
+  `password_token` VARCHAR(255) NULL,
+  `password_token_date` DATE NULL;
   PRIMARY KEY (`ID`)
 ENGINE = InnoDB;
 
@@ -423,7 +428,7 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user_category` (
   `user_ID` INT NOT NULL ,
   `category_ID` INT NOT NULL ,
   `description` VARCHAR(255) NULL ,
-  `create_date` DATE NULL ,
+  `create_date` DATE NULL,
   PRIMARY KEY (`ID`) ,
   UNIQUE INDEX `UK_USER_CAT` (`user_ID` ASC, `category_ID` ASC) ,
   INDEX `FK_USERCAT_USER` (`user_ID` ASC) ,
@@ -440,7 +445,9 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user_category` (
 ENGINE = InnoDB;
 
 ALTER TABLE `hhovsepy_compannex`.`answer`
-ADD `user_ID` INT NULL AFTER `text`,
+ADD `user_ID` INT NULL AFTER `text`;
+
+ALTER TABLE `hhovsepy_compannex`.`question`
 ADD `is_private` BOOLEAN NOT NULL DEFAULT false;
 
 SET SQL_MODE=@OLD_SQL_MODE;

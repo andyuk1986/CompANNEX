@@ -19,6 +19,10 @@ public class Answer implements Serializable, Answerable {
 	private Integer questionID;
 
 	private transient Question question;
+
+	private Integer userID;
+
+	private transient User user;
 	
 	private String text;
 
@@ -54,6 +58,25 @@ public class Answer implements Serializable, Answerable {
 		this.question = question;
 	}
 
+	@Column(name = "user_ID")
+	public Integer getUserID() {
+		return userID;
+	}
+
+	public void setUserID(Integer userID) {
+		this.userID = userID;
+	}
+
+	@Transient
+	public User getUser() {
+		return user;
+	}
+
+	@Transient
+	public void setserU(User user) {
+		this.user = user;
+	}
+	
 	@Column(name = "text")
 	public String getText() {
 		return text;

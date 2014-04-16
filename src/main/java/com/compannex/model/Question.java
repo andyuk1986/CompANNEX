@@ -36,6 +36,8 @@ public class Question implements Serializable, Answerable {
 
 	private boolean isNew;
 	
+	private boolean isPrivate;
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -137,5 +139,14 @@ public class Question implements Serializable, Answerable {
 
 	public void setIsNew(boolean isnew) {
 		this.isNew = isnew;
+	}
+
+	@Column(name = "is_private")
+	public boolean getIsPrivate() {
+		return isPrivate;
+	}
+
+	public void setIsPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
 	}
 }
