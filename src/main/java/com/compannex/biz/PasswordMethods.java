@@ -9,12 +9,15 @@ import java.util.UUID;
 import org.apache.commons.codec.binary.Base64;
 
 import com.compannex.dao.CompanyDao;
+import com.compannex.dao.ConsultantDao;
 import com.compannex.mail.MailService;
 import com.compannex.model.Company;
 
 public class PasswordMethods {
 	
 	private CompanyDao companyDao;
+	
+	private ConsultantDao consultantDao;
 	
 	private MailService mailService;
 	
@@ -88,6 +91,14 @@ public class PasswordMethods {
 		this.companyDao = companyDao;
 	}
 
+	public ConsultantDao getConsultantDao() {
+		return consultantDao;
+	}
+
+	public void setConsultantDao(ConsultantDao consultantDao) {
+		this.consultantDao = consultantDao;
+	}
+	
 	public MailService getMailService() {
 		return mailService;
 	}

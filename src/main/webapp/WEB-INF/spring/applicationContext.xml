@@ -65,6 +65,8 @@
 				<value>com.compannex.model.NewsTranslation</value>
 				<value>com.compannex.model.Question</value>
 				<value>com.compannex.model.Answer</value>
+				<value>com.compannex.model.Consultant</value>
+				<value>com.compannex.model.ConsultantCategory</value>
 			</list>
 		</property>
 	</bean>
@@ -147,6 +149,10 @@
 		<property name="sessionFactory" ref="localSessionFactory" />
 	</bean>
 
+	<bean id="consultantDao" class="com.compannex.dao.impl.ConsultantDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactory" />
+	</bean>
+	
 	<bean id="industryMethods" class="com.compannex.biz.IndustryMethods">
 		<property name="industryDao" ref="industryDao" />
 		<property name="industryTranslationDao" ref="industryTranslationDao" />
@@ -167,6 +173,8 @@
 
 	<bean id="loginMethods" class="com.compannex.biz.LoginMethods">
 		<property name="companyDao" ref="companyDao" />
+		<property name="consultantDao" ref="consultantDao" />
+		<property name="passwordMethods" ref="passwordMethods" />
 	</bean>
 
 	<bean id="newsMethods" class="com.compannex.biz.NewsMethods">
@@ -198,6 +206,7 @@
 	
 	<bean id="passwordMethods" class="com.compannex.biz.PasswordMethods" singleton="true">
 		<property name="companyDao" ref="companyDao" />
+		<property name="consultantDao" ref="consultantDao" />
 		<property name="mailService" ref="mailService" />
 	</bean>
 		

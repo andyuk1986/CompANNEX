@@ -1,12 +1,15 @@
 package com.compannex.biz;
 
 import com.compannex.dao.CompanyDao;
+import com.compannex.dao.ConsultantDao;
 import com.compannex.model.Company;
 import com.compannex.util.StringUtil;
 
 public class LoginMethods {
 	
 	private CompanyDao companyDao;
+	
+	private ConsultantDao consultantDao;
 	
 	private PasswordMethods passwordMethods;
 
@@ -53,6 +56,14 @@ public class LoginMethods {
 		this.companyDao = companyDao;
 	}
 
+	public ConsultantDao getConsultantDao() {
+		return consultantDao;
+	}
+
+	public void setConsultantDao(ConsultantDao consultantDao) {
+		this.consultantDao = consultantDao;
+	}
+	
 	public PasswordMethods getPasswordMethods() {
 		return passwordMethods;
 	}

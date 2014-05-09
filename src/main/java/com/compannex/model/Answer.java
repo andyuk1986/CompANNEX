@@ -22,7 +22,7 @@ public class Answer implements Serializable, Answerable {
 
 	private Integer userID;
 
-	private transient User user;
+	private transient Consultant user;
 	
 	private String text;
 
@@ -68,12 +68,12 @@ public class Answer implements Serializable, Answerable {
 	}
 
 	@Transient
-	public User getUser() {
+	public Consultant getUser() {
 		return user;
 	}
 
 	@Transient
-	public void setserU(User user) {
+	public void setserU(Consultant user) {
 		this.user = user;
 	}
 	

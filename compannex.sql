@@ -402,9 +402,9 @@ ADD `date` DATE NOT NULL AFTER `text`;
 
 
 -- -----------------------------------------------------
--- Table `hhovsepy_compannex`.`user`
+-- Table `hhovsepy_compannex`.`consultant`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user` (
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`consultant` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NOT NULL,
   `last_name` VARCHAR(255) NOT NULL,
@@ -421,23 +421,23 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `hhovsepy_compannex`.`User_Category`
+-- Table `hhovsepy_compannex`.`Consultant_Category`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`user_category` (
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`consultant_category` (
   `ID` INT NOT NULL AUTO_INCREMENT ,
-  `user_ID` INT NOT NULL ,
+  `consultant_ID` INT NOT NULL ,
   `category_ID` INT NOT NULL ,
   `description` VARCHAR(255) NULL ,
   `create_date` DATE NULL,
   PRIMARY KEY (`ID`) ,
-  UNIQUE INDEX `UK_USER_CAT` (`user_ID` ASC, `category_ID` ASC) ,
-  INDEX `FK_USERCAT_USER` (`user_ID` ASC) ,
-  CONSTRAINT `FK_USERCAT_USER`
-    FOREIGN KEY (`user_ID` )
-    REFERENCES `hhovsepy_compannex`.`user` (`ID` )
+  UNIQUE INDEX `UK_CONS_CAT` (`consultant_ID` ASC, `category_ID` ASC) ,
+  INDEX `FK_CONSCAT_CONS` (`consultant_ID` ASC) ,
+  CONSTRAINT `FK_CONSCAT_CONS`
+    FOREIGN KEY (`consultant_ID` )
+    REFERENCES `hhovsepy_compannex`.`consultant` (`ID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `FK_USERCAT_CAT`
+  CONSTRAINT `FK_CONSCAT_CAT`
     FOREIGN KEY (`category_ID` )
     REFERENCES `hhovsepy_compannex`.`category` (`ID` )
     ON DELETE NO ACTION
