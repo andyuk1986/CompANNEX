@@ -20,9 +20,9 @@ public class Answer implements Serializable, Answerable {
 
 	private transient Question question;
 
-	private Integer userID;
+	private Integer consultantID;
 
-	private transient Consultant user;
+	private transient Consultant consultant;
 	
 	private String text;
 
@@ -58,23 +58,23 @@ public class Answer implements Serializable, Answerable {
 		this.question = question;
 	}
 
-	@Column(name = "user_ID")
-	public Integer getUserID() {
-		return userID;
+	@Column(name = "consultant_ID")
+	public Integer getConsultantID() {
+		return consultantID;
 	}
 
-	public void setUserID(Integer userID) {
-		this.userID = userID;
-	}
-
-	@Transient
-	public Consultant getUser() {
-		return user;
+	public void setConsultantID(Integer consultantID) {
+		this.consultantID = consultantID;
 	}
 
 	@Transient
-	public void setserU(Consultant user) {
-		this.user = user;
+	public Consultant getConsultant() {
+		return consultant;
+	}
+
+	@Transient
+	public void setConsultant(Consultant consultant) {
+		this.consultant = consultant;
 	}
 	
 	@Column(name = "text")

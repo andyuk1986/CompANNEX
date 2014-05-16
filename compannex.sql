@@ -401,6 +401,37 @@ ALTER TABLE `hhovsepy_compannex`.`answer`
 ADD `date` DATE NOT NULL AFTER `text`;
 
 
+
+
+
+-- -----------------------------------------------------
+-- Table `hhovsepy_compannex`.`login`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`login` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `create_date` DATE NULL,
+  `token` VARCHAR(255) NULL,
+  `password_token` VARCHAR(255) NULL,
+  `password_token_date` DATE NULL;
+  PRIMARY KEY (`ID`)
+ENGINE = InnoDB;
+
+
+ALTER TABLE `hhovsepy_compannex`.`company`
+DROP `password`,
+DROP `token`,
+DROP `password_token`,
+DROP `password_token_date`,
+ADD `login_ID` INT NOT NULL,
+ADD CONSTRAINT `FK_COMP_LOGIN`
+    FOREIGN KEY (`login_ID` )
+    REFERENCES `hhovsepy_compannex`.`login` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+
 -- -----------------------------------------------------
 -- Table `hhovsepy_compannex`.`consultant`
 -- -----------------------------------------------------
@@ -409,15 +440,17 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`consultant` (
   `first_name` VARCHAR(255) NOT NULL,
   `last_name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
   `telephone` VARCHAR(45),
   `address` VARCHAR(255) NULL,
   `fax` VARCHAR(45),
-  `create_date` DATE NULL,
-  `token` VARCHAR(255) NULL,
-  `password_token` VARCHAR(255) NULL,
-  `password_token_date` DATE NULL;
+  `create_date` DATE NULL
+  `login_ID` INT NOT NULL;
   PRIMARY KEY (`ID`)
+  CONSTRAINT `FK_CONS_LOGIN`
+    FOREIGN KEY (`login_ID` )
+    REFERENCES `hhovsepy_compannex`.`login` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -445,10 +478,17 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`consultant_category` (
 ENGINE = InnoDB;
 
 ALTER TABLE `hhovsepy_compannex`.`answer`
-ADD `user_ID` INT NULL AFTER `text`;
+ADD `consultant_ID` INT NULL AFTER `text`,
+CONSTRAINT `FK_ANSWER_CONS`
+    FOREIGN KEY (`consultant_ID` )
+    REFERENCES `hhovsepy_compannex`.`consultant` (`ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
 
 ALTER TABLE `hhovsepy_compannex`.`question`
 ADD `is_private` BOOLEAN NOT NULL DEFAULT false;
+
+ 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
