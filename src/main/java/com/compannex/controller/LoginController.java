@@ -15,6 +15,7 @@ import com.compannex.biz.CompanyMethods;
 import com.compannex.biz.LoginMethods;
 import com.compannex.biz.NewsMethods;
 import com.compannex.constants.CompANNEXConstants;
+import com.compannex.enums.LoginType;
 import com.compannex.form.Login;
 import com.compannex.validator.LoginValidation;
 import com.compannex.web.CookieManager;
@@ -57,7 +58,7 @@ public class LoginController implements CompANNEXConstants {
 		ModelAndView success = new ModelAndView("index", "activeTab", "home");
 		ModelAndView error = new ModelAndView("login", "activeTab", "clients");
 
-		loginValidation.validate(login, result);
+		loginValidation.validate(login, result, LoginType.COMPANY);
 		if (result.hasErrors()) {
 			return error;
 		}

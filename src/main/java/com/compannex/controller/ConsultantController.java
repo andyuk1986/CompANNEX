@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.compannex.biz.ConsultantMethods;
 import com.compannex.biz.LoginMethods;
 import com.compannex.constants.CompANNEXConstants;
+import com.compannex.enums.LoginType;
 import com.compannex.form.Login;
 import com.compannex.validator.LoginValidation;
 import com.compannex.web.CookieManager;
@@ -53,7 +54,7 @@ public class ConsultantController implements CompANNEXConstants {
 		ModelAndView success = new ModelAndView("index", "activeTab", "home");
 		ModelAndView error = new ModelAndView("login", "activeTab", "clients");
 
-		loginValidation.validate(login, result);
+		loginValidation.validate(login, result, LoginType.CONSULTANT);
 		if (result.hasErrors()) {
 			return error;
 		}

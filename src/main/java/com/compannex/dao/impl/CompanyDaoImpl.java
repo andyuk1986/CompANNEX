@@ -31,67 +31,27 @@ public class CompanyDaoImpl extends HibernateDaoSupport implements CompanyDao {
 				session.close();
 		}
     }
+
+	@Override
+    public Company getCompanyByLoginId(int loginId) {
+		Session session = null;
+		try {
+			Company company = null;
+			session = getSession();
+			Object obj = session
+					.createQuery("from Company as comp where comp.loginId= ?").setCacheable(true)
+					.setInteger(0, loginId).uniqueResult();
+			if (obj != null) {
+				company = (Company) obj;
+			}
+
+			return company;
+		} finally {
+			if (session != null)
+				session.close();
+		}
+    }
 	
-	@Override
-	public Company getCompanyByEmail(final String email) {
-		Session session = null;
-		try {
-			Company company = null;
-			session = getSession();
-			Object obj = session
-					.createQuery("from Company as comp where comp.email= ?").setCacheable(true)
-					.setString(0, email).uniqueResult();
-			if (obj != null) {
-				company = (Company) obj;
-			}
-
-			return company;
-		} finally {
-			if (session != null)
-				session.close();
-		}
-	}
-
-	@Override
-	public Company getCompanyByEmailAndToken(final String email, final String token) {
-		Session session = null;
-		try {
-			Company company = null;
-			session = getSession();
-			Object obj = session
-					.createQuery("from Company as comp where comp.email= ? AND comp.token= ?").setCacheable(true)
-					.setString(0, email).setString(1, token).uniqueResult();
-			if (obj != null) {
-				company = (Company) obj;
-			}
-
-			return company;
-		} finally {
-			if (session != null)
-				session.close();
-		}
-	}
-	
-	@Override
-	public Company getCompanyByPasswordToken(String email, int id, final String token) {
-		Session session = null;
-		try {
-			Company company = null;
-			session = getSession();
-			Object obj = session
-					.createQuery("from Company as comp where comp.email= ? AND comp.ID= ? AND comp.passwordToken= ?").setCacheable(true)
-					.setString(0, email).setInteger(1, id).setString(2, token).uniqueResult();
-			if (obj != null) {
-				company = (Company) obj;
-			}
-
-			return company;
-		} finally {
-			if (session != null)
-				session.close();
-		}
-	}
-
     @Override
     public List<Company> getCompaniesByIndustryId(final int industryId) {	
     	Session session = null;

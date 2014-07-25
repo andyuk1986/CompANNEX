@@ -8,11 +8,7 @@ public interface CompanyDao {
 
 	public Company getCompanyById(final int companyId);
 	
-	public Company getCompanyByEmail(final String email);
-	
-	public Company getCompanyByEmailAndToken(final String email, final String token);
-	
-	public Company getCompanyByPasswordToken(String email, int id, String passwordToken);
+	public Company getCompanyByLoginId(final int loginId);
 
 	public List<Company> getCompaniesByIndustryId(final int industryId);
 

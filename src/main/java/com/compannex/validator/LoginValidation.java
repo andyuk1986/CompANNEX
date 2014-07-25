@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 import com.compannex.biz.LoginMethods;
+import com.compannex.enums.LoginType;
 import com.compannex.form.Login;
 
 @Component("loginValidator")
@@ -17,7 +18,7 @@ public class LoginValidation {
 	
 	private LoginMethods loginMethods;
 
-	public void validate(Object target, Errors errors) {
+	public void validate(Object target, Errors errors, LoginType loginType) {
 		Login login = (Login) target;
 
         if (login.getEmail() == null || login.getEmail().isEmpty()) {
@@ -32,7 +33,7 @@ public class LoginValidation {
         
         if (login.getPassword() == null || login.getPassword().isEmpty()) {
             errors.rejectValue("password", "login.password.empty", "* The password should not be empty.");
-        } else if (!getLoginMethods().checkLogin(login.getEmail(), login.getPassword())) {
+        } else if (!getLoginMethods().checkLogin(login.getEmail(), login.getPassword(), loginType)) {
         	errors.rejectValue("email", "login.wrong", "Email or Password are wrong.");
         }
 	}

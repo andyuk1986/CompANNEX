@@ -10,10 +10,14 @@ import org.apache.commons.codec.binary.Base64;
 
 import com.compannex.dao.CompanyDao;
 import com.compannex.dao.ConsultantDao;
+import com.compannex.dao.LoginDao;
 import com.compannex.mail.MailService;
 import com.compannex.model.Company;
+import com.compannex.model.Login;
 
 public class PasswordMethods {
+	
+	private LoginDao loginDao;
 	
 	private CompanyDao companyDao;
 	
@@ -52,37 +56,46 @@ public class PasswordMethods {
 	}
 	
 	public void resetPassword(String email) {
-		Company comp = getCompanyDao().getCompanyByEmail(email);
+		Login login = getLoginDao().getLoginByEmail(email);
 		
 		String passtoken = generateSecureToken(email);
 		
-		comp.setPasswordToken(passtoken);
-		comp.setPasswordTokenDate(new Date());
+		login.setPasswordToken(passtoken);
+		login.setPasswordTokenDate(new Date());
 		
-		getCompanyDao().editCompany(comp);
+		getLoginDao().editLogin(login);
 		
-		getMailService().resetPassword(email, comp.getID(), passtoken);
+		getMailService().resetPassword(email, login.getID(), passtoken);
 	}
 	
 	public void resetPasswordToken(String email) {
-		Company comp = getCompanyDao().getCompanyByEmail(email);
+		Login login = getLoginDao().getLoginByEmail(email);
 		
 		
-		comp.setPasswordToken(null);
-		comp.setPasswordTokenDate(null);
+		login.setPasswordToken(null);
+		login.setPasswordTokenDate(null);
 		
-		getCompanyDao().editCompany(comp);		
+		getLoginDao().editLogin(login);		
 	}
 	
 	public boolean isPasswordTokenValid(String email, int id, String token) {
-		Company comp = getCompanyDao().getCompanyByPasswordToken(email, id, token);
-		if (comp != null && comp.getPasswordTokenDate() != null && ((int)( (new Date().getTime() - comp.getPasswordTokenDate().getTime()) 
+		
+		Login login = getLoginDao().getLoginByPasswordToken(email, id, token);
+		if (login != null && login.getPasswordTokenDate() != null && ((int)( (new Date().getTime() - login.getPasswordTokenDate().getTime()) 
                 / (1000 * 60 * 60 * 24) )) < 1) {
 			return true;
 		}
 		return false;
 	}
 	
+	public LoginDao getLoginDao() {
+		return loginDao;
+	}
+
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
+	}
+
 	public CompanyDao getCompanyDao() {
 		return companyDao;
 	}

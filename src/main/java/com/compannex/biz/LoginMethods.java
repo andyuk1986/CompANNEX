@@ -2,6 +2,8 @@ package com.compannex.biz;
 
 import com.compannex.dao.CompanyDao;
 import com.compannex.dao.ConsultantDao;
+import com.compannex.dao.LoginDao;
+import com.compannex.enums.LoginType;
 import com.compannex.model.Company;
 import com.compannex.util.StringUtil;
 
@@ -9,11 +11,13 @@ public class LoginMethods {
 	
 	private CompanyDao companyDao;
 	
+	private LoginDao loginDao;
+	
 	private ConsultantDao consultantDao;
 	
 	private PasswordMethods passwordMethods;
 
-	public boolean checkLogin(String email, String password) {
+	public boolean checkLogin(String email, String password, LoginType loginType) {
 		
 		Company comp = getCompanyDao().getCompanyByEmail(email);
 		
@@ -22,7 +26,7 @@ public class LoginMethods {
 		return false;
 	}
 
-	public boolean checkLogin(String email) {
+	public boolean checkLogin(String email, LoginType loginType) {
 		
 		Company comp = getCompanyDao().getCompanyByEmail(email);
 		
@@ -54,6 +58,14 @@ public class LoginMethods {
 
 	public void setCompanyDao(CompanyDao companyDao) {
 		this.companyDao = companyDao;
+	}
+
+	public LoginDao getLoginDao() {
+		return loginDao;
+	}
+
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
 	}
 
 	public ConsultantDao getConsultantDao() {
