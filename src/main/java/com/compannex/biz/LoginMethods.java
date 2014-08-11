@@ -4,7 +4,8 @@ import com.compannex.dao.CompanyDao;
 import com.compannex.dao.ConsultantDao;
 import com.compannex.dao.LoginDao;
 import com.compannex.enums.LoginType;
-import com.compannex.model.Company;
+import com.compannex.exceptions.CompANNEXException;
+import com.compannex.model.Login;
 import com.compannex.util.StringUtil;
 
 public class LoginMethods {
@@ -16,40 +17,59 @@ public class LoginMethods {
 	private ConsultantDao consultantDao;
 	
 	private PasswordMethods passwordMethods;
+	
+	public void addLogin(String email, String password, LoginType loginType) throws CompANNEXException {
+		
+		Login login = getLoginDao().getLoginByEmail(email);
+		
+		if (login != null) throw new CompANNEXException("Email address entered already exists.");
+		
+		login = new Login();
+		login.setEmail(email);
+		login.setPassword(getPasswordMethods().encrypt(password));
+		
+		getLoginDao().addLogin(login);
+		
+	}
 
 	public boolean checkLogin(String email, String password, LoginType loginType) {
 		
-		Company comp = getCompanyDao().getCompanyByEmail(email);
+		Login login = getLoginDao().getLoginByEmail(email);
+		if (login == null || !StringUtil.equals(login.getPassword(), passwordMethods.encrypt(password))) return false;
 		
-		if (comp != null && StringUtil.equals(comp.getPassword(), passwordMethods.encrypt(password))) return true;
-		
+		if (LoginType.COMPANY.equals(loginType)) {
+			if (getCompanyDao().getCompanyByLoginId(login.getID()) != null) return true;
+		} else if (LoginType.CONSULTANT.equals(loginType)) {
+			if (getConsultantDao().getConsultantByLoginId(login.getID()) != null) return true;
+		}
+
 		return false;
 	}
 
-	public boolean checkLogin(String email, LoginType loginType) {
+	public boolean checkLogin(String email) {
 		
-		Company comp = getCompanyDao().getCompanyByEmail(email);
+		Login login = getLoginDao().getLoginByEmail(email);
 		
-		if (comp != null) return true;
+		if (login != null) return true;
 		
 		return false;
 	}
 
 	
 	public String regenerateToken(String email) {
-		Company comp = getCompanyDao().getCompanyByEmail(email);
+		Login login = getLoginDao().getLoginByEmail(email);
 		
 		String newtoken = passwordMethods.generateSecureToken(email);
 		
-		comp.setToken(newtoken);
+		login.setToken(newtoken);
 		
-		getCompanyDao().editCompany(comp);
+		getLoginDao().editLogin(login);
 		
 		return newtoken;
 	}
 	
 	public boolean isTokenValid(String email, String token) {
-		return getCompanyDao().getCompanyByEmailAndToken(email, token) != null; 
+		return getLoginDao().getLoginByEmailAndToken(email, token) != null; 
 	}
 	
 	public CompanyDao getCompanyDao() {

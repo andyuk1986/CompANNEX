@@ -14,7 +14,7 @@ import com.compannex.util.StringUtil;
 
 public class LogoMethods {
 
-	private PartnerMethods partnerMethods;
+	private CompanyMethods companyMethods;
 	
 	private CompANNEXProperties compANNEXProperties;
 	
@@ -32,18 +32,19 @@ public class LogoMethods {
 			}
 			f.flush();
 			f.close();
-			getPartnerMethods().editPartnerLogo(companyID, getCompANNEXProperties().getLogoURI() + "/" + companyID + "_logo" + StringUtil.getExtension(logo.getOriginalFilename()));
+			getCompanyMethods().editCompanyLogo(companyID, getCompANNEXProperties().getLogoURI() + "/" + companyID + "_logo" + StringUtil.getExtension(logo.getOriginalFilename()));
 		} catch (Exception e) {
 			throw new CompANNEXException(e);
 		}
 	}
 
-	public PartnerMethods getPartnerMethods() {
-		return partnerMethods;
+	public CompanyMethods getCompanyMethods() {
+		return companyMethods;
 	}
 
-	public void setPartnerMethods(PartnerMethods partnerMethods) {
-		this.partnerMethods = partnerMethods;
+
+	public void setCompanyMethods(CompanyMethods companyMethods) {
+		this.companyMethods = companyMethods;
 	}
 
 	public CompANNEXProperties getCompANNEXProperties() {

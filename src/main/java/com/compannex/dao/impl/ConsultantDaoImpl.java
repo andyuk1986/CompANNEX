@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.compannex.dao.ConsultantDao;
+import com.compannex.model.Company;
 import com.compannex.model.Consultant;
 
 
@@ -92,6 +93,26 @@ public class ConsultantDaoImpl extends HibernateDaoSupport implements Consultant
 		}
 	}
 
+	@Override
+    public Consultant getConsultantByLoginId(int loginId) {
+		Session session = null;
+		try {
+			Consultant cons = null;
+			session = getSession();
+			Object obj = session
+					.createQuery("from Consultant as cons where comp.loginId= ?").setCacheable(true)
+					.setInteger(0, loginId).uniqueResult();
+			if (obj != null) {
+				cons = (Consultant) obj;
+			}
+
+			return cons;
+		} finally {
+			if (session != null)
+				session.close();
+		}
+    }
+	
     @Override
     public List<Consultant> getConsultantsByIndustryId(final int industryId) {	
     	Session session = null;

@@ -14,6 +14,8 @@ public interface ConsultantDao {
 	
 	public Consultant getConsultantByPasswordToken(String email, int id, String passwordToken);
 
+	public Consultant getConsultantByLoginId(final int loginId);
+	
 	public List<Consultant> getConsultantsByIndustryId(final int industryId);
 
 	public List<Consultant> getConsultantsByCategoryId(final int industryId);

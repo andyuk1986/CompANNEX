@@ -170,9 +170,6 @@
 	</bean>
 
 	<bean id="partnerMethods" class="com.compannex.biz.PartnerMethods">
-		<property name="companyCountryDao" ref="companyCountryDao" />
-		<property name="companyDao" ref="companyDao" />
-		<property name="companyTranslationDao" ref="companyTranslationDao" />
 	</bean>
 
 	<bean id="loginMethods" class="com.compannex.biz.LoginMethods">
@@ -194,6 +191,7 @@
 		<property name="companyCountryDao" ref="companyCountryDao" />
 		<property name="companyDao" ref="companyDao" />
 		<property name="companyTranslationDao" ref="companyTranslationDao" />
+		<property name="passwordMethods" ref="passwordMethods" />
 	</bean>
 
 	<bean id="questionMethods" class="com.compannex.biz.QuestionMethods">
