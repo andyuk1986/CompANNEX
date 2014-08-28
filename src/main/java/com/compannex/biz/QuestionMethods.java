@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.compannex.dao.AnswerDao;
 import com.compannex.dao.CompanyDao;
+import com.compannex.dao.LoginDao;
 import com.compannex.dao.QuestionDao;
 import com.compannex.mail.MailService;
 import com.compannex.model.Answer;
@@ -17,15 +18,17 @@ import com.compannex.model.Question;
 public class QuestionMethods {
 
 	private QuestionDao questionDao;
-	
+
 	private AnswerDao answerDao;
-	
+
 	private CompanyDao companyDao;
-	
+
+	private LoginDao loginDao;
+
 	private MailService mailService;
 
 	public void addQuestion(final Integer companyID, final String person, final String email, final String subject, final String text, final Integer parentQuestionID) {
-		
+
 		Question question = new Question();
 		if (companyID != null) {
 			question.setCompanyID(companyID);
@@ -36,63 +39,63 @@ public class QuestionMethods {
 		question.setSubject(subject);
 		question.setText(text);
 		question.setDate(new Date());
-		question.setIsNew(true);				
-		
+		question.setIsNew(true);
+
 		if (parentQuestionID != null) {
 			Question parent = getQuestionDao().getQuestion(parentQuestionID);
-			
+
 			question.setQuestionID(parentQuestionID);
 			question.setSubject("Re:" + parent.getSubject());
 			question.setCompanyID(parent.getCompanyID());
 			question.setPerson(parent.getPerson());
 			question.setEmail(parent.getEmail());
-			
+
 			parent.setIsNew(true);
 			getQuestionDao().editQuestion(parent);
 		}
-		
+
 		getQuestionDao().addQuestion(question);
 	}
-	
+
 	public void addAnswer(final Integer questionID, final String text) {
-		
+
 		Answer answer = new Answer();
 		answer.setQuestionID(questionID);
 		answer.setText(text);
 		answer.setDate(new Date());
-		
+
 		getAnswerDao().addAnswer(answer);
-		
+
 		Question question = getQuestionDao().getQuestion(questionID);
 		question.setIsNew(false);
 		getQuestionDao().editQuestion(question);
-		
+
 		String email = question.getEmail();
 		if (email == null) {
-			email = getCompanyDao().getCompanyById(question.getCompanyID()).getEmail();
+			email = getLoginDao().getLoginById(getCompanyDao().getCompanyById(question.getCompanyID()).getLoginId()).getEmail();
 		}
-		
+
 		getMailService().sendAnswer(email, questionID);
 	}
 
 	public List<Question> getAllOpenQuestions() {
 		return getQuestionDao().getNewQuestions();
 	}
-	
+
 	public List<Answerable> getQuestionThread(final Integer questionID) {
 		List questions = getQuestionDao().getQuestionsThread(questionID);
-		
+
 		List answers = getAnswerDao().getAnswersByQuestionId(questionID);
-		
+
 		List<Answerable> result = new ArrayList<Answerable>();
 		result.addAll(questions);
 		result.addAll(answers);
-		
+
 		Collections.sort(result, new QuestionComparator());
-		
+
 		return result;
 	}
-	
+
 	public QuestionDao getQuestionDao() {
 		return questionDao;
 	}
@@ -113,10 +116,17 @@ public class QuestionMethods {
 		return companyDao;
 	}
 
-	public void setCompanyDao(CompanyDao companyDao) {
-		this.companyDao = companyDao;
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
 	}
 
+    public LoginDao getLoginDao() {
+        return loginDao;
+    }
+
+    public void setCompanyDao(CompanyDao companyDao) {
+        this.companyDao = companyDao;
+    }
 	public MailService getMailService() {
 		return mailService;
 	}
@@ -124,11 +134,11 @@ public class QuestionMethods {
 	public void setMailService(MailService mailService) {
 		this.mailService = mailService;
 	}
-	
+
 }
 
 class QuestionComparator implements Comparator<Answerable> {
 	public int compare(Answerable o1, Answerable o2) {
 	    return o1.getDate().compareTo(o2.getDate());
-    }	
+    }
 }

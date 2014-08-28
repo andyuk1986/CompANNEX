@@ -16,20 +16,20 @@ import com.compannex.model.Company;
 import com.compannex.model.Login;
 
 public class PasswordMethods {
-	
+
 	private LoginDao loginDao;
-	
+
 	private CompanyDao companyDao;
-	
+
 	private ConsultantDao consultantDao;
-	
+
 	private MailService mailService;
-	
+
 	public String encrypt(String plainText) {
 
 		MessageDigest md = null;
 		try {
-			md = MessageDigest.getInstance("SHA-1"); 
+			md = MessageDigest.getInstance("SHA-1");
 		} catch (NoSuchAlgorithmException e) {
 			return null;
 		}
@@ -42,52 +42,52 @@ public class PasswordMethods {
 		String hash = (new Base64()).encodeAsString(md.digest());
 		return hash;
 	}
-	
+
 	public String generateSecureToken(String email) {
 		return (new Base64()).encodeAsString((email+UUID.randomUUID().toString()).getBytes());
 	}
-	
-	public void changePassword(int companyID, String newpassword) {
-		Company comp = getCompanyDao().getCompanyById(companyID);
-		
-		comp.setPassword(encrypt(newpassword));
-		
-		getCompanyDao().editCompany(comp);
+
+	public void changePassword(String email, String newpassword) {
+	    Login login = getLoginDao().getLoginByEmail(email);
+
+	    login.setPassword(encrypt(newpassword));
+
+	    getLoginDao().editLogin(login);
 	}
-	
+
 	public void resetPassword(String email) {
 		Login login = getLoginDao().getLoginByEmail(email);
-		
+
 		String passtoken = generateSecureToken(email);
-		
+
 		login.setPasswordToken(passtoken);
 		login.setPasswordTokenDate(new Date());
-		
+
 		getLoginDao().editLogin(login);
-		
+
 		getMailService().resetPassword(email, login.getID(), passtoken);
 	}
-	
+
 	public void resetPasswordToken(String email) {
 		Login login = getLoginDao().getLoginByEmail(email);
-		
-		
+
+
 		login.setPasswordToken(null);
 		login.setPasswordTokenDate(null);
-		
-		getLoginDao().editLogin(login);		
+
+		getLoginDao().editLogin(login);
 	}
-	
+
 	public boolean isPasswordTokenValid(String email, int id, String token) {
-		
+
 		Login login = getLoginDao().getLoginByPasswordToken(email, id, token);
-		if (login != null && login.getPasswordTokenDate() != null && ((int)( (new Date().getTime() - login.getPasswordTokenDate().getTime()) 
+		if (login != null && login.getPasswordTokenDate() != null && ((int)( (new Date().getTime() - login.getPasswordTokenDate().getTime())
                 / (1000 * 60 * 60 * 24) )) < 1) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public LoginDao getLoginDao() {
 		return loginDao;
 	}
@@ -111,7 +111,7 @@ public class PasswordMethods {
 	public void setConsultantDao(ConsultantDao consultantDao) {
 		this.consultantDao = consultantDao;
 	}
-	
+
 	public MailService getMailService() {
 		return mailService;
 	}
@@ -119,5 +119,5 @@ public class PasswordMethods {
 	public void setMailService(MailService mailService) {
 		this.mailService = mailService;
 	}
-	
+
 }

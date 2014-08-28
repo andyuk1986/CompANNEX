@@ -5,28 +5,29 @@ import org.springframework.validation.Errors;
 
 import com.compannex.biz.LoginMethods;
 import com.compannex.biz.PasswordMethods;
+import com.compannex.enums.LoginType;
 import com.compannex.form.ChangePassword;
 
 @Component("changePasswordValidation")
 public class ChangePasswordValidation {
-	
+
 	public boolean supports(Class<?> klass) {
 		return ChangePassword.class.isAssignableFrom(klass);
 	}
-	
+
 	private LoginMethods loginMethods;
-	
+
 	private PasswordMethods passwordMethods;
 
 	public void validate(Object target, Errors errors, String email) {
 		ChangePassword changePassword = (ChangePassword) target;
-        
+
         if (changePassword.getOldpassword() == null || changePassword.getOldpassword().isEmpty()) {
             errors.rejectValue("oldpassword", "oldpassword.empty", "* The Old Password should not be empty.");
-        } else if (!getLoginMethods().checkLogin(email, changePassword.getOldpassword())) {
+        } else if (!getLoginMethods().checkLogin(email, changePassword.getOldpassword(), LoginType.COMPANY)) {
         	errors.rejectValue("oldpassword", "oldpassword.wrong", "The Old Password is wrong.");
         }
-        
+
         if(changePassword.getNewpassword() == null || changePassword.getNewpassword().isEmpty()) {
             errors.rejectValue("newpassword", "newpassword.empty", "* The New Password should not be empty.");
         }

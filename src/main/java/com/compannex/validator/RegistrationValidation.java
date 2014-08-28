@@ -6,13 +6,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 import com.compannex.dao.CompanyDao;
+import com.compannex.dao.LoginDao;
 import com.compannex.form.Registration;
 
 @Component("registrationValidation")
 public class RegistrationValidation extends EditCompanyValidation {
-	
+
 	private CompanyDao companyDao;
-	
+
+	private LoginDao loginDao;
+
 	public boolean supports(Class<?> klass) {
 		return Registration.class.isAssignableFrom(klass);
 	}
@@ -20,11 +23,11 @@ public class RegistrationValidation extends EditCompanyValidation {
 	public void validate(Object target, Errors errors, boolean isRegister) {
 
 		super.validate(target, errors);
-		
-		if (!isRegister) return; 
-		
+
+		if (!isRegister) return;
+
 		Registration registration = (Registration) target;
-		
+
         if(registration.getEmail() == null || registration.getEmail().isEmpty()) {
             errors.rejectValue("email", "registration.email.empty", "* The email address should not be empty.");
         }
@@ -35,10 +38,10 @@ public class RegistrationValidation extends EditCompanyValidation {
             }
         }
 
-        if (registration.getEmail() != null && getCompanyDao().getCompanyByEmail(registration.getEmail()) != null) {
+        if (registration.getEmail() != null && getLoginDao().getLoginByEmail(registration.getEmail()) != null) {
         	errors.rejectValue("email", "registration.email.existing", "* The email address you have entered already exists.");
         }
-        
+
         if(registration.getPassword() == null || registration.getPassword().isEmpty()) {
             errors.rejectValue("password", "registration.password.empty", "* The password should not be empty.");
         }
@@ -64,4 +67,12 @@ public class RegistrationValidation extends EditCompanyValidation {
 	public void setCompanyDao(CompanyDao companyDao) {
 		this.companyDao = companyDao;
 	}
+
+	public void setLoginDao(LoginDao loginDao) {
+        this.loginDao = loginDao;
+    }
+
+    public LoginDao getLoginDao() {
+        return loginDao;
+    }
 }

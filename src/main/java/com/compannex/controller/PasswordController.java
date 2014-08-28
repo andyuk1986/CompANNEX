@@ -52,7 +52,7 @@ public class PasswordController {
 
 		ChangePassword changePassword = new ChangePassword();
 		changePassword.setSessionID(request.getSession().getId());
-		
+
 		result.addObject("changePassword", changePassword);
 		return result;
 	}
@@ -69,24 +69,24 @@ public class PasswordController {
 
 		Company loginCompany = (Company)request.getSession().getAttribute("loginCompany");
 		if (loginCompany == null) return error;
-		
+
 		int companyID = loginCompany.getID();
-		
-		changePasswordValidation.validate(changePassword, result, loginCompany.getEmail());
+
+		changePasswordValidation.validate(changePassword, result, loginCompany.getLogin().getEmail());
 		if (result.hasErrors()) {
 			//error.addObject("changePassword", changePassword);
 			return error;
 		}
 
-		passwordMethods.changePassword(companyID, changePassword.getNewpassword());
-			
+		passwordMethods.changePassword(loginCompany.getLogin().getEmail(), changePassword.getNewpassword());
+
 		loginCompany = companyMethods.getCompanyByID(companyID, CompANNEXConstants.DEFAULT_LANGUAGE);
 		success.addObject("client", loginCompany);
 		request.getSession().setAttribute("loginCompany", loginCompany);
-		
+
 		return success;
 	}
-	
+
 	@RequestMapping("/forgotpasswordnew.do")
 	public ModelAndView forgotPasswordNew(HttpServletRequest request) throws CompANNEXException {
 		ModelAndView result = new ModelAndView("forgotpassword", "activeTab",
@@ -94,11 +94,11 @@ public class PasswordController {
 
 		ForgotPassword forgotPassword = new ForgotPassword();
 		forgotPassword.setSessionID(request.getSession().getId());
-		
+
 		result.addObject("forgotPassword", forgotPassword);
 		return result;
 	}
-	
+
 	@RequestMapping("/forgotpassword.do")
 	public ModelAndView forgotPassword(HttpServletRequest request,
 			@Valid ForgotPassword forgotPassword, BindingResult result) throws CompANNEXException {
@@ -106,20 +106,20 @@ public class PasswordController {
 				"clients");
 		ModelAndView error = new ModelAndView("forgotpassword", "activeTab",
 				"clients");
-		
-		
+
+
 		forgotPasswordValidation.validate(forgotPassword, result);
 		if (result.hasErrors()) {
 			return error;
 		}
 
-		passwordMethods.resetPassword(forgotPassword.getEmail());					
-		
+		passwordMethods.resetPassword(forgotPassword.getEmail());
+
 		Login login = new Login();
 		success.addObject("login", login);
 		return success;
 	}
-	
+
 	@RequestMapping("/resetpasswordnew.do")
 	public ModelAndView resetPasswordNew(HttpServletRequest request,
 			@RequestParam(value = "token", required = true) String token,
@@ -129,21 +129,21 @@ public class PasswordController {
 				"clients");
 		ModelAndView error = new ModelAndView("login", "activeTab",
 				"clients");
-		
+
 		if (!passwordMethods.isPasswordTokenValid(email, id, token)) {
 			return error;
 		}
-		
+
 		ResetPassword resetPassword = new ResetPassword();
 		resetPassword.setToken(token);
 		resetPassword.setEmail(email);
 		resetPassword.setId(id);
 		resetPassword.setSessionID(request.getSession().getId());
-		
+
 		result.addObject("resetPassword", resetPassword);
 		return result;
 	}
-	
+
 	@RequestMapping("/resetpassword.do")
 	public ModelAndView resetPassword(HttpServletRequest request,
 			@Valid ResetPassword resetPassword, BindingResult result) throws CompANNEXException {
@@ -151,17 +151,17 @@ public class PasswordController {
 				"clients");
 		ModelAndView error = new ModelAndView("resetpassword", "activeTab",
 				"clients");
-		
-		
+
+
 		resetPasswordValidation.validate(resetPassword, result);
 		if (!passwordMethods.isPasswordTokenValid(resetPassword.getEmail(), resetPassword.getId(), resetPassword.getToken()) || result.hasErrors()) {
 			return error;
 		}
 
-		passwordMethods.changePassword(resetPassword.getId(), resetPassword.getNewpassword());
-		
+		passwordMethods.changePassword(resetPassword.getEmail(), resetPassword.getNewpassword());
+
 		passwordMethods.resetPasswordToken(resetPassword.getEmail());
-		
+
 		Login login = new Login();
 		success.addObject("login", login);
 		return success;

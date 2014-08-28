@@ -198,6 +198,7 @@
 		<property name="questionDao" ref="questionDao" />
 		<property name="answerDao" ref="answerDao" />
 		<property name="companyDao" ref="companyDao" />
+		<property name="loginDao" ref="loginDao" />
 		<property name="mailService" ref="mailService" />
 	</bean>
 
