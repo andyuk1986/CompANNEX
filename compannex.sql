@@ -414,8 +414,8 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`login` (
   `create_date` DATE NULL,
   `token` VARCHAR(255) NULL,
   `password_token` VARCHAR(255) NULL,
-  `password_token_date` DATE NULL;
-  PRIMARY KEY (`ID`)
+  `password_token_date` DATE NULL,
+  PRIMARY KEY (`ID`) )
 ENGINE = InnoDB;
 
 
@@ -424,13 +424,14 @@ DROP `password`,
 DROP `token`,
 DROP `password_token`,
 DROP `password_token_date`,
-ADD `login_ID` INT NOT NULL,
+ADD `login_ID` INT NOT NULL;
+
+ALTER TABLE `hhovsepy_compannex`.`company`
 ADD CONSTRAINT `FK_COMP_LOGIN`
     FOREIGN KEY (`login_ID` )
     REFERENCES `hhovsepy_compannex`.`login` (`ID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION;
-
 
 -- -----------------------------------------------------
 -- Table `hhovsepy_compannex`.`consultant`
@@ -443,14 +444,14 @@ CREATE  TABLE IF NOT EXISTS `hhovsepy_compannex`.`consultant` (
   `telephone` VARCHAR(45),
   `address` VARCHAR(255) NULL,
   `fax` VARCHAR(45),
-  `create_date` DATE NULL
-  `login_ID` INT NOT NULL;
-  PRIMARY KEY (`ID`)
+  `create_date` DATE NULL,
+  `login_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`),
   CONSTRAINT `FK_CONS_LOGIN`
     FOREIGN KEY (`login_ID` )
     REFERENCES `hhovsepy_compannex`.`login` (`ID` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
+    ON UPDATE NO ACTION )
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -479,7 +480,7 @@ ENGINE = InnoDB;
 
 ALTER TABLE `hhovsepy_compannex`.`answer`
 ADD `consultant_ID` INT NULL AFTER `text`,
-CONSTRAINT `FK_ANSWER_CONS`
+ADD CONSTRAINT `FK_ANSWER_CONS`
     FOREIGN KEY (`consultant_ID` )
     REFERENCES `hhovsepy_compannex`.`consultant` (`ID` )
     ON DELETE NO ACTION
@@ -488,7 +489,7 @@ CONSTRAINT `FK_ANSWER_CONS`
 ALTER TABLE `hhovsepy_compannex`.`question`
 ADD `is_private` BOOLEAN NOT NULL DEFAULT false;
 
- 
+####################################### 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
