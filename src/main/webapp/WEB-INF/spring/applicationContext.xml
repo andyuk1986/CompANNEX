@@ -216,11 +216,21 @@
 		
 	<bean id="registrationValidation" class="com.compannex.validator.RegistrationValidation">
 		<property name="companyDao" ref="companyDao" />
+		<property name="loginDao" ref="loginDao" />
 	</bean>
 
 	<bean id="editcompanyValidation" class="com.compannex.validator.EditCompanyValidation">
 		<property name="companyDao" ref="companyDao" />
 	</bean>
+
+	<bean id="consultantregistrationValidation" class="com.compannex.validator.ConsultantRegistrationValidation">
+		<property name="consultantDao" ref="consultantDao" />
+		<property name="loginDao" ref="loginDao" />
+	</bean>
+
+	<bean id="editconsultantValidation" class="com.compannex.validator.EditConsultantValidation">
+		<property name="consultantDao" ref="consultantDao" />
+	</bean>	
 	
 	<bean id="changePasswordValidation" class="com.compannex.validator.ChangePasswordValidation">
 		<property name="loginMethods" ref="loginMethods" />

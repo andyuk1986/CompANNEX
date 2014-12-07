@@ -21,6 +21,10 @@ public class ConsultantMethods {
 		
 		return comp;
 	}
+	
+	public int addConsultant() {
+		return -1;
+	}
 
 	public ConsultantDao getConsultantDao() {
 		return consultantDao;
