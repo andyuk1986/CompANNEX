@@ -49,11 +49,11 @@ public class ConsultantCategory implements Serializable {
 	}
 
 	@Column(name = "category_ID")
-	public int getCaategoryID() {
+	public int getCategoryID() {
 		return categoryID;
 	}
 
-	public void setCategoryD(int categoryID) {
+	public void setCategoryID(int categoryID) {
 		this.categoryID = categoryID;
 	}
 

@@ -202,8 +202,12 @@
 		<property name="mailService" ref="mailService" />
 	</bean>
 
+	<bean id="consultantMethods" class="com.compannex.biz.ConsultantMethods">
+		<property name="consultantDao" ref="consultantDao" />
+	</bean>
+
 	<bean id="logoMethods" class="com.compannex.biz.LogoMethods">
-		<property name="partnerMethods" ref="partnerMethods" />
+		<property name="companyMethods" ref="companyMethods" />
 		<property name="compANNEXProperties" ref="compANNEXProperties" />
 	</bean>
 	
